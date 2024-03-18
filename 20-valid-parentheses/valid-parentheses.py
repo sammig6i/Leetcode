@@ -4,12 +4,11 @@ class Solution:
         stack = []
 
         for c in s:
-            if c in closedToOpen:
-                if stack and stack[-1] == closedToOpen[c]:
-                    stack.pop()
-                else:
-                    return False
-            else:
+            if c not in closedToOpen:
                 stack.append(c)
+                continue
+            if not stack or stack[-1] != closedToOpen[c]:
+                return False
+            stack.pop()
         
-        return True if not stack else False
+        return not stack
