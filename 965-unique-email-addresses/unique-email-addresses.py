@@ -1,10 +1,11 @@
 class Solution:
     def numUniqueEmails(self, emails: List[str]) -> int:
-        unique = set()
+        valid = set()
+
         for e in emails:
             i = 0
             local = ""
-            while e[i] not in ["@", "+"]:
+            while e[i] not in ("@", "+"):
                 if e[i] != ".":
                     local += e[i]
                 i += 1
@@ -12,14 +13,11 @@ class Solution:
             while e[i] != "@":
                 i += 1
             domain = e[i + 1:]
-            unique.add((local,domain))
-        return len(unique)
+            valid.add((local, domain))
+        return len(valid)
+
+        
+
 
             
-          
-                        
-          
-                    
-                
-
 
