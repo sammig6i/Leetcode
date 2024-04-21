@@ -1,14 +1,9 @@
 class Solution:
     def majorityElement(self, nums: List[int]) -> int:
-        countMap = {}
-        size = len(nums)
+        res = 0
+        count = 0
         for n in nums:
-            if n in countMap:
-                countMap[n] += 1
-            else:
-                countMap[n] = 1
-        
-        for num, count in countMap.items():
-            if count > (size // 2):
-                return num
-        
+            if count == 0:
+                res = n
+            count += (1 if n == res else -1)
+        return res
