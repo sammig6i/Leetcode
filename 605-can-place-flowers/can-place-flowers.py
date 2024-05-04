@@ -9,5 +9,5 @@ class Solution:
             else:
                 empty += 1
 
-        n -= empty // 2
+        n -= (empty // 2)
         return n <= 0
