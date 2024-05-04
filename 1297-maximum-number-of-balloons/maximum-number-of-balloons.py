@@ -3,7 +3,7 @@ class Solution:
         countMap = Counter(text)
         balloonMap = Counter("balloon")
 
-        res = len(text)
+        res = float("inf")
         for c in balloonMap:
             res = min(res, countMap[c] // balloonMap[c])
         return res
