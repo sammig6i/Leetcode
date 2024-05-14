@@ -1,1 +1,1 @@
-<h2>replace-elements-with-greatest-element-on-right-side Notes</h2><hr>[ Time taken: 8 m 20 s ]
+<h2>replace-elements-with-greatest-element-on-right-side Notes</h2><hr>[ Time taken: 17 m 28 s ]
