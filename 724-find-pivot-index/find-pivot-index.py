@@ -7,6 +7,5 @@ class Solution:
             rightSum = total - leftSum - nums[i]
             if rightSum == leftSum:
                 return i
-            else:
-                leftSum += nums[i]
+            leftSum += nums[i]
         return -1
