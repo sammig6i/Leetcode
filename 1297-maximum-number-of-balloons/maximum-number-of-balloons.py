@@ -1,13 +1,12 @@
 class Solution:
     def maxNumberOfBalloons(self, text: str) -> int:
-        countMap = Counter(text)
-        balloonMap = Counter("balloon")
+        balloon = Counter("balloon")
+        word = Counter(text)
 
-        res = float("inf")
-        for c in balloonMap:
-            res = min(res, countMap[c] // balloonMap[c])
+        res = len(text)
+
+        for c in balloon:
+            res = min(res, word[c] // balloon[c])
         return res
+        
 
-
-
-       
