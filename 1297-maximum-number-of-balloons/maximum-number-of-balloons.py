@@ -8,5 +8,6 @@ class Solution:
         for c in balloon:
             res = min(res, word[c] // balloon[c])
         return res
+
         
 
