@@ -39,10 +39,9 @@ class MyHashMap:
         index = self.hash(key)
         cur = self.map[index]
 
-        prev = None
-        while cur:
-            if cur.key == key:
-                prev.next = cur.next
+        while cur and cur.next:
+            if cur.next.key == key:
+                cur.next = cur.next.next
                 return
             prev, cur = cur, cur.next
 
