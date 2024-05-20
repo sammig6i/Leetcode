@@ -39,12 +39,12 @@ class MyHashMap:
         index = self.hash(key)
         cur = self.map[index]
 
-      
-        while cur and cur.next:
-            if cur.next.key == key:
-                cur.next = cur.next.next
+        prev = None
+        while cur:
+            if cur.key == key:
+                prev.next = cur.next
                 return
-            cur = cur.next
+            prev, cur = cur, cur.next
 
 
 # Your MyHashMap object will be instantiated and called as such:
