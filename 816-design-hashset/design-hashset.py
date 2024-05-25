@@ -1,47 +1,46 @@
 class Node:
-    def __init__(self, key):
+    def __init__(self, key=-1, next=None):
         self.key = key
-        self.next = None
+        self.next = next
 
 class MyHashSet:
 
     def __init__(self):
-        self.set = [Node(0) for i in range(10**4)]
+        self.set = [Node() for i in range(10**4)]
 
-    def hash_function(self, key):
+    def hash(self, key):
         return key % len(self.set)
 
     def add(self, key: int) -> None:
-        index = self.hash_function(key)
-        cur = self.set[index]
+        index = self.hash(key)
+        curr = self.set[index]
 
-        while cur.next:
-            if cur.next.key == key:
+        while curr.next:
+            if curr.next.key == key:
                 return
-            cur = cur.next
-        cur.next = Node(key)
+            curr = curr.next
+        curr.next = Node(key)
 
     def remove(self, key: int) -> None:
-        index = self.hash_function(key)
-        cur = self.set[index]
+        index = self.hash(key)
+        curr = self.set[index]
 
-        while cur.next:
-            if cur.next.key == key:
-                cur.next = cur.next.next
-                return
-            cur = cur.next
         
+        while curr.next:
+            if curr.next.key == key:
+                curr.next = curr.next.next
+                return
+            curr = curr.next
 
     def contains(self, key: int) -> bool:
-        index = self.hash_function(key)
-        cur = self.set[index]
+        index = self.hash(key)
+        curr = self.set[index]
 
-        while cur.next:
-            if cur.next.key == key:
+        while curr.next:
+            if curr.next.key == key:
                 return True
-            cur = cur.next
+            curr = curr.next
         return False
-
 
 # Your MyHashSet object will be instantiated and called as such:
 # obj = MyHashSet()
