@@ -1,49 +1,47 @@
 class Node:
-    def __init__(self, key=-1, value=-1, next=None):
+    def __init__(self, key=-1, val=-1, next=None):
         self.key = key
-        self.value = value
+        self.val = val
         self.next = next
 
 class MyHashMap:
 
     def __init__(self):
         self.map = [Node() for i in range(10**4)]
-        
-    def hash(self, key):
-        return key % len(self.map)
-    
-    def put(self, key: int, value: int) -> None:
-        index = self.hash(key)
-        cur = self.map[index]
 
-        while cur.next:
-            if cur.next.key == key:
-                cur.next.value = value
+    def hash_function(self, key):
+        return key % len(self.map)
+
+    def put(self, key: int, value: int) -> None:
+        index = self.hash_function(key)
+        curr = self.map[index]
+
+        while curr.next:
+            if curr.next.key == key:
+                curr.next.val = value
                 return
-            cur = cur.next
-        cur.next = Node(key, value)
-        
+            curr = curr.next
+        curr.next = Node(key, value)
 
     def get(self, key: int) -> int:
-        index = self.hash(key)
-        cur = self.map[index]
+        index = self.hash_function(key)
+        curr = self.map[index]
 
-        while cur:
-            if cur.key == key:
-                return cur.value
-            cur = cur.next
-        return -1
-        
+        while curr.next:
+            if curr.next.key == key:
+                return curr.next.val
+            curr = curr.next
+        return -1        
 
     def remove(self, key: int) -> None:
-        index = self.hash(key)
-        cur = self.map[index]
+        index = self.hash_function(key)
+        curr = self.map[index]
 
-        while cur and cur.next:
-            if cur.next.key == key:
-                cur.next = cur.next.next
+        while curr and curr.next:
+            if curr.next.key == key:
+                curr.next = curr.next.next
                 return
-            prev, cur = cur, cur.next
+            curr = curr.next
 
 
 # Your MyHashMap object will be instantiated and called as such:
