@@ -1,13 +1,11 @@
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
-        if len(s) != len(t):
-            return False
+        if len(s) != len(t): return False 
 
-        wordS = {}
-        wordT = {}
-
+        mapS = {}
+        mapT = {}
         for i in range(len(s)):
-            wordS[s[i]] = 1 + wordS.get(s[i], 0)
-            wordT[t[i]] = 1 + wordT.get(t[i], 0)
+            mapS[s[i]] = 1 + mapS.get(s[i], 0)
+            mapT[t[i]] = 1 + mapT.get(t[i], 0)
+        return mapS == mapT 
 
-        return wordT == wordS
