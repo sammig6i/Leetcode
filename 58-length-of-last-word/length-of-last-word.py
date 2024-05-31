@@ -3,8 +3,9 @@ class Solution:
         length = 0
         
         for i in range(len(s) - 1, -1, -1):
-            if s[i] != " ":
+            if s[i] == " ":
+                if length >= 1:
+                    return length
+            else:
                 length += 1
-            elif length > 0:
-                return length
         return length
