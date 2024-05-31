@@ -5,10 +5,7 @@ class Solution:
         for n in nums:
             if count == 0:
                 res = n
-            if n == res:
-                count += 1
-            else:
-                count -= 1
+            count += (1 if n == res else -1)
         return res
         
            
