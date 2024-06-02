@@ -1,1 +1,1 @@
-<h2>group-anagrams Notes</h2><hr>[ Time taken: 20 m 19 s ]
+<h2>group-anagrams Notes</h2><hr>[ Time taken: 4 m 16 s ]
