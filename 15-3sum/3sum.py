@@ -6,7 +6,7 @@ class Solution:
         for i, n in enumerate(nums):
             if n > 0:
                 continue
-                
+
             if i > 0 and n == nums[i - 1]:
                 continue
             
@@ -21,7 +21,6 @@ class Solution:
                 else:
                     res.append([n, nums[l], nums[r]])
                     l += 1
-                    r -= 1
                     while nums[l] == nums[l - 1] and l < r:
                         l += 1
         return res
