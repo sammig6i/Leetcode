@@ -1,6 +1,6 @@
 class Solution:
     def isValid(self, s: str) -> bool:
-        closedToOpen = {")" : "(", "}" :"{", "]" : "["}
+        closedToOpen = {")" : "(", "]" : "[", "}" : "{"}
         stack = []
 
         for c in s:
