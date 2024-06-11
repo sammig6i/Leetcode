@@ -4,11 +4,12 @@ class Solution:
         R = len(numbers) - 1
 
         while L < R:
-            sumLR = numbers[R] + numbers[L]
-            if sumLR == target:
-                return [L + 1, R + 1]
-            elif sumLR < target:
+            twoSum = numbers[L] + numbers[R]
+
+            if twoSum > target:
+                R -= 1
+            elif twoSum < target:
                 L += 1
             else:
-                R -= 1
-        
+                return [L + 1, R + 1]
+        return res
