@@ -19,6 +19,7 @@ class Solution:
                 else:
                     res.append([n, nums[L], nums[R]])
                     L += 1
+                    R -= 1
                     while nums[L] == nums[L - 1] and L < R:
                         L += 1
         return res
