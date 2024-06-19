@@ -11,14 +11,14 @@ class Solution:
 
             while L < R:
                 threeSum = n + nums[L] + nums[R]
-                if threeSum == 0:
+
+                if threeSum > 0:
+                    R -= 1
+                elif threeSum < 0:
+                    L += 1
+                else:
                     res.append([n, nums[L], nums[R]])
                     L += 1
                     while nums[L] == nums[L - 1] and L < R:
                         L += 1
-                elif threeSum > 0:
-                    R -= 1
-                elif threeSum < 0:
-                    L += 1
-                    
         return res
