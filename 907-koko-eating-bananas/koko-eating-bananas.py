@@ -9,11 +9,11 @@ class Solution:
             for p in piles:
                 hours += (p + k - 1) // k
             
-            if hours > h:
-                L = k + 1
-            elif hours <= h:
+            if hours <= h:
                 res = min(res, k)
                 R = k - 1
+            else:
+                L = k + 1
         return res
 
 
