@@ -15,5 +15,3 @@ class Solution:
             else:
                 L = k + 1
         return res
-
-
