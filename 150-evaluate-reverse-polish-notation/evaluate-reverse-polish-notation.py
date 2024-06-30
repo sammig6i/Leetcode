@@ -9,16 +9,13 @@ class Solution:
 
                 if c == '+':
                     res = (a + b)
-                    stack.append(res)
                 elif c == '-':
                     res = (a - b)
-                    stack.append(res)
                 elif c == '*':
                     res = (a * b)
-                    stack.append(res)
                 elif c == '/':
                     res = int(a / b)
-                    stack.append(res)
+                stack.append(res)
             else:
                 stack.append(int(c))
         return stack[-1]
