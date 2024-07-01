@@ -1,7 +1,7 @@
 class TimeMap:
 
     def __init__(self):
-        self.store = {} # key : list of [val, time]
+        self.store = {} # key : list of [value, time]
 
     def set(self, key: str, value: str, timestamp: int) -> None:
         if key not in self.store:
@@ -18,17 +18,14 @@ class TimeMap:
             if timestamp < values[L][1]:
                 return res
             res = values[mid][0]
+
             if values[mid][1] < timestamp:
                 L = mid + 1
             elif values[mid][1] > timestamp:
-                R = mid - 1
+                R = mid - 1  
             else:
                 return res
-
-
         return res
-
-        
 
 
 # Your TimeMap object will be instantiated and called as such:
