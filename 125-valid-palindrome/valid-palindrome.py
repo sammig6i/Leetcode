@@ -1,7 +1,6 @@
 class Solution:
     def isPalindrome(self, s: str) -> bool:
-        L = 0
-        R = len(s) - 1
+        L, R = 0, len(s) - 1
 
         while L < R:
             if not self.isAlpha(s[L]):
@@ -17,8 +16,7 @@ class Solution:
         return True
 
 
-
     def isAlpha(self, c):
-        return (ord("A") <= ord(c) <= ord("Z")
-            or ord("a") <= ord(c) <= ord("z")
-            or ord("0") <= ord(c) <= ord("9"))
+        return (ord('A') <= ord(c) <= ord('Z') or 
+        ord('0') <= ord(c) <= ord('9') or
+        ord('a') <= ord(c) <= ord('z'))
