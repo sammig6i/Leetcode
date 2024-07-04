@@ -8,6 +8,4 @@ class Solution:
                 count[ord(c) - ord('a')] += 1
             key = tuple(count)
             wordMap[key].append(s)
-        return list(wordMap.values())
-
-            
+        return wordMap.values()
