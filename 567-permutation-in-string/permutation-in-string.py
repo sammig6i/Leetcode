@@ -1,10 +1,8 @@
 class Solution:
     def checkInclusion(self, s1: str, s2: str) -> bool:
-        if len(s1) > len(s2):
-            return False
-        
-        s1Count = [0] * 26
-        s2Count = [0] * 26
+        if len(s1) > len(s2): return False
+
+        s1Count, s2Count = [0] * 26, [0] * 26
 
         for i in range(len(s1)):
             s1Count[ord(s1[i]) - ord('a')] += 1
@@ -20,21 +18,18 @@ class Solution:
 
             index = ord(s2[R]) - ord('a')
             s2Count[index] += 1
-            if s1Count[index] == s2Count[index]:
+            if s2Count[index] == s1Count[index]:
                 matches += 1
-            elif s1Count[index] + 1 == s2Count[index]:
+            elif s2Count[index] == s1Count[index] + 1:
                 matches -= 1
             
             index = ord(s2[L]) - ord('a')
             s2Count[index] -= 1
-            if s1Count[index] == s2Count[index]:
+            if s2Count[index] == s1Count[index]:
                 matches += 1
-            elif s1Count[index] - 1 == s2Count[index]:
+            elif s2Count[index] == s1Count[index] - 1:
                 matches -= 1
             L += 1
-            
         return matches == 26
 
-
-
-
+        
