@@ -5,7 +5,7 @@ class Solution:
 
         L = 0
         for R in range(len(nums)):
-            while q and nums[R] > nums[q[-1]]:
+            while q and nums[q[-1]] < nums[R]:
                 q.pop()
             q.append(R)
 
@@ -15,8 +15,4 @@ class Solution:
             if (R - L + 1) >= k:
                 res.append(nums[q[0]])
                 L += 1
-        return res  
-
-
-
-        
+        return res
