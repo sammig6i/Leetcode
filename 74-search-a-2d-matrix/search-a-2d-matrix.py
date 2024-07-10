@@ -9,7 +9,7 @@ class Solution:
 
             if target > matrix[row][-1]:
                 top += 1
-            elif target < matrix[row][-1]:
+            elif target < matrix[row][0]:
                 bot -= 1
             else:
                 break
