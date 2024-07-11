@@ -9,11 +9,11 @@ class Solution:
             if maxL < maxR:
                 L += 1
                 maxL = max(height[L], maxL)
-                res += maxL - height[L]
+                res += (maxL - height[L])
             else:
                 R -= 1
                 maxR = max(height[R], maxR)
-                res += maxR - height[R]
+                res += (maxR - height[R])
         return res
                 
 
