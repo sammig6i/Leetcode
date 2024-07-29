@@ -10,7 +10,7 @@ class Solution:
         if root:
             q.append(root)
         level = 0
-        while len(q) > 0:
+        while q:
             for i in range(len(q)):
                 node = q.popleft()
                 if node.left:
