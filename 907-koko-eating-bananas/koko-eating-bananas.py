@@ -12,6 +12,6 @@ class Solution:
             if hours <= h:
                 res = min(res, m)
                 R = m - 1
-            else:
+            elif hours > h:
                 L = m + 1
         return res
