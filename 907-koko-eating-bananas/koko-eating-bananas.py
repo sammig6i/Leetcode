@@ -4,14 +4,14 @@ class Solution:
         res = R
 
         while L <= R:
-            k = L + ((R - L) // 2)
+            m = L + ((R - L) // 2)
             hours = 0
             for p in piles:
-                hours += (p + k - 1) // k
+                hours += ((m + p - 1) // m)
             
             if hours <= h:
-                res = min(res, k)
-                R = k - 1
+                res = min(res, m)
+                R = m - 1
             else:
-                L = k + 1
+                L = m + 1
         return res
