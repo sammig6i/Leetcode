@@ -9,7 +9,7 @@ class Solution:
         q = deque([root])
         res = []
 
-        while len(q) > 0:
+        while q:
             rightSide = None
             for i in range(len(q)):
                 node = q.popleft()
