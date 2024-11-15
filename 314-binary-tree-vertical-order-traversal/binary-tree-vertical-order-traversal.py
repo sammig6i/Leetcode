@@ -6,10 +6,10 @@
 #         self.right = right
 class Solution:
     def verticalOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
-        if not root:
-            return []
         d = defaultdict(list)
         q = deque([(root, 0)])
+        if not root:
+            return []
 
         while q:
             for i in range(len(q)):
