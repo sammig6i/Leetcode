@@ -20,4 +20,3 @@ class Solution:
                     q.append((node.right, offset + 1))
         values = [v for _, v in sorted(d.items())]
         return values
-        
