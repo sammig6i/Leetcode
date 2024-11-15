@@ -19,7 +19,7 @@ class Solution:
                 count -= 1
             else:
                 filtered.append(c)
-                
+
         return "".join(filtered[::-1])
 
 
