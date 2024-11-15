@@ -18,5 +18,6 @@ class Solution:
                     d[offset].append(node.val)
                     q.append((node.left, offset - 1))
                     q.append((node.right, offset + 1))
-        return [v for _, v in sorted(d.items())]
+        values = [v for _, v in sorted(d.items())]
+        return values
         
