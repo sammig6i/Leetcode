@@ -5,23 +5,23 @@ class Solution:
         # if * or / in stack, then immediately calculate the two numbers
         stack = []
         v = 0
-        sign = "+"
+        op = "+"
 
         for i, c in enumerate(s):
             if c.isdigit():
-                v= v * 10 + int(c)
+                v = v * 10 + int(c)
 
             if i == len(s) - 1 or c in ('+','-','*','/'):
-                if sign == "+":
+                if op == "+":
                     stack.append(v)
-                elif sign == "-":
+                elif op == "-":
                     stack.append(-v)
-                elif sign == "*":
+                elif op == "*":
                     stack.append(stack.pop() * v)
-                elif sign == "/":
+                elif op == "/":
                     stack.append(int(stack.pop() / v))
                 
-                sign = c
+                op = c
                 v = 0
         return sum(stack)
 
