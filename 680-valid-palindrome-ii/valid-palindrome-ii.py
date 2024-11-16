@@ -5,10 +5,7 @@ class Solution:
         while L < R:
             if s[L] != s[R]:
                 skipL, skipR = s[L + 1:R + 1], s[L:R]
-                if skipL[::-1] == skipL or skipR[::-1] == skipR:
-                    return True
-                else:
-                    return False
+                return skipL[::-1] == skipL or skipR[::-1] == skipR
             L += 1
             R -= 1
         return True
