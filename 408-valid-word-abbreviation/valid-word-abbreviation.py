@@ -9,11 +9,9 @@ class Solution:
             if word[i] == abbr[j]:
                 i += 1
                 j += 1
-                continue
-            
+                
             elif not abbr[j].isdigit():
                 return False
-           
             else:
                 num_start = j
                 while j < len(abbr) and abbr[j].isdigit():
