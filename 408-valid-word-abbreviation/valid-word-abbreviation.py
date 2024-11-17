@@ -5,10 +5,7 @@ class Solution:
         # internationalization, i12iz4n
 
         i = j = 0
-        while i < len(word):
-            if j >= len(abbr):
-                return False
-
+        while i < len(word) and j < len(abbr):
             if word[i] == abbr[j]:
                 i += 1
                 j += 1
