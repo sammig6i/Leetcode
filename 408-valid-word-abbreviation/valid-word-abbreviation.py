@@ -1,11 +1,12 @@
 class Solution:
     def validWordAbbreviation(self, word: str, abbr: str) -> bool:
-        i = j = 0
-        w = len(word)
-        a = len(abbr)
+        # substitution, s10n
+        # apple, a2e
+        # internationalization, i12iz4n
 
-        while i < w:
-            if j >= a:
+        i = j = 0
+        while i < len(word):
+            if j >= len(abbr):
                 return False
 
             if word[i] == abbr[j]:
@@ -14,18 +15,19 @@ class Solution:
                 continue
             
             if not abbr[j].isdigit():
-                return False 
-
+                return False
+           
             num_start = j
-            while j < a and abbr[j].isdigit():
+            while j < len(abbr) and abbr[j].isdigit():
                 j += 1
             num_str = abbr[num_start:j]
             if num_str[0] == "0":
                 return False
+            i += int(num_str)
 
-            i = i + int(num_str)
+        return i == len(word) and j == len(abbr)
+            
+            
+            
 
-        return i == w and j == a
-                
-        
-        
+
