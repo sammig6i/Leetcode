@@ -15,11 +15,10 @@ class Solution:
         def DFS(node, row, column):
             if node:
                 nonlocal min_column, max_column
+                DFS(node.left, row + 1, column - 1)
                 columnTable[column].append((row, node.val))
                 min_column = min(min_column, column)
                 max_column = max(max_column, column)
-
-                DFS(node.left, row + 1, column - 1)
                 DFS(node.right, row + 1, column + 1)
         
         DFS(root, 0, 0)
