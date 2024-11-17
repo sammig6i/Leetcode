@@ -11,16 +11,17 @@ class Solution:
                 j += 1
                 continue
             
-            if not abbr[j].isdigit():
+            elif not abbr[j].isdigit():
                 return False
            
-            num_start = j
-            while j < len(abbr) and abbr[j].isdigit():
-                j += 1
-            num_str = abbr[num_start:j]
-            if num_str[0] == "0":
-                return False
-            i += int(num_str)
+            else:
+                num_start = j
+                while j < len(abbr) and abbr[j].isdigit():
+                    j += 1
+                num_str = abbr[num_start:j]
+                if num_str[0] == "0":
+                    return False
+                i += int(num_str)
 
         return i == len(word) and j == len(abbr)
             
