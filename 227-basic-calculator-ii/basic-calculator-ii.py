@@ -1,21 +1,35 @@
 class Solution:
     def calculate(self, s: str) -> int:
-        op = '+'
-        stack = []
-        v = 0
-        for i, c in enumerate(s):
-            if c.isdigit():
-                v = v * 10 + int(c)
-            if i == len(s) - 1 or c in ("+","-","/","*"):
+        curr_res = 0
+        res = 0
+        num = 0
+        op = "+"  # keep the last operator we have seen
+        
+		# append a "+" sign at the end because we can catch the very last item
+        for ch in s + "+":
+            if ch.isdigit():
+                num = 10 * num + int(ch)
+
+            # if we have a symbol, we would start to calculate the previous part.
+            # note that we have to catch the last chracter since there will no sign afterwards to trigger calculation
+            if ch in ("+", "-", "*", "/"):
                 if op == "+":
-                    stack.append(v)    
+                    curr_res += num
                 elif op == "-":
-                    stack.append(-v)
+                    curr_res -= num
                 elif op == "*":
-                    stack.append(stack.pop() * v)
+                    curr_res *= num
                 elif op == "/":
-                    stack.append(int(stack.pop() / v))
-                op = c
-                v = 0
-        return sum(stack)
+                    # in python if there is a negative number, we should alway use int() instead of //
+                    curr_res = int(curr_res / num)
                 
+                # if the chracter is "+" or "-", we do not need to worry about
+                # the priority so that we can add the curr_res to the eventual res
+                if ch in ("+", "-"):
+                    res += curr_res
+                    curr_res = 0
+                
+                op = ch
+                num = 0
+        
+        return res
