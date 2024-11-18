@@ -6,10 +6,12 @@ class Solution:
             if res:
                 last_end = res[-1][1]
                 if start <= last_end:
-                    res[-1][1] = max(end, last_end)
+                    if end <= last_end:
+                        continue
+                    else:
+                        res[-1][1] = end
                 else:
                     res.append([start, end])
             else:
                 res.append([start, end])
         return res
-# 1,4 2,3
