@@ -5,10 +5,10 @@ class Solution:
         op = "+"
         # res = 0
 
-        for c in s + "+":
+        for i, c in enumerate(s):
             if c.isdigit():
                 v = v * 10 + int(c)
-            elif c in ("+", "*", "/", "-"):
+            if i == len(s) - 1 or c in ("+", "*", "/", "-"):
                 if op == "+":
                     stack.append(v)
                 elif op == "-":
