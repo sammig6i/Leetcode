@@ -12,10 +12,7 @@ class Solution:
             last_num -= 1
             n -= 1
         
-        for i in range(len(nums1)):
-            for j in range(i + 1, len(nums1)):
-                if nums1[j] < nums1[i]:
-                    nums1[i], nums1[j] = nums1[j], nums1[i]
+        nums1.sort()
 
             
             
