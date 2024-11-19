@@ -5,19 +5,28 @@
 #         self.left = left
 #         self.right = right
 class Solution:
+        
     def verticalOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
-        d = defaultdict(list)
-        q = deque([(root, 0)])
         min_column = max_column = 0
+        d = defaultdict(list)
         if not root:
             return []
-        
-        while q:
-            node, col = q.popleft()
+
+        def dfs(node, row, col):
+            nonlocal min_column, max_column
             if node:
-                d[col].append(node.val)
-                q.append([node.left, col - 1])
-                q.append([node.right, col + 1])
+                d[col].append((row, node.val))
                 min_column = min(min_column, col)
                 max_column = max(max_column, col)
-        return [d[v] for v in range(min_column, max_column + 1)]
+                dfs(node.left, row + 1, col - 1)
+                dfs(node.right, row + 1, col + 1)
+        
+        dfs(root, 0, 0)
+        res = []
+        for col in range(min_column, max_column + 1):
+            d[col].sort(key=lambda x: x[0])
+            cols = [v for _, v in d[col]]
+            res.append(cols)
+        return res
+    
+    
