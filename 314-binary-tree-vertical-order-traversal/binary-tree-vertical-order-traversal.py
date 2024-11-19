@@ -21,9 +21,7 @@ class Solution:
                 q.append([node.right, column + 1])
                 max_column = max(max_column, column)
                 min_column = min(min_column, column)
-        for col in range(min_column, max_column + 1):
-            res.append(d[col])
-        return res
+        return [d[v] for v in range(min_column, max_column + 1)]
 
         
 
