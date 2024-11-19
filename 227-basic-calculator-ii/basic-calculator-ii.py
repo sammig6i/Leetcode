@@ -1,23 +1,27 @@
 class Solution:
     def calculate(self, s: str) -> int:
+        curr_sum = 0
+        res = 0
         v = 0
-        stack = []
         op = "+"
-        # res = 0
 
-        for i, c in enumerate(s):
+        for i, c in enumerate(s + "+"):
             if c.isdigit():
                 v = v * 10 + int(c)
-            if i == len(s) - 1 or c in ("+", "*", "/", "-"):
+            if c in ("+", "*", "/", "-"):
                 if op == "+":
-                    stack.append(v)
+                    curr_sum += v
                 elif op == "-":
-                    stack.append(-v)
+                    curr_sum -= v
                 elif op == "/":
-                    stack.append(int(stack.pop() / v))
+                    curr_sum = int(curr_sum / v)
                 elif op == "*":
-                    stack.append(stack.pop() * v)
+                    curr_sum *= v
+                
+                if c in ("+", "-"):
+                    res += curr_sum
+                    curr_sum = 0
                 op = c
                 v = 0
-
-        return sum(stack)
+                
+        return res
