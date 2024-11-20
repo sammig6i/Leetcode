@@ -8,16 +8,17 @@ class Solution:
     def largestValues(self, root: Optional[TreeNode]) -> List[int]:
         res = []
 
-        def dfs(node, depth):
-            if not node:
+        def dfs(root, level):
+            if not root:
                 return None
             
-            if len(res) == depth:
-                res.append(node.val)
+            if len(res) == level:
+                res.append(root.val)
             else:
-                res[depth] = max(res[depth], node.val)
+                res[level] = max(root.val, res[level])
             
-            dfs(node.left, depth + 1)
-            dfs(node.right, depth + 1)
+            dfs(root.right, level + 1)
+            dfs(root.left, level + 1)
+        
         dfs(root, 0)
         return res
