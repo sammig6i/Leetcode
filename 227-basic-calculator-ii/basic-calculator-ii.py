@@ -5,10 +5,10 @@ class Solution:
         v = 0
         op = "+"
 
-        for i, c in enumerate(s + "+"):
+        for i, c in enumerate(s):
             if c.isdigit():
                 v = v * 10 + int(c)
-            elif c in ("+", "-", "/", "*"):
+            if c in ("+", "-", "/", "*") or i == len(s) - 1:
                 if op == "+":
                     curr_sum += v
                 elif op == "-":
@@ -23,4 +23,5 @@ class Solution:
                     curr_sum = 0
                 op = c
                 v = 0
+        res += curr_sum
         return res
