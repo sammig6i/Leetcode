@@ -2,7 +2,7 @@ class Solution:
     def shortestPathBinaryMatrix(self, grid: List[List[int]]) -> int:
         N = len(grid)
         # r, c
-        visited = set((0, 0))
+        visited = set([(0, 0)])
         # row, col, length
         q = deque([(0, 0, 1)])
         direction = [[0, 1], [1, 0], [0, -1], [-1, 0],
@@ -19,7 +19,4 @@ class Solution:
                 if (r + dr, c + dc) not in visited:
                     q.append((r + dr, c + dc, length + 1))
                     visited.add((r + dr, c + dc))
-
         return -1
-
-        
