@@ -7,10 +7,8 @@
 class Solution:
     def largestValues(self, root: Optional[TreeNode]) -> List[int]:
         res = []
-        max_node = float("-inf")
 
         def dfs(node, depth):
-            nonlocal max_node
             if not node:
                 return None
             if len(res) == depth:
