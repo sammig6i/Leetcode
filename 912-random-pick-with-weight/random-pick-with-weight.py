@@ -8,20 +8,16 @@ class Solution:
             self.s.append(total)
         self.total = total
 
-
     def pickIndex(self) -> int:
         L, R = 0, len(self.s) - 1
         target = random.uniform(0, self.total)
         while L < R:
-            mid = (R + L) // 2
-
-            if self.s[mid] >= target:
-                R = mid
-            else:
+            mid = (L + R) // 2
+            if self.s[mid] <= target:
                 L = mid + 1
-
+            else:
+                R = mid
         return L
-
         
 
 
