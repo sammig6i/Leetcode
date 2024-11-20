@@ -13,7 +13,7 @@ class Solution:
         target = random.uniform(0, self.total)
         while L < R:
             mid = (L + R) // 2
-            if self.s[mid] <= target:
+            if self.s[mid] < target:
                 L = mid + 1
             else:
                 R = mid
