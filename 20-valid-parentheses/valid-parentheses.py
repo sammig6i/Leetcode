@@ -9,8 +9,10 @@ class Solution:
             if c not in closedToOpen:
                 stack.append(c)
             else:
-                if not stack or closedToOpen[c] != stack.pop():
+                if not stack or closedToOpen[c] != stack[-1]:
                     return False
+                else:
+                    stack.pop()
         return not stack
         
         
