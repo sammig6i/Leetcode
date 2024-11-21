@@ -3,22 +3,18 @@ class Solution:
         if root is None:
             return []
 
-        q = deque([root])
+        q = deque([root, None])
         rightside = []
-
+        
+        curr = root
         while q:
-            level = len(q)
-            for i in range(level):
-                node = q.popleft()
-                if node:
-                # if it's the rightmost element
-                    if i == level - 1:
-                        rightside.append(node.val)
-
-                    # add child nodes in the queue
-                    if node.left:
-                        q.append(node.left)
-                    if node.right:
-                        q.append(node.right)
+            prev, curr = curr, q.popleft()
+            while curr:
+                if curr.left: q.append(curr.left)
+                if curr.right: q.append(curr.right)
+                prev, curr = curr, q.popleft()
+            rightside.append(prev.val)
+            if q:
+                q.append(None)
 
         return rightside
