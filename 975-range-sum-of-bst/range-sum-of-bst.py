@@ -8,18 +8,33 @@ class Solution:
     def rangeSumBST(self, root: Optional[TreeNode], low: int, high: int) -> int:
         # go through tree
         # for each node value check if it is in range
+        q = deque([root])
         total_sum = 0
-        def dfs(node):
-            nonlocal total_sum
-            if not node:
-                return None
+        if not root:
+            return 0
 
-            if low <= node.val <= high:
-                total_sum += node.val
+        while q:
+            for i in range(len(q)):
+                node = q.popleft()
+                if node:
+                    if low <= node.val <= high:
+                        total_sum += node.val
+                    q.append(node.right)
+                    q.append(node.left)
+        return total_sum
 
-            dfs(node.left)
-            dfs(node.right)
+        # total_sum = 0
+        # def dfs(node):
+        #     nonlocal total_sum
+        #     if not node:
+        #         return None
 
-            return total_sum
+        #     if low <= node.val <= high:
+        #         total_sum += node.val
 
-        return dfs(root)
+        #     dfs(node.left)
+        #     dfs(node.right)
+
+        #     return total_sum
+
+        # return dfs(root)
