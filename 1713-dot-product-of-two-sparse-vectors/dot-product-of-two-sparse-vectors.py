@@ -13,9 +13,11 @@ class SparseVector:
         while p < len(self.pairs) and q < len(vec.pairs):
             if self.pairs[p][0] == vec.pairs[q][0]:
                 total += self.pairs[p][1] * vec.pairs[q][1]
-            if self.pairs[p][0] < vec.pairs[q][0]:
                 p += 1
-            else:
+                q += 1
+            elif self.pairs[p][0] < vec.pairs[q][0]:
+                p += 1
+            elif vec.pairs[q][0] < self.pairs[p][0]:
                 q += 1
         
         return total
