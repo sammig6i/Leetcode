@@ -8,16 +8,11 @@ class Solution:
     def rangeSumBST(self, root: Optional[TreeNode], low: int, high: int) -> int:
         if not root:
             return 0
-        stack = [root]
-        total_sum = 0
-
-        while stack:
-            node = stack.pop()
-            if node:
-                if node.val > low:
-                    stack.append(node.left)
-                if node.val < high:
-                    stack.append(node.right)
-                if low <= node.val <= high:
-                    total_sum += node.val
-        return total_sum
+        if root.val < low:
+            return self.rangeSumBST(root.right, low, high)
+        elif root.val > high:
+            return self.rangeSumBST(root.left, low, high)
+        
+        return (root.val +
+                self.rangeSumBST(root.left, low, high) +
+                self.rangeSumBST(root.right, low, high))
