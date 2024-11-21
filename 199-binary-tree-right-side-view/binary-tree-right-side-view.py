@@ -12,7 +12,7 @@ class Solution:
         
         def dfs(root, depth):
             if not root:
-                return []
+                return None
             
             if len(res) == depth:
                 res.append(root.val)
