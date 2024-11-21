@@ -6,16 +6,11 @@ class Solution:
         closedToOpen = {")": "(", "]": "[", "}": "{"}
 
         for c in s:
-            if stack:
-                if c in closedToOpen and stack[-1] == closedToOpen[c]:
-                    stack.pop()
-                elif c not in closedToOpen:
-                    stack.append(c)
-                else:
-                    return False
-            else:
+            if c not in closedToOpen:
                 stack.append(c)
-            
+            else:
+                if not stack or closedToOpen[c] != stack.pop():
+                    return False
         return not stack
         
         
