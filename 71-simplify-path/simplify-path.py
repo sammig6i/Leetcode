@@ -14,7 +14,14 @@ class Solution:
                 stack.append(c)
         return "/" + "/".join(stack)
         
+# /a/./b/../../c/
+#  /c/
 
+# /../
+# /
+
+# /home//foo
+# /home/foo
             
         
 
