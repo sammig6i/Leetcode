@@ -10,9 +10,12 @@ class Solution:
         # for each node value check if it is in range
         if not root:
             return 0
+
+        if root.val < low:
+            return self.rangeSumBST(root.right, low, high)
+        elif root.val > high:
+            return self.rangeSumBST(root.left, low, high)
         
-        if (root.val > high): return self.rangeSumBST(root.left, low, high)
-        if (root.val < low): return self.rangeSumBST(root.right, low, high)
         return (root.val 
                 + self.rangeSumBST(root.right, low, high)
                 + self.rangeSumBST(root.left, low, high))
