@@ -1,27 +1,29 @@
 class Solution:
     def minRemoveToMakeValid(self, s: str) -> str:
         count = 0
-        res = []
+        stack = []
+
         for c in s:
             if c == "(":
+                stack.append(c)
                 count += 1
-                res.append(c)
             elif c == ")" and count > 0:
                 count -= 1
-                res.append(c)
+                stack.append(c)
+            # we do not want -> count == ) and count == 0
             elif c != ")":
-                res.append(c)
-        
+                stack.append(c)
+        # leet(t(c)co)de(
+            # ))((
         filtered = []
-        for c in res[::-1]:
+        for c in stack[::-1]:
             if c == "(" and count > 0:
                 count -= 1
-                
-            else:
-                filtered.append(c)
-        
+                continue
+            filtered.append(c)
         return "".join(filtered[::-1])
             
+        
 
 
-
+        
