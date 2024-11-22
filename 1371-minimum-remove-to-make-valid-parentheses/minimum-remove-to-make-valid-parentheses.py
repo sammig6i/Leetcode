@@ -13,8 +13,6 @@ class Solution:
             # we do not want -> count == ) and count == 0
             elif c != ")":
                 stack.append(c)
-        # leet(t(c)co)de(
-            # ))((
         filtered = []
         for c in stack[::-1]:
             if c == "(" and count > 0:
@@ -24,6 +22,5 @@ class Solution:
         return "".join(filtered[::-1])
             
         
-
-
+       
         
