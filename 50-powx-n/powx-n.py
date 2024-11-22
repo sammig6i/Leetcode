@@ -6,11 +6,12 @@ class Solution:
             if x == 0:
                 return 0
 
-            res = helper(x, n // 2)
-            res *= res
+            res = helper(x * x, n // 2)
             return x * res if n % 2 else res
-            
-
             
         res = helper(x, abs(n))
         return res if n >= 0 else 1 / res
+    
+#  2^2
+# 2, 1 = 2
+# 2, 0 = 1 = 2
