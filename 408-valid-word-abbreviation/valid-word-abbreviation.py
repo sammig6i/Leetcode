@@ -1,7 +1,6 @@
 class Solution:
     def validWordAbbreviation(self, word: str, abbr: str) -> bool:
-        i = 0
-        j = 0
+        i = j = 0
 
         while i < len(word) and j < len(abbr):
             if word[i] == abbr[j]:
@@ -13,8 +12,9 @@ class Solution:
                 num_start = j
                 while j < len(abbr) and abbr[j].isdigit():
                     j += 1
-                num_str = abbr[num_start:j]
-                if num_str[0] == '0':
+                num_string = abbr[num_start:j]
+                if num_string[0] == "0":
                     return False
-                i += int(num_str)
+                i += int(num_string)
+        
         return i == len(word) and j == len(abbr)
