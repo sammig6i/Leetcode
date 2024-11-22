@@ -7,16 +7,28 @@
 
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-        def dfs(root, p , q):
-            if not root:
-                return None
-            
-            if root == p or root == q:
-                return root
-            
-            L = dfs(root.left, p, q)
-            R = dfs(root.right, p, q)
+        stack = [root]
 
-            return root if L and R else L or R
-        return dfs(root, p, q)
+        parent = {root: None}
+
+        while p not in parent or q not in parent:
+            node = stack.pop()
+
+            if node.left:
+                parent[node.left] = node
+                stack.append(node.left)
+            if node.right:
+                parent[node.right] = node
+                stack.append(node.right)
+        
+        ancestors = set()
+        while p:
+            ancestors.add(p)
+            p = parent[p]
+
+        while q not in ancestors:
+            q = parent[q]
+        
+        return q
+
             
