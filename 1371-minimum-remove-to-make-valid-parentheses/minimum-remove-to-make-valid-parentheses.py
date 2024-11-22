@@ -20,7 +20,4 @@ class Solution:
                 continue
             filtered.append(c)
         return "".join(filtered[::-1])
-            
-        
-       
         
