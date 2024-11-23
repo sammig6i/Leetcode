@@ -10,22 +10,11 @@ class Node:
 
 class Solution:
     def lowestCommonAncestor(self, p: 'Node', q: 'Node') -> 'Node':
-        def get_depth(node):
-            depth = 0
-            while node:
-                node = node.parent
-                depth += 1
-            return depth
-        
-        p_depth = get_depth(p)
-        q_depth = get_depth(q)
-
-        for _ in range(p_depth - q_depth):
-            p = p.parent
-        for _ in range(q_depth - p_depth):
+        path = set()
+        while q:
+            path.add(q)
             q = q.parent
-        
-        while p != q:
+        while p not in path:
+            path.add(p)
             p = p.parent
-            q = q.parent
         return p
