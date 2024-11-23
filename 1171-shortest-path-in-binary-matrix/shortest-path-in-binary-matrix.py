@@ -18,4 +18,3 @@ class Solution:
                     visited.add((r + dr, c + dc))
                     q.append((r + dr, c + dc, length + 1))
         return -1
-            
