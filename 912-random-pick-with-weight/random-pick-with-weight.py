@@ -14,10 +14,10 @@ class Solution:
         while L < R:
             m = (L + R) // 2
 
-            if self.s[m] <= target:
-                L = m + 1
-            else:
+            if self.s[m] >= target:
                 R = m
+            else:
+                L = m + 1
         return L
 
 
