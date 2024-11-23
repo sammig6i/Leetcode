@@ -12,12 +12,17 @@ class Solution:
         L, R = 0, len(self.s) - 1
         target = random.uniform(0, self.total)
         while L < R:
-            mid = (L + R) // 2
-            if self.s[mid] < target:
-                L = mid + 1
+            m = (L + R) // 2
+
+            if self.s[m] <= target:
+                L = m + 1
             else:
-                R = mid
+                R = m
         return L
+
+
+
+
         
 
 
