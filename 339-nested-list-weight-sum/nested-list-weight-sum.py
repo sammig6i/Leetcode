@@ -52,5 +52,5 @@ class Solution:
                 else:
                     res += dfs(item.getList(), depth + 1)
             return res
-        
+
         return dfs(nestedList, 1)
