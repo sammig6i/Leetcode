@@ -1,13 +1,11 @@
 class SparseVector:
     def __init__(self, nums: List[int]):
-       self.hash = {i:n for i, n in enumerate(nums) if n != 0}
-
+       self.nums = nums
     
     def dotProduct(self, vec: 'SparseVector') -> int:
         total = 0
-        for i, n in self.hash.items():
-            if i in vec.hash:
-                total += (n * vec.hash[i])
+        for i, j in zip(self.nums, vec.nums):
+            total += (i*j)
         return total
    
 
