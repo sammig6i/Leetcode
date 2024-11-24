@@ -1,7 +1,8 @@
 class Solution:
     def calculate(self, s: str) -> int:
         op = "+"
-        stack = []
+        res = 0
+        curr_sum = 0
         v = 0
 
         for i, c in enumerate(s):
@@ -9,13 +10,20 @@ class Solution:
                 v = v * 10 + int(c)
             if i == len(s) - 1 or c in ("+", "-", "/", "*"):
                 if op == "+":
-                    stack.append(v)
+                    curr_sum += v
                 elif op == "-":
-                    stack.append(-v)
+                    curr_sum -= v
                 elif op == "*":
-                    stack.append(stack.pop() * v)
+                    curr_sum *= v
                 elif op == "/":
-                    stack.append(int(stack.pop() / v))
-                v = 0
+                    curr_sum = int(curr_sum / v)
                 op = c
-        return sum(stack)
+                v = 0
+
+                if i == len(s) - 1 or c in ("-","+"):
+                    res += curr_sum
+                    curr_sum = 0
+            
+        return res
+
+
