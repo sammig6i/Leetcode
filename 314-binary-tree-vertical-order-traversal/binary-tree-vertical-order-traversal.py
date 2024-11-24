@@ -11,14 +11,21 @@ class Solution:
 
         d = defaultdict(list)
         min_column = max_column = 0
-        q = deque([(root, 0)])
 
-        while q:
-            node, col = q.popleft()
+        def dfs(node, row, col):
             if node:
-                d[col].append(node.val)
+                nonlocal min_column, max_column
+                d[col].append((row, node.val))
                 min_column = min(min_column, col)
                 max_column = max(max_column, col)
-                q.append((node.left, col - 1))
-                q.append((node.right, col + 1))
-        return [d[v] for v in range(min_column, max_column + 1)]
+
+                dfs(node.left, row + 1, col - 1)
+                dfs(node.right, row + 1, col + 1)
+        
+        dfs(root, 0, 0)
+        res = []
+        for col in range(min_column, max_column + 1):
+            d[col].sort(key=lambda x: x[0])
+            colVals = [v for _, v in d[col]]
+            res.append(colVals)
+        return res
