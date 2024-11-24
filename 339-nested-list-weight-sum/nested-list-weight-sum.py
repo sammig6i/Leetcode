@@ -43,21 +43,14 @@
 
 class Solution:
     def depthSum(self, nestedList: List[NestedInteger]) -> int:
-        depth = 1
-        return self.dfs(nestedList, depth)
+
+        def dfs(nested_list, depth):
+            res = 0
+            for item in nested_list:
+                if item.isInteger():
+                    res += (item.getInteger() * depth)
+                else:
+                    res += dfs(item.getList(), depth + 1)
+            return res
         
-
-    def dfs(self, nestedList, depth):
-        depth_sum = 0
-        for nestedList in nestedList:
-            if nestedList.isInteger():
-                depth_sum += (nestedList.getInteger() * depth)
-            else:
-                depth_sum += self.dfs(nestedList.getList(), depth + 1)
-        return depth_sum
-        
-
-
-
-
-        
+        return dfs(nestedList, 1)
