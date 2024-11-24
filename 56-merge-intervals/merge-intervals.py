@@ -1,13 +1,20 @@
 class Solution:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
-        intervals.sort(key=lambda x: x[0])
-        res = [intervals[0]]
+        d = defaultdict(int)
         for start, end in intervals:
-            last_start = res[-1][0]
-            last_end = res[-1][1]
-            if start <= last_end:
-                res[-1][1] = max(end, last_end)
-            else:
-                res.append([start, end])
+            d[start] += 1
+            d[end] -= 1
+        res = []
+        interval = []
+        have = 0
+
+        for i in sorted(d):
+            if not interval:
+                interval.append(i)
+            have += d[i]
+            if have == 0:
+                interval.append(i)
+                res.append(interval)
+                interval = []
+                have = 0
         return res
-# 1,4 2,3
