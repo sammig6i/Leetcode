@@ -3,35 +3,28 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        # modify array in place
-        # find next larger permuation in lexicographical order
-        # if no permutation exists reset the array to the smallest permuation (in ascending order)
-        # input = [3 2 1] -> [1 2 3]
-        # [3 2 1]
-        # input = [1 1 5] -> [1 5 1]
-        # [1 5 1]
-        pivot = -1
-        for i in range(len(nums) - 2, -1, -1):
-            if nums[i + 1] > nums[i]:
-                pivot = i
-                break
-        
-        if pivot == -1:
-            nums.reverse()
-            return nums
-        
-        for i in range(len(nums) - 1, pivot, -1):
-            if nums[i] > nums[pivot]:
-                nums[i], nums[pivot] = nums[pivot], nums[i]
-                break
+        i = len(nums) - 2
+        while i >= 0 and nums[i + 1] <= nums[i]:
+            i -= 1
+        if i >= 0:
+            j = len(nums) - 1
+            while nums[j] <= nums[i]:
+                j -= 1
+            self.swap(nums, i, j)
+        self.reverse(nums, i + 1)
 
-        nums[pivot + 1:] = reversed(nums[pivot + 1:])
-        
-            
-# 3 2 1 -> 1 2 3
-# 1 1 5 -> 1 5 1
-# 2 3 1 -> 3 1 2
-        
+    def reverse(self, nums, start):
+        i, j = start, len(nums) - 1
+        while i < j:
+            self.swap(nums, i, j)
+            i += 1
+            j -= 1
+
+    def swap(self, nums, i, j):
+        temp = nums[i]
+        nums[i] = nums[j]
+        nums[j] = temp
+
 
 
 
