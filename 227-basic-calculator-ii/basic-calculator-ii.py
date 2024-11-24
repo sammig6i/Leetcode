@@ -17,12 +17,12 @@ class Solution:
                     curr_sum *= v
                 elif op == "/":
                     curr_sum = int(curr_sum / v)
-                op = c
-                v = 0
-
                 if i == len(s) - 1 or c in ("-","+"):
                     res += curr_sum
                     curr_sum = 0
+                op = c
+                v = 0
+
             
         return res
 
