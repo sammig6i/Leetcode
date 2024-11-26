@@ -16,7 +16,7 @@ class Solution:
         while L < R:
             m = (L + R) // 2
 
-            if self.s[m] < target:
+            if self.s[m] <= target:
                 L = m + 1
             else:
                 R = m
