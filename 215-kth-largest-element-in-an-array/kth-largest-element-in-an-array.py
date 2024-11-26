@@ -8,21 +8,18 @@ class Solution:
             pivot = (start + end) // 2
 
             pivot_val = nums[pivot]
-            L, R = start - 1, end + 1
+            L, R = start, end
 
-            while L < R:
-                while True:
+            while True:
+                while L <= end and nums[L] < pivot_val:
                     L += 1
-                    if nums[L] >= pivot_val:
-                        break
-                
-                while True:
+                while R >= start and nums[R] > pivot_val:
                     R -= 1
-                    if nums[R] <= pivot_val:
-                        break
-                
-                if L < R:
-                    nums[L], nums[R] = nums[R], nums[L]
+                if L >= R:
+                    break  # Pointers have crossed, partitioning is done
+                nums[L], nums[R] = nums[R], nums[L]
+                L += 1
+                R -= 1
             
             if R < k_smallest:
                 return quickSelect(R + 1, end, k_smallest)
