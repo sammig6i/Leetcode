@@ -11,8 +11,8 @@ class Solution:
             nonlocal diameter
             if not node:
                 return 0
-            left = dfs(node.left) if node.left else 0
-            right = dfs(node.right) if node.right else 0
+            left = dfs(node.left)
+            right = dfs(node.right)
             diameter = max(diameter, left + right)
             return 1 + max(left, right)
 
