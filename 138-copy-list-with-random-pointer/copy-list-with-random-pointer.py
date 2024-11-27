@@ -8,18 +8,18 @@ class Node:
 """
 
 class Solution:
+    def __init__(self):
+        self.map = {}
+
     def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
-        oldToCopy = {None: None}
-        curr = head
-        while curr:
-            copy = Node(curr.val)
-            oldToCopy[curr] = copy
-            curr = curr.next
+        if not head:
+            return None
+        if head in self.map:
+            return self.map[head]
+
+        copy = Node(head.val)
+        self.map[head] = copy
+        copy.next = self.copyRandomList(head.next)
+        copy.random = self.map.get(head.random)
+        return copy
         
-        curr = head
-        while curr:
-            copy = oldToCopy[curr]
-            copy.next = oldToCopy[curr.next]
-            copy.random = oldToCopy[curr.random]
-            curr = curr.next
-        return oldToCopy[head]
