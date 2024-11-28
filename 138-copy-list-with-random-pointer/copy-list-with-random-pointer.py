@@ -20,6 +20,9 @@ class Solution:
             l1 = l2.next
         
         newHead = head.next
+        
+        # Original: Node1 -> Node2 -> Node3
+        # Woven:    Node1 -> Copy1 -> Node2 -> Copy2 -> Node3 -> Copy3
 
         l1 = head
         while l1:
@@ -34,5 +37,11 @@ class Solution:
             if l2.next:
                 l2.next = l2.next.next
             l1 = l1.next
-        
         return newHead
+                
+
+
+        
+       
+
+        
