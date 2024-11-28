@@ -7,8 +7,7 @@
 class Solution:
     def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
         stack = [root]
-        mp = defaultdict()
-        mp[None] = (0, 0)
+        mp = {None: (0, 0)}
 
         while stack:
             node = stack[-1]
