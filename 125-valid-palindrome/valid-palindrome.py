@@ -5,4 +5,3 @@ class Solution:
             if c.isalnum():
                 new_str += c.lower()
         return new_str == new_str[::-1]
-
