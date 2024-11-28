@@ -15,8 +15,7 @@ class LRUCache:
         
     def insert(self, node):
         prev, nxt = self.tail.prev, self.tail
-        nxt.prev = node
-        prev.next = node
+        prev.next = nxt.prev = node
         node.prev, node.next = prev, nxt
 
     def remove(self, node):
