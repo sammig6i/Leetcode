@@ -2,14 +2,10 @@ class Solution:
     def findBuildings(self, heights: List[int]) -> List[int]:
         if not heights:
             return []
-        res = [len(heights) - 1]
+        res = []
     
-        for i in range(len(heights) - 1, -1, -1):
-            if heights[i] > heights[res[-1]]:
-                res.append(i)
-        res.reverse()
+        for i, h in enumerate(heights):
+            while res and heights[res[-1]] <= h:
+                res.pop()
+            res.append(i)
         return res
-
-# 4,2,3,1
-# res = [0,2,3] 
-# max = 4
