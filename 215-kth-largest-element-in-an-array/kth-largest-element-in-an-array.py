@@ -10,6 +10,3 @@ class Solution:
                     heapq.heappop(heap)
                     heapq.heappush(heap, n)
         return heap[0]
-
-    # 3,2,3,1,2,4,5,5,6 k = 4
-    # 4,5,5,6
