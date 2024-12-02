@@ -12,28 +12,27 @@ class Solution:
         if not root:
             return None
         
-        first = last = None
+        stack = []
+        curr = root
+        head = prev = None
 
-        def dfs(node):
-            nonlocal first, last
-            if not node:
-                return None
+        while stack or curr:
+            while curr:
+                stack.append(curr)
+                curr = curr.left
             
-            dfs(node.left)
+            node = stack.pop()
+            node.left = prev
+            if prev:
+                prev.right = node
+            prev = node
 
-            if not last:
-                first = node
-            else:
-                last.right = node
-                node.left = last
+            if not head:
+                head = node
             
-            last = node
-
-            dfs(node.right)
-
+            curr = node.right
         
-        dfs(root)
+        head.left = prev
+        prev.right = head
 
-        first.left = last
-        last.right = first
-        return first
+        return head
