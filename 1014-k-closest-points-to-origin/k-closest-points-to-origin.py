@@ -6,7 +6,7 @@ class Solution:
         res = []
         for _ in range(k):
             dist, x, y = heapq.heappop(min_heap)
-            res.append((x, y))
+            res.append([x, y])
         
         return res
 
