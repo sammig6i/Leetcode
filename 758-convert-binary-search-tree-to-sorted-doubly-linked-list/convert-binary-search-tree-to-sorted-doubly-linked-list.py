@@ -11,34 +11,31 @@ class Solution:
     def treeToDoublyList(self, root: 'Optional[Node]') -> 'Optional[Node]':
         if not root:
             return None
+        
+        self.first = self.last = None
 
-        first, last = None, None
+        self.dfs(root)
 
-        def dfs(node):
-            nonlocal first, last
-            if not node:
-                return None
-            
-            dfs(node.left)
+        self.first.left = self.last
+        self.last.right = self.first
 
-            if not last:
-                first = node
-            else:
-                node.left = last
-                last.right = node
-    
-            last = node
+        return self.first
 
-            dfs(node.right)
+    def dfs(self, node):
+        if not node:
+            return None
+        
+        self.dfs(node.left)
+        
+        if not self.last:
+            self.first = node
+        else:
+            node.left = self.last
+            self.last.right = node
+        
+        self.last = node
 
-        dfs(root)
-
-        first.left = last
-        last.right = first
-
-
-        return first
-
+        self.dfs(node.right)
 
             
             
