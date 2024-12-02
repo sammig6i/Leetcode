@@ -10,7 +10,5 @@ class Solution:
                 heapq.heappop(res)
         return [(x, y) for (_, x, y) in res]
 
-    
-
-    # (-2 - 0) + (2 - 0) = 2.8
-    # (1 - 0) + (3 - 0) = 3.16
+    # (-2 - 0) + (2 - 0) = -2.8
+    # (1 - 0) + (3 - 0) = -3.16
