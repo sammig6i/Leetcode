@@ -10,7 +10,6 @@ class Solution:
                     stack.pop()
             else:
                 stack.append(c)
-            
         return len(stack)
 
             
