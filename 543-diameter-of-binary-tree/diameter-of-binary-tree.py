@@ -21,7 +21,9 @@ class Solution:
 
                 leftHeight, leftDiameter = mp[node.left]
                 rightHeight, rightDiameter = mp[node.right]
-
                 mp[node] = (1 + max(leftHeight, rightHeight),
                             max(leftHeight + rightHeight, leftDiameter, rightDiameter))
         return mp[root][1]
+
+
+
