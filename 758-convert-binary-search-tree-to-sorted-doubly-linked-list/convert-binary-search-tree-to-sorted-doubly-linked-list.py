@@ -11,7 +11,9 @@ class Solution:
     def treeToDoublyList(self, root: 'Optional[Node]') -> 'Optional[Node]':
         if not root:
             return None
-        
+
+        first, last = None, None
+
         def dfs(node):
             nonlocal first, last
             if not node:
@@ -29,12 +31,11 @@ class Solution:
 
             dfs(node.right)
 
-        first, last = None, None
-
         dfs(root)
 
         first.left = last
         last.right = first
+
 
         return first
 
