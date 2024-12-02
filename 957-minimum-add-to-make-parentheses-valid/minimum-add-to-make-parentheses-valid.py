@@ -1,22 +1,12 @@
 class Solution:
     def minAddToMakeValid(self, s: str) -> int:
-        stack = []
+        opening = count = 0
         for c in s:
             if c == "(":
-                stack.append(c)
+                opening += 1
             else:
-                if stack and stack[-1] == "(":
-                    stack.pop()
+                if opening:
+                    opening -= 1
                 else:
-                    stack.append(c)
-        return len(stack)
-
-            
-    # (()))
-
-    # )))
-
-    # "()))(("
-    # 4
-    # 
-    # [()]
+                    count += 1
+        return count + opening
