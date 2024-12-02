@@ -26,16 +26,16 @@ class Solution:
             return None
         
         self.dfs(node.left)
-        
         if not self.last:
             self.first = node
         else:
-            node.left = self.last
             self.last.right = node
+            node.left = self.last
         
         self.last = node
 
         self.dfs(node.right)
+
 
             
             
