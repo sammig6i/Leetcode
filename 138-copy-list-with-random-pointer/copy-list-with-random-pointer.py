@@ -16,7 +16,7 @@ class Solution:
         while curr:
             copy = oldToCopy[curr]
             copy.val = curr.val
-            copy.next = oldToCopy[curr.next]
-            copy.random = oldToCopy[curr.random]
+            oldToCopy[curr].next = oldToCopy[curr.next]
+            oldToCopy[curr].random = oldToCopy[curr.random]
             curr = curr.next
         return oldToCopy[head]
