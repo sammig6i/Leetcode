@@ -10,3 +10,7 @@ class Solution:
                 else:
                     count += 1
         return count + opening
+
+# ()))((
+# opening = 2
+# count = 2
