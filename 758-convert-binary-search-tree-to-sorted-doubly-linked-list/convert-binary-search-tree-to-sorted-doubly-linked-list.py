@@ -14,9 +14,7 @@ class Solution:
 
         stack = []
         curr = root
-        prev = None
-        first = None
-        last = None
+        prev = first = None
         while stack or curr:
             while curr:
                 stack.append(curr)
@@ -30,10 +28,10 @@ class Solution:
 
             if not first:
                 first = node
-            last = node
 
             curr = node.right
-        first.left = last
-        last.right = first
+        
+        first.left = prev
+        prev.right = first
 
         return first
