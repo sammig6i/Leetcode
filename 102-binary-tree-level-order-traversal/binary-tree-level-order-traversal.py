@@ -17,9 +17,9 @@ class Solution:
             if len(res) == depth:
                 res.append([])
             
-            res[depth].append(node.val)
             dfs(node.left, depth + 1)
             dfs(node.right, depth + 1)
+            res[depth].append(node.val)
         
         dfs(root, 0)
         return res
