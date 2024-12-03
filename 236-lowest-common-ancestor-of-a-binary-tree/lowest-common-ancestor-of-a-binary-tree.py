@@ -25,7 +25,7 @@ class Solution:
         while p:
             ancestors.add(p)
             p = parent[p]
-
+        
         while q not in ancestors:
             q = parent[q]
         return q
