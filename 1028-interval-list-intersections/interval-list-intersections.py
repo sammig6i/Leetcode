@@ -3,9 +3,8 @@ class Solution:
         if not firstList or not secondList:
             return []
 
-        res = []
-
         p1 = p2 = 0
+        res = []
 
         while p1 < len(firstList) and p2 < len(secondList):
             start1, end1 = firstList[p1]
