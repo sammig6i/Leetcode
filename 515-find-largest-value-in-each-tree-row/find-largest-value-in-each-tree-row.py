@@ -11,14 +11,14 @@ class Solution:
         
         q = deque([root])
         res = []
-
         while q:
             max_node = float("-inf")
             for i in range(len(q)):
                 node = q.popleft()
                 if node:
                     max_node = max(max_node, node.val)
-                    if node.right: q.append(node.right)
                     if node.left: q.append(node.left)
+                    if node.right: q.append(node.right)
             res.append(max_node)
         return res
+                
