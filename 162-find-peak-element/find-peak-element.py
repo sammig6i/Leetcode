@@ -11,3 +11,5 @@ class Solution:
                 L = mid + 1
             else:
                 return mid
+
+# 1,2,1,3,5,6,4
