@@ -8,16 +8,15 @@
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
         return self.dfs(root, p, q)
-    
+
     def dfs(self, node, p, q):
         if not node:
             return None
         
         if node == p or node == q:
             return node
-        
+
         L = self.dfs(node.left, p, q)
         R = self.dfs(node.right, p, q)
 
         return node if L and R else L or R
-
