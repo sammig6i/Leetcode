@@ -10,6 +10,7 @@ class Solution:
         arr.sort()
 
         res = []
-        for _ in range(k):
-            res.append(arr.pop()[1])
-        return res
+        for c, n in arr[::-1]:
+            res.append(n)
+            if len(res) == k:
+                return res
