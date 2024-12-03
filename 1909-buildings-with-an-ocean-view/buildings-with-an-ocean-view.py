@@ -1,7 +1,5 @@
 class Solution:
     def findBuildings(self, heights: List[int]) -> List[int]:
-        if not heights:
-            return []
         res = deque()
         max_height = float("-inf")
 
