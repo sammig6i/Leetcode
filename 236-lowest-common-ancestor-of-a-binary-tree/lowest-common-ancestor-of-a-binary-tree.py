@@ -13,7 +13,7 @@ class Solution:
         if not node:
             return None
         
-        if node == p or node == q:
+        if node == q or node == p:
             return node
 
         L = self.dfs(node.left, p, q)
