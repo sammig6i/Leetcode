@@ -13,11 +13,11 @@ class Solution:
         if not node:
             return None
         
+        if node == p or node == q:
+            return node
         
         L = self.dfs(node.left, p, q)
         R = self.dfs(node.right, p, q)
-        if node == p or node == q:
-            return node
 
         return node if L and R else L or R
 
