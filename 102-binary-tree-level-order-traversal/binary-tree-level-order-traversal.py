@@ -11,7 +11,6 @@ class Solution:
 
         q = deque([root])
         res = []
-
         while q:
             level = []
             for i in range(len(q)):
