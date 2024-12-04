@@ -17,5 +17,4 @@ class Solution:
         for node in nodes:
             curr.next = ListNode(node)
             curr = curr.next
-            
         return head.next
