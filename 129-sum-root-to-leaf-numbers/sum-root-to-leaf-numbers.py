@@ -20,8 +20,7 @@ class Solution:
 
             dfs(node.left, num)
             dfs(node.right, num)
-
-            return res
         
-        return dfs(root, 0)
+        dfs(root, 0)
+        return res
             
