@@ -12,9 +12,10 @@ class Solution:
                 lst = lst.next
         nodes.sort()
 
-        head = ListNode(0)
-        cur = head
+        head = ListNode()
+        curr = head
         for node in nodes:
-            cur.next = ListNode(node)
-            cur = cur.next
+            curr.next = ListNode(node)
+            curr = curr.next
+            
         return head.next
