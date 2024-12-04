@@ -11,25 +11,28 @@ class Solution:
     def treeToDoublyList(self, root: 'Optional[Node]') -> 'Optional[Node]':
         if not root:
             return None
-        self.first = self.last = None
-
-        self.dfs(root)
-
-        self.first.left = self.last
-        self.last.right = self.first
-        return self.first
-    
-    def dfs(self, node):
-        if not node:
-            return None
         
-        self.dfs(node.left)
+        stack = []
+        cur = root
+        first = last = None
 
-        if not self.first:
-            self.first = node
-        else:
-            self.last.right = node
-            node.left = self.last
+        while stack or cur:
+            while cur:
+                stack.append(cur)
+                cur = cur.left
+            
+            node = stack.pop()
+            node.left = last
+            if last:
+                last.right = node
+            last = node
+
+            if not first:
+                first = node
+            
+            cur = node.right
         
-        self.last = node
-        self.dfs(node.right)
+        first.left = last
+        last.right = first
+
+        return first
