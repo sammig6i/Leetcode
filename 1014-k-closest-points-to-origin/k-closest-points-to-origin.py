@@ -1,4 +1,10 @@
 class Solution:
     def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
-        points.sort(key=lambda p: math.sqrt(p[0]**2 + p[1]**2))
-        return points[:k]
+        min_heap = [(math.sqrt(x**2 + y**2), x, y) for x, y in points]
+        heapq.heapify(min_heap)
+
+        res = []
+        for _ in range(k):
+            dist, x, y = heapq.heappop(min_heap)
+            res.append([x, y])
+        return res
