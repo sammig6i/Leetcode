@@ -5,7 +5,7 @@
 #         self.next = next
 class Solution:
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
-        head = ListNode(0)
+        head = ListNode()
         curr = head
 
         while True:
@@ -15,7 +15,7 @@ class Solution:
                     continue
                 if min_node == -1 or lists[min_node].val > lists[i].val:
                     min_node = i
-            
+                
             if min_node == -1:
                 break
             curr.next = lists[min_node]
