@@ -11,6 +11,7 @@ class NodeWrapper:
     def __lt__(self, other):
         return self.node.val < other.node.val
 
+
 class Solution:
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
         if len(lists) == 0:
@@ -19,7 +20,6 @@ class Solution:
         head = ListNode()
         cur = head
         min_heap = []
-
         for lst in lists:
             if lst:
                 heapq.heappush(min_heap, NodeWrapper(lst))
