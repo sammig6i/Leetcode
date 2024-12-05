@@ -8,18 +8,21 @@ class Solution:
         if not lists:
             return None
         
-        nodes = []
-        for lst in lists:
-            while lst:
-                nodes.append(lst.val)
-                lst = lst.next
+        head = ListNode()
+        curr = head
 
-        nodes.sort()
-
-        res = []
-        dummy = ListNode()
-        curr = dummy
-        for n in nodes:
-            curr.next = ListNode(n)
+        while True:
+            min_node = -1
+            for i in range(len(lists)):
+                if not lists[i]:
+                    continue
+                if min_node == -1 or lists[min_node].val > lists[i].val:
+                    min_node = i
+            
+            if min_node == -1:
+                break
+            curr.next = lists[min_node]
+            lists[min_node] = lists[min_node].next
             curr = curr.next
-        return dummy.next
+
+        return head.next            
