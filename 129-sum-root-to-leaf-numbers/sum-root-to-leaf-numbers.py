@@ -10,7 +10,7 @@ class Solution:
             return 0
         
         return self.dfs(root, 0)
-    
+
     def dfs(self, node, num):
         if not node:
             return 0
@@ -18,5 +18,5 @@ class Solution:
         num = num * 10 + node.val
         if not node.left and not node.right:
             return num
-
+        
         return self.dfs(node.left, num) + self.dfs(node.right, num)
