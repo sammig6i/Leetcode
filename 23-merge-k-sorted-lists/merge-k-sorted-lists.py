@@ -5,7 +5,7 @@
 #         self.next = next
 class Solution:
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
-        if not lists or len(lists) == 0:
+        if not lists:
             return None
         
         while len(lists) > 1:
@@ -13,25 +13,25 @@ class Solution:
             for i in range(0, len(lists), 2):
                 l1 = lists[i]
                 l2 = lists[i + 1] if (i + 1) < len(lists) else None
-                mergedLists.append(self.mergeList(l1, l2))
+                mergedLists.append(self.merge(l1, l2))
             lists = mergedLists
-        return lists[0]
+        return lists[-1]
 
-    def mergeList(self, l1, l2):
-        dummy = ListNode()
-        tail = dummy
-
+    def merge(self, l1, l2):
+        head = ListNode()
+        cur = head
         while l1 and l2:
             if l1.val < l2.val:
-                tail.next = l1
+                cur.next = l1
                 l1 = l1.next
             else:
-                tail.next = l2
+                cur.next = l2
                 l2 = l2.next
-            tail = tail.next
+            cur = cur.next
         
         if l1:
-            tail.next = l1
+            cur.next = l1
         if l2:
-            tail.next = l2
-        return dummy.next
+            cur.next = l2
+        
+        return head.next
