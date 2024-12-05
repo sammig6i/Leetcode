@@ -20,6 +20,3 @@ class Solution:
         
         nums[left_idx], nums[max_idx] = nums[max_idx], nums[left_idx]
         return int("".join(nums))
-
-
-    # 988368
