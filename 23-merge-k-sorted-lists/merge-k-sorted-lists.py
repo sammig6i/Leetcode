@@ -12,7 +12,6 @@ class Solution:
             lists[i] = self.merge(lists[i - 1], lists[i])
         return lists[-1]
         
-        
     def merge(self, l1, l2):
         head = ListNode()
         cur = head
