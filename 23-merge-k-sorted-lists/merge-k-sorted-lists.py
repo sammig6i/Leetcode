@@ -8,29 +8,18 @@ class Solution:
         if not lists:
             return None
         
-        for i in range(1, len(lists)):
-            lists[i] = self.mergeLists(lists[i - 1], lists[i])
-        return lists[-1]
+        nodes = []
+        for lst in lists:
+            while lst:
+                nodes.append(lst.val)
+                lst = lst.next
 
+        nodes.sort()
 
-        
-    
-    def mergeLists(self, l1, l2):
+        res = []
         dummy = ListNode()
-        tail = dummy
-        while l1 and l2:
-            if l1.val < l2.val:
-                tail.next = l1
-                l1 = l1.next
-            else:
-                tail.next = l2
-                l2 = l2.next
-            tail = tail.next
-        
-        if l1:
-            tail.next = l1
-        if l2:
-            tail.next = l2
-        
+        curr = dummy
+        for n in nodes:
+            curr.next = ListNode(n)
+            curr = curr.next
         return dummy.next
-        
