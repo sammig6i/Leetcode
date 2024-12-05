@@ -15,4 +15,8 @@ class Solution:
         nums[swap_i], nums[swap_j] = nums[swap_j], nums[swap_i]
         return int("".join(nums))
 
-        # 988638
+        # 988836
+        # max_val 8
+        # max_i   5 
+        # swap_i  3 
+        # swap_j  5
