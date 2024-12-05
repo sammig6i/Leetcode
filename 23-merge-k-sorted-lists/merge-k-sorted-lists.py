@@ -15,7 +15,7 @@ class Solution:
                 l2 = lists[i + 1] if (i + 1) < len(lists) else None
                 mergedLists.append(self.merge(l1, l2))
             lists = mergedLists
-        return lists[-1]
+        return lists[0]
 
     def merge(self, l1, l2):
         head = ListNode()
