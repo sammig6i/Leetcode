@@ -6,9 +6,8 @@ class Solution:
             if len(max_heap) < k:
                 heapq.heappush(max_heap, (dist, x, y))
             else:
-                if dist > max_heap[0][0]:
-                    heapq.heappush(max_heap, (dist, x, y))
-                    heapq.heappop(max_heap)
+                heapq.heappush(max_heap, (dist, x, y))
+                heapq.heappop(max_heap)
 
         return [[x, y] for _, x, y in max_heap]
 
