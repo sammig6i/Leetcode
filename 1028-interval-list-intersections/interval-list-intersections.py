@@ -3,9 +3,8 @@ class Solution:
         if not firstList or not secondList:
             return []
         
-        res = []
         p1 = p2 = 0
-
+        res = []
         while p1 < len(firstList) and p2 < len(secondList):
             start1, end1 = firstList[p1]
             start2, end2 = secondList[p2]
@@ -16,15 +15,11 @@ class Solution:
                 p1 += 1
             else:
                 res.append([max(start1, start2), min(end1, end2)])
-                if end1 > end2:
-                    p2 += 1
-                else:
+    
+                if end2 > end1:
                     p1 += 1
+                else:
+                    p2 += 1
         return res
-
-
-
-
-# first = [[0,2],[5,10],[13,23],[24,25]]
-# second= [[1,5],[8,12],[15,24],[25,26]]
-#          
+# 1,5
+# 6,7
