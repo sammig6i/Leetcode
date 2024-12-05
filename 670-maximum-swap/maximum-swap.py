@@ -8,7 +8,7 @@ class Solution:
                 break
         else:
             return num
-
+        
         for j in range(i + 1, len(nums)):
             if max_val <= nums[j]:
                 max_idx, max_val = j, nums[j]
@@ -20,20 +20,6 @@ class Solution:
         
         nums[left_idx], nums[max_idx] = nums[max_idx], nums[left_idx]
         return int("".join(nums))
-        
-          
-        # 98368 -> 98863
-        # idx 4
-        # max 8
-        # left_idx 2
-        
-        # 2736 -> 7236
-        # max_idx = 1
-        # max_val = 7
-        # left_idx = 0
 
-        # 120 -> 210
 
-        # 9973
-        # max_num = 9
-        # max index = 1
+    # 988368
