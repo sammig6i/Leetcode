@@ -2,21 +2,23 @@ class Solution:
     def maximumSwap(self, num: int) -> int:
         nums = list(str(num))
 
-        max_val = "0"
-        max_i = -1
-        swap_i = swap_j = -1
-        for i in range(len(nums) - 1, -1, -1):
-            if nums[i] > max_val:
-                max_val = nums[i]
-                max_i = i
-            if nums[i] < max_val:
-                swap_i, swap_j = i, max_i
         
-        nums[swap_i], nums[swap_j] = nums[swap_j], nums[swap_i]
-        return int("".join(nums))
+        for i in range(len(nums) - 1):
+            if nums[i] < nums[i + 1]:
+                max_val = nums[i + 1]
+                max_i = i + 1
+                break
+        else:
+            return num
 
-        # 988836
-        # max_val 8
-        # max_i   5 
-        # swap_i  3 
-        # swap_j  5
+        for j in range(i + 1, len(nums)):
+            if max_val <= nums[j]:
+                max_i = j
+                max_val = nums[j]
+        
+        left_i = j
+        for j in range(i, -1, -1):
+            if nums[j] < max_val:
+                left_i = j
+        nums[max_i], nums[left_i] = nums[left_i], nums[max_i]
+        return int("".join(nums))
