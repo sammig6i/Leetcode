@@ -8,9 +8,19 @@ class Solution:
         if not lists:
             return None
         
-        for i in range(1, len(lists)):
-            lists[i] = self.merge(lists[i - 1], lists[i])
-        return lists[-1]
+        nodes = []
+        for lst in lists:
+            while lst:
+                nodes.append(lst.val)
+                lst = lst.next
+        nodes.sort()
+
+        head = ListNode()
+        cur = head
+        for node in nodes:
+            cur.next = ListNode(node)
+            cur = cur.next
+        return head.next
         
     def merge(self, l1, l2):
         head = ListNode()
