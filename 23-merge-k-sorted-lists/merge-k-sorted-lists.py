@@ -22,8 +22,7 @@ class Solution:
 
             if min_node == -1:
                 break
-            else:
-                cur.next = lists[min_node]
-                lists[min_node] = lists[min_node].next
-                cur = cur.next
+            cur.next = lists[min_node]
+            lists[min_node] = lists[min_node].next
+            cur = cur.next
         return head.next
