@@ -1,6 +1,7 @@
 class Solution:
     def minAddToMakeValid(self, s: str) -> int:
-        opening = count = 0
+        count = 0
+        opening = 0
         for c in s:
             if c == "(":
                 opening += 1
@@ -10,7 +11,4 @@ class Solution:
                 else:
                     count += 1
         return count + opening
-
-# ()))((
-# opening = 2
-# count = 2
+        
