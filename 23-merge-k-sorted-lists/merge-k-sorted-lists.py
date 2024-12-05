@@ -8,36 +8,22 @@ class Solution:
         if not lists:
             return None
         
-        nodes = []
-        for lst in lists:
-            while lst:
-                nodes.append(lst.val)
-                lst = lst.next
-        nodes.sort()
-
-        head = ListNode()
-        cur = head
-        for node in nodes:
-            cur.next = ListNode(node)
-            cur = cur.next
-        return head.next
-        
-    def merge(self, l1, l2):
         head = ListNode()
         cur = head
 
-        while l1 and l2:
-            if l1.val < l2.val:
-                cur.next = l1
-                l1 = l1.next
+        while True:
+            min_node = -1
+
+            for i in range(len(lists)):
+                if not lists[i]:
+                    continue
+                if min_node == -1 or lists[min_node].val > lists[i].val:
+                    min_node = i
+
+            if min_node == -1:
+                break
             else:
-                cur.next = l2
-                l2 = l2.next
-            cur = cur.next
-        
-        if l1:
-            cur.next = l1
-        if l2:
-            cur.next = l2
-        
+                cur.next = lists[min_node]
+                lists[min_node] = lists[min_node].next
+                cur = cur.next
         return head.next
