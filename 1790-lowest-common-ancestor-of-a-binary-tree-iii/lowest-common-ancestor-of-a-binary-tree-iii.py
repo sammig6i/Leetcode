@@ -21,7 +21,7 @@ class Solution:
         while p != q:
             p = p.parent
             q = q.parent
-        return p
+        return q
 
     
     def get_depth(self, node, depth):
