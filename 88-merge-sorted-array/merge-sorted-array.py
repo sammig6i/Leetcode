@@ -3,21 +3,18 @@ class Solution:
         """
         Do not return anything, modify nums1 in-place instead.
         """
-        # Input: nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3
-        last = m + n - 1
-        while m > 0 and n > 0:
-            if nums1[m - 1] > nums2[n - 1]:
-                nums1[last] = nums1[m - 1]
-                m -= 1
-            else:
-                nums1[last] = nums2[n - 1]
-                n -= 1
-            last -= 1
-        
+        last_num = len(nums1) - 1
+        i = 0
+
         while n > 0:
-            nums1[last] = nums2[n - 1]
+            nums1[last_num] = nums2[i]
+            i += 1
+            last_num -= 1
             n -= 1
-            last -= 1
         
+        for i in range(len(nums1)):
+            for j in range(i + 1, len(nums1)):
+                if nums1[j] < nums1[i]:
+                    nums1[i], nums1[j] = nums1[j], nums1[i]
         return nums1
- 
+        123256
