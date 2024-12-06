@@ -2,7 +2,7 @@ class Solution:
     def shortestPathBinaryMatrix(self, grid: List[List[int]]) -> int:
         N = len(grid)
         q = deque([(0, 0, 1)])
-        visited = set()
+        visited = set((0, 0))
         direct = [[0, 1], [1, 0], [0, -1], [-1, 0],
                     [1, 1], [-1, -1], [-1, 1], [1, -1]]
 
