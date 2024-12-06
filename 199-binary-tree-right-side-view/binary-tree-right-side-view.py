@@ -9,24 +9,17 @@ class Solution:
         if not root:
             return []
         
-        self.res = []
-        return self.dfs(root, 0)
-    
-    def dfs(self, node, depth):
-        if not node:
-            return None
+        q = deque([root, None])
+        right_side = []
 
-        if len(self.res) == depth:
-            self.res.append(node.val)
-        
-        
-        self.dfs(node.right, depth + 1)
-        self.dfs(node.left, depth + 1)
-
-        return self.res
-
-    
-
-        
-
-    
+        cur = root
+        while q:
+            prev, cur = cur, q.popleft()
+            while cur:
+                if cur.left: q.append(cur.left)
+                if cur.right: q.append(cur.right)
+                prev, cur = cur, q.popleft()
+            right_side.append(prev.val)
+            if q:
+                q.append(None)
+        return right_side
