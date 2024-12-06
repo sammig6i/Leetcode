@@ -9,30 +9,22 @@ class Solution:
         if not root:
             return []
         
-        self.d = defaultdict(list)
-        self.min_col = self.max_col = 0
+        d = defaultdict(list)
+        q = deque([(root, 0)])
+        min_col = max_col = 0
 
-        self.dfs(root, 0, 0)
+        while q:
+            node, col = q.popleft()
+            if node:
+                d[col].append(node.val)
 
-        res = []
-        for col in range(self.min_col, self.max_col + 1):
-            self.d[col].sort(key=lambda x: x[0])
-            vals = [v for _, v in self.d[col]]
-            res.append(vals)
-        return res
-       
+                min_col = min(min_col, col)
+                max_col = max(max_col, col)
 
-    def dfs(self, node, r, c):
-        if not node:
-            return None
-        
-        self.d[c].append((r, node.val))
+                q.append((node.left, col - 1))
+                q.append((node.right, col + 1))
+        return [d[col] for col in range(min_col, max_col + 1)]
 
-        self.min_col = min(self.min_col, c)
-        self.max_col = max(self.max_col, c)
-
-        self.dfs(node.left, r + 1, c - 1)
-        self.dfs(node.right, r + 1, c + 1)
 
 
         
