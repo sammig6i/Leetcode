@@ -15,12 +15,11 @@ class Solution:
         self.dfs(root, 0, 0)
 
         res = []
-        for c in range(self.min_col, self.max_col + 1):
-            self.d[c].sort(key=lambda x: x[0])
-            vals = [v for _, v in self.d[c]]
+        for col in range(self.min_col, self.max_col + 1):
+            self.d[col].sort(key=lambda x: x[0])
+            vals = [v for _, v in self.d[col]]
             res.append(vals)
         return res
-
        
 
     def dfs(self, node, r, c):
