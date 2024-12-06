@@ -9,17 +9,14 @@ class Solution:
         if not root:
             return []
 
-        d = defaultdict(list)
+        d = defaultdict(list) # key = col, val = nodes
         q = deque([(root, 0)])
-        min_col = max_col = 0
-        
+
         while q:
             node, col = q.popleft()
             if node:
                 d[col].append(node.val)
-                min_col = min(min_col, col)
-                max_col = max(max_col, col)
 
                 q.append((node.left, col - 1))
                 q.append((node.right, col + 1))
-        return [d[v] for v in range(min_col, max_col + 1)]
+        return [v for _, v in sorted(d.items())]
