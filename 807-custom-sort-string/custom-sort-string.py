@@ -13,14 +13,13 @@ class Solution:
         for c in order:
             if c in count:
                 res.append(c * count[c])
-                count[c] = 0
+                del count[c]
         
         for c, count in count.items():
-            if count > 0:
-                res.append(c * count)
+            res.append(c * count)
 
         return "".join(res)
                 
-# abc
-# bacd
-# abc d
+# cba
+# aaabbbccc
+# res = cccbbbaaa
