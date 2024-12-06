@@ -9,17 +9,16 @@ class Solution:
         if not root:
             return []
         
-        q = deque([root, None])
-        right_side = []
-
+        q = deque([root, 0])
+        res = []
         cur = root
-        while q:
+        while q: 
             prev, cur = cur, q.popleft()
             while cur:
                 if cur.left: q.append(cur.left)
                 if cur.right: q.append(cur.right)
                 prev, cur = cur, q.popleft()
-            right_side.append(prev.val)
+            res.append(prev.val)
             if q:
                 q.append(None)
-        return right_side
+        return res
