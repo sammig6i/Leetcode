@@ -16,6 +16,5 @@ class Solution:
             p = p.parent
         
         while q not in path:
-            path.add(q)
             q = q.parent
         return q
