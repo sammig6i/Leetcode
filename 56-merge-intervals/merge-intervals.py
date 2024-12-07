@@ -1,20 +1,23 @@
 class Solution:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
         mp = defaultdict(int)
+
         for start, end in intervals:
             mp[start] += 1
             mp[end] -= 1
         
-        res = []
+        sorted(mp)
         interval = []
+        res = []
         have = 0
 
-        for i in sorted(mp):
+        for key in sorted(mp):
             if not interval:
-                interval.append(i)
-            have += mp[i]
+                interval.append(key)
+            have += mp[key]
             if have == 0:
-                interval.append(i)
+                interval.append(key)
                 res.append(interval)
                 interval = []
         return res
+            
