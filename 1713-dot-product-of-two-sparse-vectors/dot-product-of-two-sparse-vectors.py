@@ -17,7 +17,7 @@ class SparseVector:
                 j += 1
             elif self.pairs[i][0] < vec.pairs[j][0]:
                 i += 1
-            else:
+            elif vec.pairs[j][0] < self.pairs[i][0]:
                 j += 1
         return total
         
