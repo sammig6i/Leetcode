@@ -30,7 +30,7 @@ class Solution:
         self.min_col = min(self.min_col, col)
         self.max_col = max(self.max_col, col)
 
-        self.dfs(node.left, row + 1, col - 1)
         self.dfs(node.right, row + 1, col + 1)
+        self.dfs(node.left, row + 1, col - 1)
 
         
