@@ -11,20 +11,19 @@ class Solution:
         
         d = defaultdict(list)
         q = deque([(root, 0)])
-        res = []
-    
+
         while q:
-            temp_map = defaultdict(list)
+            d1 = defaultdict(list)
             for _ in range(len(q)):
                 node, col = q.popleft()
                 if node:
-                    temp_map[col].append(node.val)
+                    d1[col].append(node.val)
                     q.append((node.left, col - 1))
                     q.append((node.right, col + 1))
-            for col in temp_map:
-                d[col].extend((sorted(temp_map[col])))
+            for key in d1:
+                d[key] += (sorted(d1[key]))
 
-        return [d[col] for col in sorted(d)]
+        return [d[key] for key in sorted(d)]
 
 
 
