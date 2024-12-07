@@ -44,7 +44,7 @@
 class Solution:
     def depthSum(self, nestedList: List[NestedInteger]) -> int:
         return self.dfs(nestedList, 1)
-        
+    
     def dfs(self, nested_list, depth):
         res = 0
         for item in nested_list:
