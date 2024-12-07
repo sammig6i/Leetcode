@@ -1,26 +1,17 @@
 class SparseVector:
     def __init__(self, nums: List[int]):
-        self.pairs = []
+        self.map = {}
         for i, n in enumerate(nums):
             if n != 0:
-                self.pairs.append([i, n])
+                self.map[i] = n
 
     # Return the dotProduct of two sparse vectors
     def dotProduct(self, vec: 'SparseVector') -> int:
         total = 0
-        i = j = 0
-
-        while i < len(self.pairs) and j < len(vec.pairs):
-            if self.pairs[i][0] == vec.pairs[j][0]:
-                total += (self.pairs[i][1] * vec.pairs[j][1])
-                i += 1
-                j += 1
-            elif self.pairs[i][0] < vec.pairs[j][0]:
-                i += 1
-            elif vec.pairs[j][0] < self.pairs[i][0]:
-                j += 1
+        for i, n in vec.map.items():
+            if i in self.map:
+                total += (self.map[i] * n)
         return total
-        
 
 # Your SparseVector object will be instantiated and called as such:
 # v1 = SparseVector(nums1)
