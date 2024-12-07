@@ -9,27 +9,28 @@ class Solution:
         if not root:
             return None
         
-        q = deque([(root, 0, 0)])
-        d = defaultdict(list)
+        self.d = defaultdict(list)
+        self.min_col = self.max_col = 0
 
-        min_col = max_col = 0
-
-        while q:
-            node, row, col = q.popleft()
-            if node:
-                d[col].append((node.val, row))
-                
-                min_col = min(min_col, col)
-                max_col = max(max_col, col)
-
-                q.append((node.left, row + 1, col - 1))
-                q.append((node.right, row + 1, col + 1))
-        
+        self.dfs(root, 0, 0)
+    
         res = []
-        for col in range(min_col, max_col + 1):
-            d[col].sort(key=lambda x: (x[1], x[0]))
-            vals = [v for v, _ in d[col]]
+        for col in range(self.min_col, self.max_col + 1):
+            self.d[col].sort(key=lambda x: (x[1], x[0]))
+            vals = [v for v, _ in self.d[col]]
             res.append(vals)
         return res
+
+    def dfs(self, node, row, col):
+        if not node:
+            return None
+
+        self.d[col].append([node.val, row])
+
+        self.min_col = min(self.min_col, col)
+        self.max_col = max(self.max_col, col)
+
+        self.dfs(node.left, row + 1, col - 1)
+        self.dfs(node.right, row + 1, col + 1)
 
         
