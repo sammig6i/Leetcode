@@ -7,6 +7,7 @@ class RandomizedSet:
     def insert(self, val: int) -> bool:
         if val in self.indices:
             return False
+        
         self.list.append(val)
         self.indices[val] = len(self.list) - 1
         return True
