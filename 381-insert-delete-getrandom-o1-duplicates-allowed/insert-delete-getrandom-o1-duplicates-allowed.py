@@ -22,7 +22,7 @@ class RandomizedCollection:
         
         if idx != len(self.list) - 1:
             self.list[idx], self.list[-1] = self.list[-1], self.list[idx]
-            self.indices[last_val].discard(len(self.list) - 1)
+            self.indices[last_val].remove(len(self.list) - 1)
             self.indices[last_val].add(idx)
     
         self.list.pop()
