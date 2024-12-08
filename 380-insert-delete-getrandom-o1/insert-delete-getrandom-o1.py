@@ -16,8 +16,8 @@ class RandomizedSet:
             idx = self.indices[val]
             last_val = self.list[-1]
             self.list[idx], self.list[-1] = self.list[-1], self.list[idx]
-            self.indices[last_val] = idx
             self.list.pop()
+            self.indices[last_val] = idx
             del self.indices[val]
             return True
         return False
