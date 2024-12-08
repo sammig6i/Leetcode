@@ -1,3 +1,5 @@
+from random import random
+
 class RandomizedSet:
 
     def __init__(self):
@@ -18,9 +20,8 @@ class RandomizedSet:
         
         idx = self.indices[val]
         last_val = self.list[-1]
-        if idx != len(self.list) - 1:
-            self.list[idx], self.list[-1] = self.list[-1], self.list[idx]
-            self.indices[last_val] = idx
+        self.list[idx], self.list[-1] = self.list[-1], self.list[idx]
+        self.indices[last_val] = idx
         
         self.list.pop()
         del self.indices[val]
@@ -28,8 +29,7 @@ class RandomizedSet:
 
 
     def getRandom(self) -> int:
-        return random.choice(self.list)
-        
+        return self.list[int(random() * len(self.list))]
 
 
 # Your RandomizedSet object will be instantiated and called as such:
