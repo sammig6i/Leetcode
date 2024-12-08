@@ -19,8 +19,10 @@ class RandomizedCollection:
 
         idx = self.indices[val].pop()
         last_val = self.list[-1]
+
         if idx != len(self.list) - 1:
             self.list[idx] = last_val
+            last_val = self.list[idx]
             self.indices[last_val].discard(len(self.list) - 1)
             self.indices[last_val].add(idx)
         
@@ -28,7 +30,10 @@ class RandomizedCollection:
         if not self.indices[val]:
             del self.indices[val]
         return True
-
+# [2, 1]
+# {1: 0, 2: 1}
+# idx = 0
+# last_val = 1
     def getRandom(self) -> int:
         return random.choice(self.list)
         
