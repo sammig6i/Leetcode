@@ -7,8 +7,8 @@ class RandomizedSet:
     def insert(self, val: int) -> bool:
         if val in self.map:
             return False
+        self.map[val] = len(self.lst)
         self.lst.append(val)
-        self.map[val] = len(self.lst) - 1
         return True
 
     def remove(self, val: int) -> bool:
