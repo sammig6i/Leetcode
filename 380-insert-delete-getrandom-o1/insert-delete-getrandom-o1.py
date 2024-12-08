@@ -1,4 +1,3 @@
-from random import random
 
 class RandomizedSet:
 
@@ -29,7 +28,7 @@ class RandomizedSet:
 
 
     def getRandom(self) -> int:
-        return self.list[int(random() * len(self.list))]
+        return random.choice(self.list)
 
 
 # Your RandomizedSet object will be instantiated and called as such:
