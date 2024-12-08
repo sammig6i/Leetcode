@@ -20,10 +20,10 @@ class RandomizedCollection:
         idx = self.indices[val].pop()
         last_val = self.list[-1]
         
-        if idx != len(self.list) - 1:
-            self.list[idx], self.list[-1] = self.list[-1], self.list[idx]
-            self.indices[last_val].remove(len(self.list) - 1)
-            self.indices[last_val].add(idx)
+        # if idx != len(self.list) - 1:
+        self.list[idx], self.list[-1] = self.list[-1], self.list[idx]
+        self.indices[last_val].add(idx)
+        self.indices[last_val].remove(len(self.list) - 1)
     
         self.list.pop()
         if not self.indices[val]:
