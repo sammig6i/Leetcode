@@ -12,16 +12,18 @@ class Solution:
         if not node:
             return None
         
-        self.visited = {}
-        return self.dfs(node)
+        visited = {}
+        root = node
+        visited[root] = Node(node.val)
+        q = deque([root])
 
-    def dfs(self, node):
-        if node in self.visited:
-            return self.visited[node]
-        
-        clone = Node(node.val)
-        self.visited[node] = clone
-
-        for neighbor in node.neighbors:
-            clone.neighbors.append(self.dfs(neighbor))
-        return clone
+        while q:
+            node = q.popleft()
+            for neighbor in node.neighbors:
+                if neighbor not in visited:
+                    visited[neighbor] = Node(neighbor.val)
+                    q.append(neighbor)
+                visited[node].neighbors.append(visited[neighbor])
+        return visited[root]
+                
+    
