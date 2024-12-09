@@ -16,8 +16,6 @@ class Solution:
         return self.oldToNew[node]
 
     def dfs(self, node):
-        # if not node:
-            # return None
         if node in self.oldToNew:
             return self.oldToNew[node]
         
