@@ -1,10 +1,10 @@
 class Solution:
     def findKthPositive(self, arr: List[int], k: int) -> int:
         L, R = 0, len(arr)
-
         while L < R:
-            m = (L + R) // 2
-            if arr[m] - m - 1 < k:
+            m = (R + L) // 2
+
+            if (arr[m] - 1) - m < k:
                 L = m + 1
             else:
                 R = m
