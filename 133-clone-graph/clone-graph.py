@@ -13,17 +13,14 @@ class Solution:
             return None
         
         visited = {}
-        root = node
-        visited[root] = Node(node.val)
-        q = deque([root])
+        visited[node] = Node(node.val)
+        stack = [node]
 
-        while q:
-            node = q.popleft()
-            for neighbor in node.neighbors:
-                if neighbor not in visited:
-                    visited[neighbor] = Node(neighbor.val)
-                    q.append(neighbor)
-                visited[node].neighbors.append(visited[neighbor])
-        return visited[root]
-                
-    
+        while stack:
+            cur = stack.pop()
+            for nei in cur.neighbors:
+                if nei not in visited:
+                    visited[nei] = Node(nei.val)
+                    stack.append(nei)
+                visited[cur].neighbors.append(visited[nei])
+        return visited[node]
