@@ -12,22 +12,9 @@ class Solution:
         head = ListNode()
         tail = head
 
-        while True:
-            min_node = -1
-            for i in range(len(lists)):
-                if not lists[i]:
-                    continue
-                if min_node == -1 or lists[min_node].val > lists[i].val:
-                    min_node = i
-            
-            if min_node == -1:
-                break
-            tail.next = lists[min_node]
-            tail = tail.next
-            lists[min_node] = lists[min_node].next
-
-        return head.next
-
+        for i in range(1, len(lists)):
+            lists[i] = self.conquer(lists[i - 1], lists[i])
+        return lists[-1]
 
 
     def conquer(self, l1, l2):
