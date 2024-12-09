@@ -3,33 +3,29 @@
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
-class NodeWrapper:
-    def __init__(self, node):
-        self.node = node
-    
-    def __lt__(self, other):
-        return self.node.val < other.node.val
 
 class Solution:
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
         if not lists:
             return None
-        
-        min_heap = []
+
         head = ListNode()
         tail = head
 
-        for lst in lists:
-            if lst:
-                heapq.heappush(min_heap, NodeWrapper(lst))
-
-        while min_heap:
-            node_wrapper = heapq.heappop(min_heap)
-            tail.next = node_wrapper.node
-            tail = tail.next
+        while True:
+            min_node = -1
+            for i in range(len(lists)):
+                if not lists[i]:
+                    continue
+                if min_node == -1 or lists[min_node].val > lists[i].val:
+                    min_node = i
             
-            if node_wrapper.node.next:
-                heapq.heappush(min_heap, NodeWrapper(node_wrapper.node.next))
+            if min_node == -1:
+                break
+            tail.next = lists[min_node]
+            tail = tail.next
+            lists[min_node] = lists[min_node].next
+
         return head.next
 
 
