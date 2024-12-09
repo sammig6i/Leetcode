@@ -11,7 +11,7 @@ class Solution:
     def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
         if not node:
             return None
-
+        
         self.visited = {}
 
         return self.dfs(node)
@@ -22,8 +22,7 @@ class Solution:
         
         clone = Node(node.val)
         self.visited[node] = clone
+
         for neighbor in node.neighbors:
             clone.neighbors.append(self.dfs(neighbor))
         return clone
-
-
