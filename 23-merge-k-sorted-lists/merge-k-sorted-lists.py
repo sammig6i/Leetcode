@@ -5,22 +5,14 @@
 #         self.next = next
 class Solution:
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
-        if not lists:
+        if not lists or len(lists) == 0:
             return None
         
-        return self.divide(lists, 0, len(lists) - 1)
+        for i in range(1, len(lists)):
+            lists[i] = (self.conquer(lists[i - 1], lists[i]))
+        return lists[-1]
         
-    def divide(self, lists, L, R):
-        if L > R:
-            return None
-        if L == R:
-            return lists[L]
-        
-        m = (R + L) // 2
-        left = self.divide(lists, L, m)
-        right = self.divide(lists, m + 1, R)
 
-        return self.conquer(left, right)
     
     def conquer(self, l1, l2):
         dummy = ListNode()
