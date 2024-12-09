@@ -19,8 +19,6 @@ class Solution:
                 L = m + 1
             elif self.pre[m] > target:
                 R = m
-            else:
-                return L
         return L
 
 # [1,4]
