@@ -8,25 +8,15 @@ class Solution:
         if not lists:
             return None
         
-        nodes = []
-        for lst in lists:
-            while lst:
-                nodes.append(lst.val)
-                lst = lst.next
-        nodes.sort()
+        while len(lists) > 1:
+            mergedLists = []
+            for i in range(0, len(lists), 2):
+                l1 = lists[i]
+                l2 = lists[i + 1] if (i + 1) < len(lists) else None
+                mergedLists.append(self.conquer(l1, l2))
+            lists = mergedLists
+        return lists[0]
 
-        head = ListNode()
-        tail = head
-        for node in nodes:
-            tail.next = ListNode(node)
-            tail = tail.next
-        return head.next
-            
-        
-        
-        
-
-    
     def conquer(self, l1, l2):
         dummy = ListNode()
         tail = dummy
