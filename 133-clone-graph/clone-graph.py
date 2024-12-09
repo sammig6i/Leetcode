@@ -13,7 +13,6 @@ class Solution:
             return None
         
         self.visited = {}
-
         return self.dfs(node)
 
     def dfs(self, node):
