@@ -9,25 +9,24 @@ class Solution:
         if not root:
             return None
         
-        d = defaultdict(list)
-        q = deque([(root, 0)])
+        self.d = defaultdict(list)
+        self.min_col = self.max_col = 0
+        res = []
+        self.dfs(root, 0, 0)
 
-        while q:
-            d1 = defaultdict(list)
-            for _ in range(len(q)):
-                node, col = q.popleft()
-                if node:
-                    d1[col].append(node.val)
-                    q.append((node.left, col - 1))
-                    q.append((node.right, col + 1))
-            for key in d1:
-                d[key] += (sorted(d1[key]))
+        for col in range(self.min_col, self.max_col + 1):
+            self.d[col].sort(key=lambda x: (x[1], x[0]))
+            colVals = [v for v, _ in self.d[col]]
+            res.append(colVals)
+        return res
 
-        return [d[key] for key in sorted(d)]
-
-
-
-    
+    def dfs(self, node, row, col):
+        if not node:
+            return None
         
+        self.d[col].append([node.val, row])
+        self.min_col = min(self.min_col, col)
+        self.max_col = max(self.max_col, col)
 
-        
+        self.dfs(node.left, row + 1, col - 1)
+        self.dfs(node.right, row + 1, col + 1)
