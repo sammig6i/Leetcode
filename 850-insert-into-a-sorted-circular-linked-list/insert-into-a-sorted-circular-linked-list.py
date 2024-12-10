@@ -17,13 +17,13 @@ class Solution:
         
         prev, cur = head, head.next
 
-        while prev.next != head:
+        while cur != head:
             # 1 -> Node(2) -> 3
             if prev.val <= node.val <= cur.val:
                break
 
             # 4 -> Node(5) -> 1, 4 -> Node(0) -> 1
-            elif prev.val > cur.val and (node.val >= prev.val or node.val <= cur.val):
+            elif prev.val > cur.val and (node.val > prev.val or node.val < cur.val):
                 break
 
             prev, cur = cur, cur.next
