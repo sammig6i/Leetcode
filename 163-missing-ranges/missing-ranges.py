@@ -7,8 +7,6 @@ class Solution:
             lower = a + 1
         return res        
 
-
-
-[0, 1, 3, 50, 75]
+[0, 1, 3, 50, 75], 100
 # 0, 0, 2 [2, 2], [4, 49], [51, 74], [76 - 99]
 # nums - sorted unique integers, all elements within range
