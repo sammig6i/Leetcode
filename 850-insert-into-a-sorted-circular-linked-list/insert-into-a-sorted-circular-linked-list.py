@@ -8,33 +8,29 @@ class Node:
 
 class Solution:
     def insert(self, head: 'Optional[Node]', insertVal: int) -> 'Node':
+        node = Node(insertVal)
+
         if not head:
-            new_head = Node(insertVal)
-            new_head.next = new_head
-            return new_head
+            head = node
+            head.next = head
+            return head
         
-        cur = head
+        prev, cur = head, head.next
 
-        while cur.next != head:
-            if cur.val <= insertVal <= cur.next.val:
-                new_node = Node(insertVal)
-                new_node.next = cur.next
-                cur.next = new_node
+        while prev.next != head:
+            # 1 -> Node(2) -> 3
+            if prev.val <= node.val <= cur.val:
+               break
 
-                return head
-            elif cur.val > cur.next.val:
-                if insertVal >= cur.val or insertVal <= cur.next.val:
-                    new_node = Node(insertVal)
-                    new_node.next = cur.next
-                    cur.next = new_node
+            # 4 -> Node(5) -> 1, 4 -> Node(0) -> 1
+            elif prev.val > cur.val and (node.val >= prev.val or node.val <= cur.val):
+                break
 
-                    return head
-            cur = cur.next
+            prev, cur = cur, cur.next
         
 
-        new_node = Node(insertVal)
-        new_node.next = cur.next
-        cur.next = new_node
+        node.next = cur
+        prev.next = node
 
         return head
         # 3, 4, 0, 1
