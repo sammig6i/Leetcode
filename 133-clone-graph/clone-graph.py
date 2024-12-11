@@ -13,14 +13,16 @@ class Solution:
             return None
         
         visited = {}
-        visited[node] = Node(node.val)
-        stack = [node]
 
-        while stack:
-            cur = stack.pop()
-            for nei in cur.neighbors:
-                if nei not in visited:
-                    visited[nei] = Node(nei.val)
-                    stack.append(nei)
-                visited[cur].neighbors.append(visited[nei])
-        return visited[node]
+        def dfs(node):
+            if node in visited:
+                return visited[node]
+            
+            clone = Node(node.val)
+            visited[node] = clone
+
+            for nei in node.neighbors:
+                clone.neighbors.append(dfs(nei))
+            return clone
+        
+        return dfs(node)
