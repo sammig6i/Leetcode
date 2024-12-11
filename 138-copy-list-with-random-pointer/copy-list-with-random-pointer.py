@@ -12,14 +12,11 @@ class Solution:
         self.map = {}
 
     def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
-        oldToCopy = defaultdict(lambda: Node(0))
-        oldToCopy[None] = None
-
-        cur = head
-        while cur:
-            oldToCopy[cur].val = cur.val
-            oldToCopy[cur].next = oldToCopy[cur.next]
-            oldToCopy[cur].random = oldToCopy[cur.random]
-            cur = cur.next
+        if not head:
+            return None
         
-        return oldToCopy[head]
+        copy = Node(head.val)
+        self.map[head] = copy
+        copy.next = self.copyRandomList(head.next)
+        copy.random = self.map.get(head.random)
+        return copy
