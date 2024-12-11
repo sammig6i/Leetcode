@@ -12,17 +12,15 @@ class Solution:
         if not node:
             return None
         
-        visited = {}
+        visited = {node: Node(node.val)}
+        q = deque([node])
 
-        def dfs(node):
-            if node in visited:
-                return visited[node]
-            
-            clone = Node(node.val)
-            visited[node] = clone
-
-            for nei in node.neighbors:
-                clone.neighbors.append(dfs(nei))
-            return clone
+        while q:
+            cur = q.popleft()
+            for nei in cur.neighbors:
+                if nei not in visited:
+                    visited[nei] = Node(nei.val)
+                    q.append(nei)
+                visited[cur].neighbors.append(visited[nei])
+        return visited[node]
         
-        return dfs(node)
