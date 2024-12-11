@@ -17,6 +17,9 @@ class Solution:
             if nums[i] > nums[pivot]:
                 nums[i], nums[pivot] = nums[pivot], nums[i]
                 break
+        
         nums[pivot + 1:] = reversed(nums[pivot + 1:])
         return nums
 
+        2,5,1
+        2,1,5
