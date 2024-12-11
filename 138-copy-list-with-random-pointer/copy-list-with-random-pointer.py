@@ -14,7 +14,7 @@ class Solution:
     def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
         if not head:
             return None
-
+        
         copy = Node(head.val)
         self.map[head] = copy
         copy.next = self.copyRandomList(head.next)
