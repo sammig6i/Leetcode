@@ -20,7 +20,6 @@ class Solution:
             l1 = l2.next
         
         new_head = head.next
-
         l1 = head
         while l1:
             if l1.random:
