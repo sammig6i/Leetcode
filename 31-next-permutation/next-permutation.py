@@ -14,12 +14,14 @@ class Solution:
             self.swap(nums, i, j)
         self.reverse(nums, i + 1)
 
+        return nums
+
+    def swap(self, nums, L, R):
+        nums[L], nums[R] = nums[R], nums[L]
+
     def reverse(self, nums, start):
-        i, j = start, len(nums) - 1
-        while i < j:
-            self.swap(nums, i, j)
-            i += 1
-            j -= 1
-    
-    def swap(self, nums, i, j):
-        nums[i], nums[j] = nums[j], nums[i]
+        L, R = start, len(nums) - 1
+        while L < R:
+            self.swap(nums, L, R)
+            L += 1
+            R -= 1
