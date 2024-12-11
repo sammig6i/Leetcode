@@ -1,14 +1,12 @@
 class Solution:
     def isPalindrome(self, s: str) -> bool:
-        if not s:
-            return True
         L, R = 0, len(s) - 1
 
         while L < R:
             if s[L].lower() != s[R].lower():
-                if not self.isAlpha(s[L].lower()):
+                if not s[L].lower().isalnum():
                     L += 1
-                elif not self.isAlpha(s[R].lower()):
+                elif not s[R].lower().isalnum():
                     R -= 1
                 else:
                     return False
@@ -16,10 +14,5 @@ class Solution:
                 L += 1
                 R -= 1
         return True
+
     
-    def isAlpha(self, c):
-        return (ord("a") <= ord(c) <= ord("z") or
-                ord("0") <= ord(c) <= ord("9"))
-
-        
-
