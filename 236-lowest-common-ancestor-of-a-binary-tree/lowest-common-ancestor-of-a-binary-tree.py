@@ -10,6 +10,7 @@ class Solution:
         stack = [root]
 
         parent = {root: None}
+
         while p not in parent or q not in parent:
             node = stack.pop()
 
@@ -19,13 +20,13 @@ class Solution:
             if node.right:
                 parent[node.right] = node
                 stack.append(node.right)
-        
+
         ancestors = set()
 
         while p:
             ancestors.add(p)
             p = parent[p]
-        
+
         while q not in ancestors:
             q = parent[q]
         
