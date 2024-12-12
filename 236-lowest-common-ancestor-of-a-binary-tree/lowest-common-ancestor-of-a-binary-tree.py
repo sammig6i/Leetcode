@@ -9,8 +9,7 @@ class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
         stack = [root]
 
-        parent = defaultdict(lambda: TreeNode(0))
-        parent[root] = None
+        parent = {root: None}
 
         while p not in parent or q not in parent:
             node = stack.pop()
