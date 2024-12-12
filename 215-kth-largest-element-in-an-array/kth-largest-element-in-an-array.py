@@ -30,3 +30,12 @@ class Solution:
             
         k_smallest = len(nums) - k
         return quickSelect(0, len(nums) - 1, k_smallest)
+
+        # [2,2,3,1,3,4,5,5,6] k = 4, ans = 4
+        # k_smallest = 5
+        # L = 0
+        # R = 4
+
+        # [4,5,5]
+
+
