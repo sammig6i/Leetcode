@@ -11,5 +11,4 @@ class Solution:
                 i += 1
         return n
 
-           
-[0,1,4,0,3,0,4,2]
+        
