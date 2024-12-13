@@ -9,7 +9,7 @@ class Solution:
                 nums[i] = nums[n]
             else:
                 i += 1
-        return i
+        return n
 
            
 [0,1,4,0,3,0,4,2]
