@@ -4,13 +4,6 @@ class Solution:
             return []
         
         res = []
-
-        arr = []
-        for v in original:
-            arr.append(v)
-            if len(arr) == n:
-                res.append(arr)
-                arr = []
-        
+        for i in range(0, len(original), n):
+            res.append(original[i: i + n])
         return res
-
