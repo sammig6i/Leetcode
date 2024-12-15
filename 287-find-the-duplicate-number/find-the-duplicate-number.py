@@ -1,12 +1,12 @@
 class Solution:
     def findDuplicate(self, nums: List[int]) -> int:
-        n = len(nums)
+        max_bits = max(nums).bit_length()
         res = 0
-
-        for b in range(32):
+        n = len(nums)
+        for b in range(max_bits):
+            x = y = 0
             mask = 1 << b
-            x = 0
-            y = 0
+
             for num in nums:
                 if num & mask:
                     x += 1
