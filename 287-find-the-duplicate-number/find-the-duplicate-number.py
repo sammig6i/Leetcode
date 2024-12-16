@@ -6,8 +6,8 @@ class Solution:
             mask = 1 << b
             x = y = 0
 
-            for n in nums:
-                if n & mask:
+            for num in nums:
+                if num & mask:
                     x += 1
             
             for num in range(1, len(nums)):
