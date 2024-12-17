@@ -13,7 +13,8 @@ class Solution:
                         mark[r][col] = 0
                     for row in range(rows):
                         mark[row][c] = 0
-
+        
         for r in range(rows):
             for c in range(cols):
                 matrix[r][c] = mark[r][c]
+
