@@ -3,8 +3,13 @@ class Solution:
         """
         Do not return anything, modify matrix in-place instead.
         """
-        matrix.reverse()
+        n = len(matrix)
+        rotated = [[0] * n for _ in range(n)]
 
-        for i in range(len(matrix)):
-            for j in range(i + 1, len(matrix)):
-                matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
+        for r in range(n):
+            for c in range(n):
+                rotated[c][n - 1 - r] = matrix[r][c]
+        
+        for r in range(n):
+            for c in range(n):
+                matrix[r][c] = rotated[r][c]
