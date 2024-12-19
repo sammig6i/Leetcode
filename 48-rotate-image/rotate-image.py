@@ -3,18 +3,18 @@ class Solution:
         """
         Do not return anything, modify matrix in-place instead.
         """
-        L, R = 0, len(matrix) - 1
-        while L < R:
-            for i in range(R - L):
-                T, B = L, R
-                top_left = matrix[T][L + i]
+        left, right = 0, len(matrix) - 1
+        while left < right:
+            top, bottom = left, right
+            for i in range(right - left):
+                top_left = matrix[top][left + i]
 
-                matrix[T][L + i] = matrix[B - i][L]
+                matrix[top][left + i] = matrix[bottom - i][left]
+                
+                matrix[bottom - i][left] = matrix[bottom][right - i]
 
-                matrix[B - i][L] = matrix[B][R - i]
+                matrix[bottom][right - i] = matrix[top + i][right]
 
-                matrix[B][R - i] = matrix[T + i][R]
-
-                matrix[T + i][R] = top_left
-            L += 1
-            R -= 1
+                matrix[top + i][right] = top_left
+            left += 1
+            right -= 1
