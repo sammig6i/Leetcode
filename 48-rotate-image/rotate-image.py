@@ -3,8 +3,18 @@ class Solution:
         """
         Do not return anything, modify matrix in-place instead.
         """
-        matrix.reverse()
-        for i in range(len(matrix)):
-            for j in range(i + 1, len(matrix)):
-                matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
+        L, R = 0, len(matrix) - 1
+        while L < R:
+            for i in range(R - L):
+                T, B = L, R
+                top_left = matrix[T][L + i]
 
+                matrix[T][L + i] = matrix[B - i][L]
+
+                matrix[B - i][L] = matrix[B][R - i]
+
+                matrix[B][R - i] = matrix[T + i][R]
+
+                matrix[T + i][R] = top_left
+            L += 1
+            R -= 1
