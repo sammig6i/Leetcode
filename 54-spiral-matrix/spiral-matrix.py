@@ -14,3 +14,4 @@ class Solution:
             d += 1
             d %= 4
         return res
+
