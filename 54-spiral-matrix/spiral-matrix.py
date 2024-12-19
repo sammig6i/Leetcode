@@ -1,18 +1,28 @@
 class Solution:
     def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
-        m, n = len(matrix), len(matrix[0])
+        left, right = 0, len(matrix[0])
+        top, bottom = 0, len(matrix)
         res = []
 
-        def dfs(row, col, r, c, dr, dc):
-            if row == 0 or col == 0:
-                return
+        while left < right and top < bottom:
+            for i in range(left, right):
+                res.append(matrix[top][i])
+            right -= 1
+
+            for i in range(top + 1, bottom):
+                res.append(matrix[i][right])
+            bottom -= 1
+
+            if not (left < right and top < bottom):
+                break
             
-            for _ in range(col):
-                r += dr
-                c += dc
-                res.append(matrix[r][c])
-            
-            dfs(col, row - 1, r, c, dc, -dr)
-        
-        dfs(m, n, 0, -1, 0, 1)
+            for i in range(right - 1, left - 1, -1):
+                res.append(matrix[bottom][i])
+            top += 1
+
+            for i in range(bottom - 1, top - 1, -1):
+                res.append(matrix[i][left])
+            left += 1
+
         return res
+            
