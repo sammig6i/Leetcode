@@ -13,8 +13,12 @@ class Solution:
                 nums[i], nums[idx] = nums[idx], nums[i]
             else:
                 i += 1
-        
+            
         for i in range(n):
             if nums[i] != i + 1:
                 return i + 1
         return n + 1
+
+
+
+[-1,1,3,4]
