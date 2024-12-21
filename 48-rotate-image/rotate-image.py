@@ -3,19 +3,13 @@ class Solution:
         """
         Do not return anything, modify matrix in-place instead.
         """
-        left, right = 0, len(matrix) - 1
+        n = len(matrix)
+        rotated = [[0] * n for _ in range(n)]
 
-        while left < right:
-            for i in range(right - left):
-                top, bottom = left, right
-                top_left = matrix[top][left + i]
-
-                matrix[top][left + i] = matrix[bottom - i][left]
-
-                matrix[bottom - i][left] = matrix[bottom][right - i]
-
-                matrix[bottom][right - i] = matrix[top + i][right]
-
-                matrix[top + i][right] = top_left
-            left += 1
-            right -= 1
+        for r in range(n):
+            for c in range(n):
+                rotated[c][n - 1 - r] = matrix[r][c]
+        
+        for r in range(n):
+            for c in range(n):
+                matrix[r][c] = rotated[r][c]
