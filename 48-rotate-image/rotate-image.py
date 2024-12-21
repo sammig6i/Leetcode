@@ -6,8 +6,8 @@ class Solution:
         left, right = 0, len(matrix) - 1
 
         while left < right:
-            top, bottom = left, right
             for i in range(right - left):
+                top, bottom = left, right
                 top_left = matrix[top][left + i]
 
                 matrix[top][left + i] = matrix[bottom - i][left]
