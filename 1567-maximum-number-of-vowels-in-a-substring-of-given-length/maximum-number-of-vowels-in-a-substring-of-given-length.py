@@ -1,13 +1,14 @@
 class Solution:
     def maxVowels(self, s: str, k: int) -> int:
         n = len(s)
-        res = 0
+        L = cnt = res = 0
         vowels = {'a', 'e', 'i', 'o', 'u'}
 
-        prefix = [0] * (n + 1)
-        for i in range(n):
-            prefix[i + 1] = prefix[i] + (1 if s[i] in vowels else 0)
-        
-        for i in range(k, n + 1):
-            res = max(res, prefix[i] - prefix[i - k])
+        for R in range(len(s)):
+            cnt += 1 if s[R] in vowels else 0
+            if R - L + 1 > k:
+                cnt -= 1 if s[L] in vowels else 0
+                L += 1
+            res = max(res, cnt)
+
         return res
