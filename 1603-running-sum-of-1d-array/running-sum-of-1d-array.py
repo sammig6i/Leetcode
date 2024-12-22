@@ -1,8 +1,7 @@
 class Solution:
     def runningSum(self, nums: List[int]) -> List[int]:
         total = 0
-        prefix = []
-        for n in nums:
-            total += n
-            prefix.append(total)
+        prefix = [nums[0]]
+        for n in nums[1:]:
+            prefix.append(n + prefix[-1])
         return prefix
