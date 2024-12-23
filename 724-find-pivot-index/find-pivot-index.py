@@ -7,11 +7,8 @@ class Solution:
             prefix[i + 1] = prefix[i] + nums[i]
         
         for i in range(n):
-            left, right = prefix[i], prefix[-1] - prefix[i] - nums[i]
+            left = prefix[i]
+            right = prefix[-1] - prefix[i + 1]
             if left == right:
                 return i
         return -1
-
-[0,1,8,11,17,22,28]
-
-[0,-1,-2,-2,-1,0,0]
