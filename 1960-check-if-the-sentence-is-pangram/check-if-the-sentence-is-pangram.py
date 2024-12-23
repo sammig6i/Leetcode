@@ -1,6 +1,4 @@
 class Solution:
     def checkIfPangram(self, sentence: str) -> bool:
-        char_set = set()
-        for c in sentence:
-            char_set.add(c)
+        char_set = set(sentence)
         return len(char_set) == 26
