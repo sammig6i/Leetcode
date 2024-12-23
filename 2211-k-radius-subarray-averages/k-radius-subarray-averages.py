@@ -2,18 +2,15 @@ class Solution:
     def getAverages(self, nums: List[int], k: int) -> List[int]:
         n = len(nums)
         window_size = 2 * k + 1
-        window_sum = 0
         res = [-1] * n
 
         if window_size > n:
             return res
         
+        prefix = [0] * (n + 1)
         for i in range(n):
-            window_sum += nums[i]
-
-            if i - window_size >= 0:
-                window_sum -= nums[i - window_size]
-
-            if i >= window_size - 1:
-                res[i - k] = window_sum // window_size
+            prefix[i + 1] = prefix[i] + nums[i]
+        
+        for i in range(k, n - k):
+            res[i] = (prefix[i + k + 1] - prefix[i - k]) // window_size
         return res
