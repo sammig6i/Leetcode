@@ -1,8 +1,7 @@
 class Solution:
     def missingNumber(self, nums: List[int]) -> int:
+        num_set = set(nums)
         n = len(nums)
-        xorr = n
-
-        for i in range(n):
-            xorr ^= i ^ nums[i]
-        return xorr
+        for i in range(n + 1):
+            if i not in num_set:
+                return i
