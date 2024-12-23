@@ -8,7 +8,7 @@ class Solution:
         for R in range(len(s)):
             cost += abs(ord(s[R]) - ord(t[R]))
 
-            if cost > maxCost:
+            while cost > maxCost:
                 cost -= abs(ord(s[L]) - ord(t[L]))
                 L += 1
             
