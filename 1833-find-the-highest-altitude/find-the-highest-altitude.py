@@ -5,6 +5,9 @@ class Solution:
 
         prefix = [0] * (n + 1)
         for i in range(len(gain)):
-            total += prefix[i] + gain[i]
-            max_alt = max(max_alt, total)
+            prefix[i + 1] = prefix[i] + gain[i]
+        
+        for alt in prefix:
+            max_alt = max(max_alt, alt)
+        
         return max_alt
