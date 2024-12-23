@@ -3,7 +3,7 @@ class Solution:
         n = len(nums)
         num_set = set(nums)
 
-        for i in range(0, n):
+        for i in range(n):
             if i not in num_set:
                 return i
         return n
