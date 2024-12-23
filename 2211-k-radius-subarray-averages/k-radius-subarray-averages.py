@@ -8,12 +8,13 @@ class Solution:
         if window_size > n:
             return res
         
-        prefix = [0] * (n + 1)
         for i in range(n):
-            prefix[i + 1] = prefix[i] + nums[i]
-        
-        for i in range(k, n - k):
-            curr_sum = prefix[i + k + 1] - prefix[i - k]
-            res[i] = curr_sum // window_size
+            window_sum += nums[i]
+
+            if i - window_size >= 0:
+                window_sum -= nums[i - window_size]
+            
+            if i >= window_size - 1:
+                res[i - k] = window_sum // window_size
         return res
 # [100000 100000]
