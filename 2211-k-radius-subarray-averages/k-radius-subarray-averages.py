@@ -8,9 +8,9 @@ class Solution:
         if window_size > n:
             return res
         
-        prefix = [nums[0]]
+        prefix = [0] * (n + 1)
         for i in range(n):
-            prefix.append(prefix[-1] + nums[i])
+            prefix[i + 1] = prefix[i] + nums[i]
         
         for i in range(k, n - k):
             curr_sum = prefix[i + k + 1] - prefix[i - k]
