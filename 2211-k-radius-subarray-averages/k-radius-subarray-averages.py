@@ -4,13 +4,13 @@ class Solution:
         window_size = 2 * k + 1
         res = [-1] * n
 
-        if window_size > n:
-            return res
-        
-        prefix = [0] * (n + 1)
+
+        pre = [0] * (n + 1)
         for i in range(n):
-            prefix[i + 1] = prefix[i] + nums[i]
+            pre[i + 1] = pre[i] + nums[i]
         
         for i in range(k, n - k):
-            res[i] = (prefix[i + k + 1] - prefix[i - k]) // window_size
+            res[i] = (pre[i + k + 1] - pre[i - k]) // window_size
         return res
+
+    
