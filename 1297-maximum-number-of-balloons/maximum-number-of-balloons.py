@@ -1,10 +1,14 @@
 class Solution:
     def maxNumberOfBalloons(self, text: str) -> int:
-        balloon = Counter("balloon")
-        word_count = Counter(text)
-
-        res = len(text)
-        for c in balloon:
-            res = min(res, word_count[c] // balloon[c])
+        mp = defaultdict(int)
+        for c in text:
+            if c in 'balon':
+                mp[c] += 1
         
-        return res
+        if len(mp) < 5:
+            return 0
+
+        mp['l'] //= 2
+        mp['o'] //= 2
+
+        return min(mp.values())
