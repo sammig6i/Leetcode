@@ -3,8 +3,7 @@ class Solution:
         losses = defaultdict(int)
 
         for winner, loser in matches:
-            if winner not in losses:
-                losses[winner] = 0
+            losses[winner] = losses.get(winner, 0)
             losses[loser] += 1
         
         zero_loss, one_loss = [], []
