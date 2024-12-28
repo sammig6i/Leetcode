@@ -1,22 +1,19 @@
 class Solution:
     def findWinners(self, matches: List[List[int]]) -> List[List[int]]:
-        one_loss = set()
-        zero_loss = set()
-        more_loss = set()
+        seen = set()
+        losses_count = defaultdict(int)
 
         for winner, loser in matches:
-            if (winner not in one_loss) and (winner not in more_loss):
-                zero_loss.add(winner)
-            
-            if loser in zero_loss:
-                zero_loss.remove(loser)
-                one_loss.add(loser)
-            elif loser in one_loss:
-                one_loss.remove(loser)
-                more_loss.add(loser)
-            elif loser in more_loss:
-                continue
-            else:
-                one_loss.add(loser)
+            seen.add(winner)
+            seen.add(loser)
+            losses_count[loser] += 1
         
-        return [sorted(list(zero_loss)), sorted(list(one_loss))]
+        one_loss = []
+        zero_loss = []
+        for player in seen:
+            if player not in losses_count:
+                zero_loss.append(player)
+            elif losses_count[player] == 1:
+                one_loss.append(player)
+        return [sorted(zero_loss), sorted(one_loss)]
+
