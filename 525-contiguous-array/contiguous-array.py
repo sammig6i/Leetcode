@@ -10,13 +10,13 @@ class Solution:
             elif n == 1:
                 one += 1
             
-            if (one - zero) not in diff_idx:
-                diff_idx[one - zero] = i
+            if (zero - one) not in diff_idx:
+                diff_idx[zero - one] = i
 
             if one == zero:
                 res = one + zero
             else:
-                idx = diff_idx[one - zero]
+                idx = diff_idx[zero - one]
                 res = max(res, i - idx)
         return res
             
