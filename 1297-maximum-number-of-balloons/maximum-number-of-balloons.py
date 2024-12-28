@@ -1,12 +1,17 @@
 class Solution:
     def maxNumberOfBalloons(self, text: str) -> int:
-        balloon = Counter("balloon")
-        word = Counter(text)
+        word = defaultdict(int)
 
-        res = float("inf")
-        for c in balloon:
-            if c not in word:
-                return 0
-            res = min(res, word[c] // balloon[c])
-        return res
+        for c in text:
+            if c in "balon":
+                word[c] += 1
+        
+        if len(word) < 5:
+            return 0
+        
+        word["l"] //= 2
+        word["o"] //= 2
+        return min(word.values())
+
+
         
