@@ -1,7 +1,7 @@
 class Solution:
     def findMaxLength(self, nums: List[int]) -> int:
         zeros = ones = res = 0
-        diff_idx = defaultdict(int)
+        diff_idx = {}
 
         for i, n in enumerate(nums):
             if n == 1:
