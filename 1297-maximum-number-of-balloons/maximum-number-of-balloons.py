@@ -5,9 +5,8 @@ class Solution:
 
         res = float("inf")
         for c in balloon:
-            if c in word:
-                res = min(res, word[c] // balloon[c])
-            else:
+            if c not in word:
                 return 0
+            res = min(res, word[c] // balloon[c])
         return res
         
