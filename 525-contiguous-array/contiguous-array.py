@@ -1,16 +1,22 @@
 class Solution:
     def findMaxLength(self, nums: List[int]) -> int:
         res = 0
-        diff_idx = {0: -1}
-        diff = 0
+        one = zero = 0
+        diff_idx = {}
 
         for i, n in enumerate(nums):
-            diff += 1 if n == 1 else -1
+            if n == 0:
+                zero += 1
+            elif n == 1:
+                one += 1
             
-            if diff in diff_idx:
-               res = max(res, i - diff_idx[diff])
+            if (one - zero) not in diff_idx:
+                diff_idx[one - zero] = i
+
+            if one == zero:
+                res = one + zero
             else:
-                diff_idx[diff] = i
-            
+                idx = diff_idx[one - zero]
+                res = max(res, i - idx)
         return res
             
