@@ -10,8 +10,8 @@ class Solution:
         x, y = 0, 0
         for c in path:
             visited.add((x, y))
-            x += direc[c][0]
-            y += direc[c][1]
+            dx, dy = direc[c]
+            x, y = x + dx, y + dy
             if (x, y) in visited:
                 return True
         return False
