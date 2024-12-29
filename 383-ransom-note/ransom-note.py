@@ -8,7 +8,7 @@ class Solution:
             mp[c] += 1
         
         for c in ransomNote:
-            if mp[c] == 0:
+            if mp[c] <= 0:
                 return False
             mp[c] -= 1
         return True
