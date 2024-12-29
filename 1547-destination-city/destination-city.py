@@ -1,8 +1,8 @@
 class Solution:
     def destCity(self, paths: List[List[str]]) -> str:
-        mp = defaultdict(int)
+        mp = {}
         for start, dest in paths:
-            mp[start] += 1
+            mp[start] = dest
         
         for start, dest in paths:
             if dest not in mp:
