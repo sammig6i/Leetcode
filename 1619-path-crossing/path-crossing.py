@@ -11,7 +11,8 @@ class Solution:
         for c in path:
             visited.add((x, y))
             dx, dy = direc[c]
-            x, y = x + dx, y + dy
+            x += dx
+            y += dy
             if (x, y) in visited:
                 return True
         return False
