@@ -1,8 +1,10 @@
 class Solution:
     def destCity(self, paths: List[List[str]]) -> str:
-        mp = {p[0]: p[1] for p in paths}
+        s = set()
 
-        start = paths[0][0]
-        while start in mp:
-            start = mp[start]
-        return start
+        for p in paths:
+            s.add(p[0])
+
+        for p in paths:
+            if p[1] not in s:
+                return p[1]
