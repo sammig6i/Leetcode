@@ -3,7 +3,6 @@ class Solution:
         def helper(x):
             if x < 0:
                 return 0
-            
             L = 0
             cur = 0
             res = 0
