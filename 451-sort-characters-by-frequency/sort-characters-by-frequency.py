@@ -3,12 +3,9 @@ class Solution:
         freq = [[] for _ in range(len(s) + 1)]
         res = []
         count = Counter(s)
-        for char, count in count.items():
-            freq[count].append(char * count)
-        
-        for i in range(len(freq) - 1, -1, -1):
-            for c in freq[i]:
-                res.append(c)
+        sorted_count = sorted(count.items(), key=lambda x: x[1], reverse=True)
+        for char, freq in sorted_count:
+            res.append(char * freq)
         return "".join(res)
 
 
