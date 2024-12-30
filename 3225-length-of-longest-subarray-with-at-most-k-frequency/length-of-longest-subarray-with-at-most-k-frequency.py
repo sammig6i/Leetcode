@@ -9,12 +9,9 @@ class Solution:
 
             while freq[nums[R]] > k:
                 freq[nums[L]] -= 1
-                if not freq[nums[L]]:
-                    del freq[nums[L]]
                 L += 1
             
             res = max(res, R - L + 1)
         return res
 
-[1,2,3,1,2,3,1,2]
 
