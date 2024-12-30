@@ -5,8 +5,8 @@ class Solution:
         count = 0
         res = 0
 
-        for i in range(n):
-            count += 1 if nums[i] == 1 else -1
+        for i, num in enumerate(nums):
+            count += 1 if num == 1 else -1
             if count == 0:
                 res = i + 1
             
