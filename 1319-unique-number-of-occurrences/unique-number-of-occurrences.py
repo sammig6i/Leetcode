@@ -1,10 +1,13 @@
 class Solution:
     def uniqueOccurrences(self, arr: List[int]) -> bool:
-        freq_map = Counter(arr)
+        freq = [[] for _ in range(len(arr) + 1)]
 
-        freq_set = set()
-        for n, freq in freq_map.items():
-            if freq in freq_set:
+        count = Counter(arr)
+        
+        for n, c in count.items():
+            freq[c].append(n)
+        
+        for lst in freq:
+            if len(lst) > 1:
                 return False
-            freq_set.add(freq)
         return True
