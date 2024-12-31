@@ -9,8 +9,10 @@ class Solution:
             if n in seen:
                 idx = seen[n]
                 while L <= idx:
+                    seen[nums[L]] -= 1
                     curr -= nums[L]
                     L += 1
+            
             seen[n] = i
             curr += n
             res = max(res, curr)
