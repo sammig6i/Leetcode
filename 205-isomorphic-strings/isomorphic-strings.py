@@ -3,12 +3,12 @@ class Solution:
         if len(s) != len(t):
             return False
         
-        mapS, mapT = {}, {}
-        for c1, c2 in zip(s, t):
-            if c1 in mapS and mapS[c1] != c2:
+        mapST, mapTS = {}, {}
+        for i in range(len(s)):
+            if s[i] in mapST and mapST[s[i]] != t[i]:
                 return False
-            if c2 in mapT and mapT[c2] != c1:
+            if t[i] in mapTS and mapTS[t[i]] != s[i]:
                 return False
-            mapS[c1] = c2
-            mapT[c2] = c1
+            mapST[s[i]] = t[i]
+            mapTS[t[i]] = s[i]
         return True
