@@ -1,16 +1,17 @@
 class Solution:
     def maximumUniqueSubarray(self, nums: List[int]) -> int:
-        counts = defaultdict(int)
-        L = 0
+        seen = {}
         res = 0
         curr = 0
+        L = 0
 
-        for R in range(len(nums)):
-            counts[nums[R]] += 1
-            curr += nums[R]
-            while counts[nums[R]] > 1:
-                counts[nums[L]] -= 1
-                curr -= nums[L]
-                L += 1
+        for i, n in enumerate(nums):
+            if n in seen:
+                idx = seen[n]
+                while L <= idx:
+                    curr -= nums[L]
+                    L += 1
+            seen[n] = i
+            curr += n
             res = max(res, curr)
         return res
