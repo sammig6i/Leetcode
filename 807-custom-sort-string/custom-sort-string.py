@@ -6,10 +6,10 @@ class Solution:
         for c in order:
             if c in counts:
                 res.append(c * counts[c])
-                counts[c] -= counts[c]
+                del counts[c]
         
         for char, count in counts.items():
-            if count > 0:
-                res.append(char * counts[char])
+            res.append(char * count)
+
         return "".join(res)
 
