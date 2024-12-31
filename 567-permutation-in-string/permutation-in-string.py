@@ -9,6 +9,7 @@ class Solution:
         for R in range(len(s2)):
             c = s2[R]
             s2_counts[c] += 1
+            
             while (R - L + 1) > len(s1):
                 c = s2[L]
                 s2_counts[c] -= 1
@@ -19,5 +20,3 @@ class Solution:
             if s1_counts == s2_counts:
                 return True
         return False
-
-# eidbaooo
