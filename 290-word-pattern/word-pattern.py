@@ -1,16 +1,15 @@
 class Solution:
     def wordPattern(self, pattern: str, s: str) -> bool:
+        charToWord = defaultdict(int)
+        wordToChar = defaultdict(int)
         words = s.split()
+
         if len(pattern) != len(words):
             return False
-
-        charToWord = {}
-        wordToChar = {}
-
-        for c, w in zip(pattern, words):
-            if (c in charToWord and charToWord[c] != w or
-                w in wordToChar and wordToChar[w] != c):
+        
+        for i, (c, w) in enumerate(zip(pattern, words)):
+            if charToWord[c] != wordToChar[w]:
                 return False
-            charToWord[c] = w
-            wordToChar[w] = c
+            charToWord[c] = i + 1
+            wordToChar[w] = i + 1
         return True
