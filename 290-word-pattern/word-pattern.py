@@ -4,12 +4,14 @@ class Solution:
         if len(pattern) != len(words):
             return False
 
-        pattern_mp = {}
-        word_mp = {}
-        for i in range(len(pattern)):
-            if (words[i] in word_mp and word_mp[words[i]] != pattern[i] or
-                pattern[i] in pattern_mp and pattern_mp[pattern[i]] != words[i]):
+        charToWord = {}
+        wordToChar = {}
+
+        for c, w in zip(pattern, words):
+            if c in charToWord and charToWord[c] != w:
                 return False
-            pattern_mp[pattern[i]] = words[i]
-            word_mp[words[i]] = pattern[i]
+            if w in wordToChar and wordToChar[w] != c:
+                return False
+            charToWord[c] = w
+            wordToChar[w] = c
         return True
