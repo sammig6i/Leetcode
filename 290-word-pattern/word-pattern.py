@@ -5,15 +5,14 @@ class Solution:
             return False
         
         charToWord = {}
-        store = set()
 
         for i, (c, w) in enumerate(zip(pattern, words)):
             if c in charToWord:
                 if words[charToWord[c]] != w:
                     return False
             else:
-                if w in store:
-                    return False
+                for k in charToWord:
+                    if words[charToWord[k]] == w:
+                        return False
                 charToWord[c] = i
-                store.add(w)
         return True
