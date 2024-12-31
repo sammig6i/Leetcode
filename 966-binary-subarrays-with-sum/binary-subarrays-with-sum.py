@@ -3,10 +3,11 @@ class Solution:
         counts = defaultdict(int)
         counts[0] = 1
         res = 0
-        curr = 0
+        cur = 0
 
         for n in nums:
-            curr += n
-            res += counts[curr - goal]
-            counts[curr] += 1
+            cur += n
+            res += counts[cur - goal]
+            counts[cur] += 1
         return res
+
