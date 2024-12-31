@@ -1,16 +1,24 @@
+
 class Solution:
     def closeStrings(self, word1: str, word2: str) -> bool:
-        if len(word1) != len(word2):
-            return False
-        
-        word1_count = Counter(word1)
-        word2_count = Counter(word2)
+        freq1 = [0] * 26
+        freq2 = [0] * 26
 
-        sorted_word1 = sorted(word1_count.items(), key=lambda x: x[1])
-        sorted_word2 = sorted(word2_count.items(), key=lambda x: x[1])
+        for ch in word1:
+            freq1[ord(ch) - ord('a')] += 1
 
-        for (c1, count1), (c2, count2) in zip(sorted_word1, sorted_word2):
-            if c1 not in word2_count or c2 not in word1_count or count1 != count2:
+        for ch in word2:
+            freq2[ord(ch) - ord('a')] += 1
+
+        for i in range(26):
+            if (freq1[i] == 0 and freq2[i] != 0) or (freq1[i] != 0 and freq2[i] == 0):
                 return False
+
+        freq1.sort()
+        freq2.sort()
+
+        for i in range(26):
+            if freq1[i] != freq2[i]:
+                return False
+
         return True
-            
