@@ -6,13 +6,11 @@ class Solution:
         curr = 0
 
         for R in range(len(nums)):
-            curr += nums[R]
             counts[nums[R]] += 1
-
+            curr += nums[R]
             while counts[nums[R]] > 1:
-                curr -= nums[L]
                 counts[nums[L]] -= 1
+                curr -= nums[L]
                 L += 1
-            
             res = max(res, curr)
         return res
