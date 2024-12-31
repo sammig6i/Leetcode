@@ -5,7 +5,7 @@ class Solution:
             return False
         
         charToWord = {}
-
+        
         for i, (c, w) in enumerate(zip(pattern, words)):
             if c in charToWord:
                 if words[charToWord[c]] != w:
