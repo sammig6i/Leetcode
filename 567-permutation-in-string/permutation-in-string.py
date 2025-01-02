@@ -22,14 +22,14 @@ class Solution:
             s2_count[idx] += 1
             if s1_count[idx] == s2_count[idx]:
                 matches += 1
-            elif s1_count[idx] == s2_count[idx] - 1:
+            elif s1_count[idx] + 1 == s2_count[idx]:
                 matches -= 1
             
             idx = ord(s2[L]) - ord('a')
             s2_count[idx] -= 1
             if s1_count[idx] == s2_count[idx]:
                 matches += 1
-            elif s1_count[idx] == s2_count[idx] + 1:
+            elif s1_count[idx] - 1 == s2_count[idx]:
                 matches -= 1
             L += 1
         return matches == 26
