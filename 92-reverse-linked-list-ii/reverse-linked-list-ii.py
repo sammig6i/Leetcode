@@ -7,17 +7,31 @@ class Solution:
     def reverseBetween(self, head: Optional[ListNode], left: int, right: int) -> Optional[ListNode]:
         dummy = ListNode(0)
         dummy.next = head
-
-        left_prev, cur = dummy, head
+        prev = dummy
         for _ in range(left - 1):
-            left_prev, cur = left_prev.next, cur.next
+            prev = prev.next
         
-        prev = None
-        for _ in range(right - left + 1):
-            next_node = cur.next
-            cur.next = prev
-            prev, cur = cur, next_node
+        sublist_head = prev.next
+        sublist_tail = sublist_head
+        for _ in range(right - left):
+            sublist_tail = sublist_tail.next
         
-        left_prev.next.next = cur
-        left_prev.next = prev
+        next_node = sublist_tail.next
+        sublist_tail.next = None
+        reversed_sublist = self.reverseList(sublist_head)
+        prev.next = reversed_sublist
+        sublist_head.next = next_node
+
         return dummy.next
+
+    def reverseList(self, head):
+        if not head:
+            return None
+        
+        new_head = head
+        if head.next:
+            new_head = self.reverseList(head.next)
+            head.next.next = head
+        head.next = None
+
+        return new_head
