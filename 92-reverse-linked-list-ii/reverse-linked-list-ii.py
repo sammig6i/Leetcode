@@ -36,4 +36,5 @@ class Solution:
         head.next = None
 
         return new_head
+        
             
