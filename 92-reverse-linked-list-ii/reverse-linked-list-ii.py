@@ -8,33 +8,18 @@ class Solution:
         dummy = ListNode(0)
         dummy.next = head
 
-        prev = dummy
+        left_prev, cur = dummy, head
         for _ in range(left - 1):
-            prev = prev.next
+            left_prev, cur = left_prev.next, cur.next
         
-        sublist_head = prev.next
-        sublist_tail = sublist_head
-        for _ in range(right - left):
-            sublist_tail = sublist_tail.next
+        prev = None
+        for _ in range(right - left + 1):
+            next_node = cur.next
+            cur.next = prev
+            prev, cur = cur, next_node
         
-        next_node = sublist_tail.next
-        sublist_tail.next = None
-        reversed_list = self.reverseList(sublist_head)
-        prev.next = reversed_list
-        sublist_head.next = next_node
+        left_prev.next.next = cur
+        left_prev.next = prev
 
         return dummy.next
-    
-    def reverseList(self, head):
-        if not head:
-            return None
-        
-        new_head = head
-        if head.next:
-            new_head = self.reverseList(head.next)
-            head.next.next = head
-        head.next = None
 
-        return new_head
-        
-            
