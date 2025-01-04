@@ -4,17 +4,19 @@ class Solution:
             return False
         
         s1_count = Counter(s1)
-        L = 0
         s2_count = defaultdict(int)
+        L = 0
+
         for R in range(len(s2)):
-            s2_count[s2[R]] += 1
+            c = s2[R]
+            s2_count[c] += 1
 
             while (R - L + 1) > len(s1):
-                s2_count[s2[L]] -= 1
-                if not s2_count[s2[L]]:
-                    del s2_count[s2[L]]
+                c = s2[L]
+                s2_count[c] -= 1
+                if not s2_count[c]:
+                    del s2_count[c]
                 L += 1
             
-            if s1_count == s2_count:
-                return True
+            if s1_count == s2_count: return True
         return False
