@@ -11,7 +11,7 @@ class Solution:
             c = s2[R]
             s2_count[c] += 1
 
-            while (R - L + 1) > len(s1):
+            if (R - L + 1) > len(s1):
                 c = s2[L]
                 s2_count[c] -= 1
                 if not s2_count[c]:
