@@ -28,10 +28,10 @@ class Solution:
     def reverseList(self, head):
         if not head:
             return None
-        prev = None
-        cur = head
-        while cur:
-            next_node = cur.next
-            cur.next = prev
-            prev, cur = cur, next_node
-        return prev
+        
+        new_head = head
+        if head.next:
+            new_head = self.reverseList(head.next)
+            head.next.next = head
+        head.next = None
+        return new_head
