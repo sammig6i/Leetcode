@@ -3,20 +3,34 @@ class Solution:
         if len(s1) > len(s2):
             return False
         
-        s1_count = Counter(s1)
-        s2_count = defaultdict(int)
+        s1_count = [0] * 26
+        s2_count = [0] * 26
+        matches = 0
+        for i in range(len(s1)):
+            s1_count[ord(s1[i]) - ord('a')] += 1
+            s2_count[ord(s2[i]) - ord('a')] += 1
+        
+        for i in range(26):
+            matches += (1 if s1_count[i] == s2_count[i] else 0)
+
         L = 0
-
-        for R in range(len(s2)):
-            c = s2[R]
-            s2_count[c] += 1
-
-            if (R - L + 1) > len(s1):
-                c = s2[L]
-                s2_count[c] -= 1
-                if not s2_count[c]:
-                    del s2_count[c]
-                L += 1
+        for R in range(len(s1), len(s2)):
+            if matches == 26:
+                return True
             
-            if s1_count == s2_count: return True
-        return False
+            idx = ord(s2[R]) - ord('a')
+            s2_count[idx] += 1
+            if s1_count[idx] == s2_count[idx]:
+                matches += 1
+            elif s1_count[idx] + 1 == s2_count[idx]:
+                matches -= 1
+            
+            idx = ord(s2[L]) - ord('a')
+            s2_count[idx] -= 1
+            if s1_count[idx] == s2_count[idx]:
+                matches += 1
+            elif s1_count[idx] - 1 == s2_count[idx]:
+                matches -= 1
+            L += 1
+        return matches == 26
+            
