@@ -11,17 +11,14 @@ class Solution:
             N += 1
             cur = cur.next
         
-        idx_to_remove = N - n
-        if idx_to_remove == 0:
+        idx = N - n
+        if idx == 0:
             return head.next
 
         cur = head
         for i in range(N):
-            if (i + 1) == idx_to_remove:
+            if (i + 1) == idx:
                 cur.next = cur.next.next
                 break
             cur = cur.next
         return head
-
-        
-
