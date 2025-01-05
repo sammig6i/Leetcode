@@ -5,14 +5,14 @@
 #         self.next = next
 class Solution:
     def swapNodes(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
-        cur = head
-        for i in range(k - 1):
-            cur = cur.next
-        
-        left = cur
-        right = head
-        while cur.next:
-            cur = cur.next
-            right = right.next
-        left.val, right.val = right.val, left.val
+        slow, fast = head, head
+
+        for _ in range(k - 1):
+            fast = fast.next
+        first = fast
+
+        while fast.next:
+            fast = fast.next
+            slow = slow.next
+        first.val, slow.val = slow.val, first.val
         return head
