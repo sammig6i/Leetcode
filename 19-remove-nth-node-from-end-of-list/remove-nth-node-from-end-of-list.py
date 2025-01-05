@@ -4,6 +4,9 @@
 #         self.val = val
 #         self.next = next
 class Solution:
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        return self.rec(head, [n])
+    
     def rec(self, head, n):
         if not head:
             return None
@@ -14,5 +17,3 @@ class Solution:
             return head.next
         return head
         
-    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
-        return self.rec(head, [n])
