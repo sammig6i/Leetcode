@@ -7,7 +7,7 @@ class Solution:
     def isPalindrome(self, head: Optional[ListNode]) -> bool:
         self.cur = head
         return self.rec(head)
-        
+    
     def rec(self, node):
         if not node:
             return True
