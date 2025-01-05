@@ -17,7 +17,6 @@ class Solution:
         for R in range(len(s1), len(s2)):
             if matches == 26:
                 return True
-            
             idx = ord(s2[R]) - ord('a')
             s2_count[idx] += 1
             if s1_count[idx] == s2_count[idx]:
