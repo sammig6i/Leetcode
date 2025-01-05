@@ -12,19 +12,17 @@ class Solution:
             fast = fast.next.next
 
         prev = None
-        cur = slow
-        while cur:
-            next_node = cur.next
-            cur.next = prev
-            prev, cur = cur, next_node
+        while slow:
+            next_node = slow.next
+            slow.next = prev
+            prev, slow = slow, next_node
         
-        cur = head
-        first = prev
-        while cur and first:
-            if cur.val != first.val:
+        left, right = head, prev
+        while right:
+            if left.val != right.val:
                 return False
-            cur = cur.next
-            first = first.next
+            left = left.next
+            right = right.next
         return True
         
 
