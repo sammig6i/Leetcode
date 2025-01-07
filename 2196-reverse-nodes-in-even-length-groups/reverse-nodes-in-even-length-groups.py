@@ -19,7 +19,6 @@ class Solution:
                 prev = node
             else:
                 group_start = prev.next
-                group_next = node.next
                 node = prev.next
                 rev = None
                 for _ in range(n):
