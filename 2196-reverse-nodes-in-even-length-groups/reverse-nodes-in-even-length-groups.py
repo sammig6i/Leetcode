@@ -18,12 +18,18 @@ class Solution:
             if n & 1:
                 prev = node
             else:
+                group_start = prev.next
+                group_next = node.next
                 node = prev.next
                 rev = None
                 for _ in range(n):
                     next_node = node.next
                     node.next = rev
                     node, rev = next_node, node
-                prev.next.next, prev.next, prev = node, rev, prev.next
+                
+                next_prev = prev.next
+                group_start.next = node
+                prev.next = rev
+                prev = next_prev
             d += 1
         return head
