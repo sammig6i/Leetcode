@@ -7,12 +7,14 @@ class Solution:
     def isPalindrome(self, head: Optional[ListNode]) -> bool:
         self.cur = head
         def rec(node):
-            if node is not None:
-                if not rec(node.next):
-                    return False
-                if node.val != self.cur.val:
-                    return False
-                self.cur = self.cur.next
+            if not node:
+                return True
+            
+            if not rec(node.next):
+                return False
+            if node.val != self.cur.val:
+                return False
+            self.cur = self.cur.next
             return True
         
         return rec(head)
