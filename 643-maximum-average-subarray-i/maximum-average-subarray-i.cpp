@@ -8,9 +8,10 @@ public:
 
         res = curr;
         for (int i = k; i < nums.size(); ++i) {
-            curr += nums[i] - nums[i - k];
+            curr += (nums[i] - nums[i - k]);
             res = max(res, curr);
         }
+
         return res / k;
     }
 };
