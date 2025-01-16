@@ -6,9 +6,9 @@ public:
         int x = (k * 2) + 1;
         if (n < x) return res;
 
-        vector<long> pre = {0};
-        for (int num : nums) {
-            pre.push_back(pre.back() + num);
+        vector<long> pre(n + 1, 0);
+        for (int i = 0; i < n; ++i) {
+            pre[i + 1] = pre[i] + nums[i];
         }
         
 
