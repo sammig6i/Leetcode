@@ -1,16 +1,12 @@
 class Solution {
 public:
     string reverseOnlyLetters(string s) {
-        for (int i = 0, j = s.size() - 1; i < j;) {
-            if (!isalpha(s[i])) {
-                ++i;
-            } else if (!isalpha(s[j])) {
-                --j;
-            } else {
-                swap(s[i], s[j]);
-                ++i;
-                --j;
-            }
+        for (int i = 0, j = s.size() - 1; i < j; ++i, --j) {
+            while (i < j && !isalpha(s[i])) ++i;
+            while (i < j && !isalpha(s[j])) --j;
+            char tmp = s[i];
+            s[i] = s[j];
+            s[j] = tmp;
         }
         return s;
     }
