@@ -2,21 +2,22 @@ class Solution {
 public:
     string reverseWords(string s) {
         int lastSpaceIdx = -1;
-        string result;
         int n = s.size();
-        for (int i = 0; i < n; ++i) {
-            if (i == n - 1 || s[i] == ' ') {
-                int reverseIdx = (i == n - 1) ? i : i - 1;
-                for (; reverseIdx > lastSpaceIdx; --reverseIdx) {
-                    result += s[reverseIdx];
+        for (int i = 0; i <= n; ++i) {
+            if (i == n || s[i] == ' ') {
+                int L = lastSpaceIdx + 1;
+                int R = i - 1;
+                while (L < R) {
+                    char tmp = s[L];
+                    s[L] = s[R];
+                    s[R] = tmp;
+                    L++;
+                    R--;
                 }
-
-                if (i != n - 1) result += ' ';
-
                 lastSpaceIdx = i;
             }
         }
 
-        return result;
+        return s;
     }
 };
