@@ -1,15 +1,13 @@
 class NumArray {
 private:
-    vector<int> arr;
     vector<int> prefix;
 
 public:
     NumArray(vector<int>& nums) {
         int n = nums.size();
-        arr = nums;
-        prefix.resize(n + 1, 0);
-        for (int i = 0; i < n; ++i) {
-            prefix[i + 1] = prefix[i] + nums[i];
+        prefix.push_back(0);
+        for (int n : nums) {
+            prefix.push_back(prefix.back() + n);
         }
     }
     
