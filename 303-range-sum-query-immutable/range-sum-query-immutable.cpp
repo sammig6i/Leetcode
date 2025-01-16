@@ -7,14 +7,14 @@ public:
     NumArray(vector<int>& nums) {
         int n = nums.size();
         arr = nums;
-        prefix = {nums[0]};
-        for (int i = 1; i < n; ++i) {
-            prefix.push_back(prefix.back() + nums[i]);
+        prefix.resize(n + 1, 0);
+        for (int i = 0; i < n; ++i) {
+            prefix[i + 1] = prefix[i] + nums[i];
         }
     }
     
     int sumRange(int left, int right) {
-        return prefix[right] - prefix[left] + arr[left];
+        return prefix[right + 1] - prefix[left];
     }
 };
 /**
