@@ -2,22 +2,16 @@ class Solution {
 public:
     int maxVowels(string s, int k) {
         set<char> vowels = {'a', 'e', 'i', 'o', 'u'};
-        int curr = 0, res = 0;
-        int n = s.size();
-        for (int i = 0, j = 0; j < n; ++j){
-            if (vowels.find(s[j]) != vowels.end()) {
-                curr++;
-            }
-
-            while (j - i + 1 > k) {
-                if (vowels.find(s[i]) != vowels.end()) {
-                    curr--;
-                }
-                ++i;
-            }
-
-            res = max(res, curr);
+        int n = s.size(), res = 0;
+        vector<int> pre(n + 1, 0);
+        for (int i = 0; i < n; ++i) {
+            pre[i + 1] = pre[i] + (vowels.find(s[i]) != vowels.end() ? 1 : 0);
         }
+
+        for (int i = k; i < n + 1; ++i) {
+            res = max(res, pre[i] - pre[i - k]);
+        }
+
         return res;
     };
 };
