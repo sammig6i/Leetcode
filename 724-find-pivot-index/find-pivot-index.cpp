@@ -8,8 +8,9 @@ public:
         }
 
         for (int i = 0; i < n; ++i) {
-            int sum = pre.back() - pre[i + 1];
-            if (sum == pre[i]) {
+            int left = pre[i];
+            int right = pre.back() - pre[i + 1];
+            if (left == right) {
                 return i;
             }
         }
