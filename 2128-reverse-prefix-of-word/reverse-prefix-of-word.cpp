@@ -3,14 +3,12 @@ public:
     string reversePrefix(string word, char ch) {
         for (int i = 0, j = 0; j < word.size(); ++j) {
             if (word[j] == ch) {
-                int L = i;
-                int R = j;
-                while (L < R) {
-                    char tmp = word[L];
-                    word[L] = word[R];
-                    word[R] = tmp;
-                    ++L;
-                    --R;
+                int reverseIdx = j;
+                for (; reverseIdx > i; --reverseIdx) {
+                    char tmp = word[reverseIdx];
+                    word[reverseIdx] = word[i];
+                    word[i] = tmp;
+                    ++i;
                 }
                 break;
             }
