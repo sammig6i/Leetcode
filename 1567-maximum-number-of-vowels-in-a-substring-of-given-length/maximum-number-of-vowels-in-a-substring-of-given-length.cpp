@@ -2,22 +2,20 @@ class Solution {
 public:
     int maxVowels(string s, int k) {
         set<char> vowels = {'a', 'e', 'i', 'o', 'u'};
-        int count = 0, res = 0;
-        for (int i = 0, j = 0; j < s.size(); ++j) {
-            if (vowels.find(s[j]) != vowels.end()) {
-                count++;
-            }
+        int res = 0;
+        int n = s.size();
 
-            while (j - i + 1 > k) {
-                if (vowels.find(s[i]) != vowels.end()) {
-                    count--;
-                }
-                ++i;
-            }
+        vector<int> prefix(n + 1, 0);
+        for (int i = 0; i < n; ++i) {
+            prefix[i + 1] = prefix[i] + ((vowels.find(s[i]) != vowels.end()) ? 1 : 0);
+        }
 
-            res = max(count, res);
+        for (int i = k; i < n + 1; ++i) {
+            res = max(res, prefix[i] - prefix[i - k]);
         }
 
         return res;
-    }
+    };
 };
+
+// 0 1 1 1 2 3 4 4 5 5
