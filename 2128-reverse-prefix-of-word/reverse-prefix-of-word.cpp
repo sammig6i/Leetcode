@@ -12,7 +12,7 @@ public:
                     ++L;
                     --R;
                 }
-                return word;
+                break;
             }
         }
         return word;
