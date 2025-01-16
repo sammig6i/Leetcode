@@ -5,9 +5,9 @@ private:
 public:
     NumArray(vector<int>& nums) {
         int n = nums.size();
-        prefix.push_back(0);
-        for (int n : nums) {
-            prefix.push_back(prefix.back() + n);
+        prefix.resize(n + 1);
+        for (int i = 0; i < n; ++i) {
+            prefix[i + 1] = prefix[i] + nums[i];
         }
     }
     
