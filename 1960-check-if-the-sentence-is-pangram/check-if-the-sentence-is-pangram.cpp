@@ -1,11 +1,7 @@
 class Solution {
 public:
     bool checkIfPangram(string sentence) {
-        unordered_set<char> set;
-        for (const char& s: sentence) {
-            set.insert(s);
-        }
-
-        return set.size() == 26;
+        unordered_set<char> num_set(sentence.begin(), sentence.end());
+        return num_set.size() == 26;
     }
 };
