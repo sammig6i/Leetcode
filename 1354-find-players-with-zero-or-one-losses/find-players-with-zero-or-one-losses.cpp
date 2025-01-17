@@ -2,7 +2,7 @@ class Solution {
 public:
     vector<vector<int>> findWinners(vector<vector<int>>& matches) {
         unordered_map<int, int> losses;
-        for (auto& match : matches) {
+        for (auto match : matches) {
             int winner = match[0];
             int loser = match[1];
 
@@ -11,7 +11,7 @@ public:
         }
 
        vector<vector<int>> res(2);
-        for (auto& [player, count] : losses) {
+        for (auto [player, count] : losses) {
             if (!count) {
                 res[0].push_back(player);
             } else if (count == 1) {
