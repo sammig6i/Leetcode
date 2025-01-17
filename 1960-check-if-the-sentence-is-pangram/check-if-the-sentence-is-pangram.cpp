@@ -1,7 +1,13 @@
 class Solution {
 public:
     bool checkIfPangram(string sentence) {
-        unordered_set<char> num_set(sentence.begin(), sentence.end());
-        return num_set.size() == 26;
+        int seen = 0;
+        for (auto c : sentence) {
+            int curr = c - 'a';
+            int masked_bit = 1 << curr;
+            seen |= masked_bit;
+        }
+
+        return seen == (1 << 26) - 1;
     }
 };
