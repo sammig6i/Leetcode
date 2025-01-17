@@ -2,27 +2,24 @@ class Solution {
 public:
     int maxNumberOfBalloons(string text) {
         int res = INT_MAX;
-        string balloon = "balloon";
-        unordered_map<char, int> balloon_mp;
+        unordered_set<char> balloon = {'b', 'a', 'l', 'o', 'n'};
         unordered_map<char, int> mp;
-        for (char c : balloon) {
-            balloon_mp[c]++;
-        }
-
         for (char c : text) {
-            if (balloon_mp.find(c) != balloon_mp.end()) {
+            if (balloon.contains(c)) {
                 mp[c]++;
             }
         }
 
-        for (const auto& [c, freq] : balloon_mp) {
-            if (mp.find(c) == mp.end()) {
-                return 0;
-            } else {
-                res = min(res, mp[c] / freq);
-            }
+        if (mp.size() < 5) return 0;
+
+        mp['l'] /= 2;
+        mp['o'] /= 2;
+
+        for (const auto& [c, freq] : mp) {
+            res = min(res, freq);
         }
 
         return res;
+        
     }
 };
