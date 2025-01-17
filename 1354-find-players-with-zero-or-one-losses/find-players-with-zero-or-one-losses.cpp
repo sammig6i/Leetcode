@@ -1,37 +1,30 @@
 class Solution {
 public:
     vector<vector<int>> findWinners(vector<vector<int>>& matches) {
-        unordered_set<int> zero_loss;
-        unordered_set<int> one_loss;
-        unordered_set<int> more_loss;
-
+        unordered_map<int, int> losses;
+        unordered_set<int> seen;
         for (auto match : matches) {
             int winner = match[0];
             int loser = match[1];
 
-            if (one_loss.find(winner) == one_loss.end() &&
-                more_loss.find(winner) == more_loss.end()) {
-                    zero_loss.insert(winner);
-            } 
+            seen.insert(winner);
+            seen.insert(loser);
+            
+            losses[loser]++;
+        }
 
-            if (one_loss.find(loser) != one_loss.end()) {
-                one_loss.erase(loser);
-                more_loss.insert(loser);
-            } else if (zero_loss.find(loser) != zero_loss.end()) {
-                zero_loss.erase(loser);
-                one_loss.insert(loser);
-            } else if (more_loss.find(loser) != more_loss.end()) {
-                continue;
-            } else {
-                one_loss.insert(loser);
+        vector<int> zero_loss;
+        vector<int> one_loss;
+        for (auto player : seen) {
+            if (losses.find(player) == losses.end()) {
+                zero_loss.push_back(player);
+            } else if (losses[player] == 1) {
+                one_loss.push_back(player);
             }
         }
-        
-        vector<int> zero_loss_vec(zero_loss.begin(), zero_loss.end());
-        sort(zero_loss_vec.begin(), zero_loss_vec.end());
-        vector<int> one_loss_vec(one_loss.begin(), one_loss.end());
-        sort(one_loss_vec.begin(), one_loss_vec.end());
-        return {zero_loss_vec, one_loss_vec};
 
+        sort(zero_loss.begin(), zero_loss.end());
+        sort(one_loss.begin(), one_loss.end());
+        return {zero_loss, one_loss};
     }
 };
