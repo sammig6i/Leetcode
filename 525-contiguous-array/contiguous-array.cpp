@@ -1,9 +1,9 @@
 class Solution {
 public:
     int findMaxLength(vector<int>& nums) {
-        int one = 0, zero = 0, res = 0;
+        int zero = 0, one = 0, res = 0;
         int n = nums.size();
-        unordered_map<int, int> diff_idx;
+        unordered_map<int, int> mp;
 
         for (int i = 0; i < n; ++i) {
             if (nums[i] == 1) {
@@ -12,15 +12,14 @@ public:
                 zero++;
             }
 
-            int diff = one - zero;
-            if (diff_idx.find(diff) == diff_idx.end()) {
-                diff_idx[diff] = i;
+            if (mp.find(one - zero) == mp.end()) {
+                mp[one - zero] = i;
             }
 
             if (one == zero) {
                 res = one + zero;
             } else {
-                int idx = diff_idx[diff];
+                int idx = mp[one - zero];
                 res = max(res, i - idx);
             }
         }
