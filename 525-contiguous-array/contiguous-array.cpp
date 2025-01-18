@@ -1,7 +1,7 @@
 class Solution {
 public:
     int findMaxLength(vector<int>& nums) {
-        int n = nums.size(), res = 0, count = 0;
+        int n = nums.size(), count = 0, res = 0;
         vector<int> diff_idx(2 * n + 1, INT_MIN);
         diff_idx[n] = -1;
 
