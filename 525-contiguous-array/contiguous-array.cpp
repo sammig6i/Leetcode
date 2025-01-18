@@ -1,16 +1,27 @@
 class Solution {
 public:
     int findMaxLength(vector<int>& nums) {
-        int n = nums.size(), count = 0, res = 0;
-        vector<int> diff_idx(2 * n + 1, INT_MIN);
-        diff_idx[n] = -1;
+        int one = 0, zero = 0, res = 0;
+        int n = nums.size();
+        unordered_map<int, int> diff_idx;
 
         for (int i = 0; i < n; ++i) {
-            count += nums[i] == 1 ? 1 : -1;
-            if (diff_idx[count + n] >= -1) {
-                res = max(res, i - diff_idx[count + n]);
+            if (nums[i] == 1) {
+                one++;
             } else {
-                diff_idx[count + n] = i;
+                zero++;
+            }
+
+            int diff = one - zero;
+            if (diff_idx.find(diff) == diff_idx.end()) {
+                diff_idx[diff] = i;
+            }
+
+            if (one == zero) {
+                res = one + zero;
+            } else {
+                int idx = diff_idx[diff];
+                res = max(res, i - idx);
             }
         }
         return res;
