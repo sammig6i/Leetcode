@@ -13,13 +13,13 @@ public:
 
             while (counts[c] > 1) {
                 counts[s[L]]--;
-                if (!counts[c]) {
-                    counts.erase(c);
+                if (!counts[s[L]]) {
+                    counts.erase(s[L]);
                 }
                 L++;
             }
 
-            res = max(res, R - L + 1);
+            res = max(res, static_cast<int>(counts.size()));
         }
 
         return res;
