@@ -5,24 +5,17 @@ public:
             return false;
         }
 
-        unordered_map<char, int> ransom_count;
-        for (char c : ransomNote) {
-            ransom_count[c]++;
-        }
-
-        unordered_map<char, int> magazine_count;
+        int count[26] = {0};
         for (char c : magazine) {
-            magazine_count[c]++;
+            count[c - 'a']++;
         }
 
-        for (const auto& [c, count] : ransom_count) {
-            if (magazine_count.find(c) == magazine_count.end() || 
-                magazine_count[c] < count) {
+        for (char c : ransomNote) {
+            count[c - 'a']--;
+            if (count[c - 'a'] < 0) {
                 return false;
             }
         }
-
         return true;
-
     }
 };
