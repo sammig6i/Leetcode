@@ -5,21 +5,16 @@ public:
             return false;
         }
 
-        unordered_map<char, int> mag;
-        for (char& c : magazine) {
-            mag[c - 'a']++;
+        int count[26] = {0};
+        for (char c : magazine) {
+            count[c - 'a']++;
         }
 
-        unordered_map<char, int> ran;
-        for (char& c : ransomNote) {
-            ran[c - 'a']++;
-        }
-
-        for (const auto& [c, count] : ran) {
-            if (mag.find(c) == mag.end() ||
-                mag[c] < count) {
-                    return false;
-                }
+        for (char c : ransomNote) {
+            count[c - 'a']--;
+            if (count[c - 'a'] < 0) {
+                return false;
+            }
         }
         return true;
     }
