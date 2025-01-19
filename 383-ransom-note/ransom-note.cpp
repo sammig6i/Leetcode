@@ -16,10 +16,10 @@ public:
         }
 
         for (const auto& [c, count] : ran) {
-            mag[c] -= count;
-            if (mag[c] < 0) {
-                return false;
-            }
+            if (mag.find(c) == mag.end() ||
+                mag[c] < count) {
+                    return false;
+                }
         }
         return true;
     }
