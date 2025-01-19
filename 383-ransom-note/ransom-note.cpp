@@ -5,14 +5,19 @@ public:
             return false;
         }
 
-        int count[26] = {0};
-        for (char c : magazine) {
-            count[c - 'a']++;
+        unordered_map<char, int> mag;
+        for (char& c : magazine) {
+            mag[c - 'a']++;
         }
 
-        for (char c : ransomNote) {
-            count[c - 'a']--;
-            if (count[c - 'a'] < 0) {
+        unordered_map<char, int> ran;
+        for (char& c : ransomNote) {
+            ran[c - 'a']++;
+        }
+
+        for (const auto& [c, count] : ran) {
+            mag[c] -= count;
+            if (mag[c] < 0) {
                 return false;
             }
         }
