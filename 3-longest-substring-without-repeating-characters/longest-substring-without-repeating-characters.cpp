@@ -19,7 +19,7 @@ public:
                 L++;
             }
 
-            res = max(res, static_cast<int>(counts.size()));
+            res = max(res, R - L + 1);
         }
 
         return res;
