@@ -1,23 +1,21 @@
 class Solution {
 public:
     string destCity(vector<vector<string>>& paths) {
-        unordered_set<string> begin;
         unordered_set<string> destinations;
 
         for (auto& route : paths) {
-            string start = route[0];
             string dest = route[1];
-
-            begin.insert(start);
             destinations.insert(dest);
         }
 
-        for (string city : destinations) {
-            if (begin.find(city) == begin.end()) {
-                return city;
-            }
+        for (auto& route : paths) {
+            string begin = route[0];
+            destinations.erase(begin);
         }
-        return "";
+
+        unordered_set<string>::iterator res = destinations.begin();
+        
+        return *res;
 
     }
 };
