@@ -7,9 +7,9 @@ public:
             mp[n]++;
         }
         
-        for (const auto& pair : mp) {
-            if (pair.second == 1) {
-                res += pair.first;
+        for (const auto& [k, v] : mp) {
+            if (v == 1) {
+                res += k;
             }
         }
 
