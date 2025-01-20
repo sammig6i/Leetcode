@@ -1,24 +1,20 @@
 class Solution {
 public:
     bool uniqueOccurrences(vector<int>& arr) {
-        vector<vector<int>> freq(arr.size() + 1);
         unordered_map<int, int> mp;
+        unordered_set<int> freq;
         for (int num : arr) {
             mp[num]++;
         }
 
         for (const auto& [k, v] : mp) {
-            freq[v].push_back(k);
-        }
-
-        for (auto arr : freq) {
-            if (arr.size() > 1) {
+            if (freq.contains(v)) {
                 return false;
             }
+            freq.insert(v);
         }
 
         return true;
-
 
     }
 };
