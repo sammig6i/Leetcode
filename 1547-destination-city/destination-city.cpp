@@ -2,11 +2,8 @@ class Solution {
 public:
     string destCity(vector<vector<string>>& paths) {
         unordered_map<string, string> mp;
-        for (const auto& route : paths) {
-            string start = route[0];
-            string dest = route[1];
-
-            mp[start] = dest;
+        for (auto route : paths) {
+            mp[route[0]] = route[1];
         }
 
         string start = paths[0][0];
@@ -15,6 +12,5 @@ public:
         }
 
         return start;
-
     }
 };
