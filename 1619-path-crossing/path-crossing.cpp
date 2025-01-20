@@ -2,8 +2,8 @@ class Solution {
 public:
     bool isPathCrossing(string path) {
         set<pair<int, int>> coords;
-        coords.insert({0, 0});
         int x = 0, y = 0;
+        coords.insert({x, y});
 
         for (char d : path) {
             switch(d) {
