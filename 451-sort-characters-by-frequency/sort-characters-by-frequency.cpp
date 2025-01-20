@@ -14,7 +14,7 @@ public:
         });
 
         for (const auto& p : freq) {
-            res += string(p.second, p.first);
+            res.append(p.second, p.first);
         }
 
         return res;
