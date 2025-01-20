@@ -7,13 +7,17 @@ public:
             mp[c]++;
         }
 
-        for (const auto& [k, v] : mp) {
-            r.insert({v, k});
+        vector<pair<int, char>> freq;
+        for (auto [k, v] : mp) {
+            freq.push_back({v, k});
         }
 
+        sort(freq.begin(), freq.end());
+        reverse(freq.begin(), freq.end());
+
         string res = "";
-        for (auto it = r.rbegin(); it != r.rend(); ++it) {
-            res += string(it->first, it->second);
+        for (auto pair : freq) {
+            res += string(pair.first, pair.second);
         }
         return res;
     }
