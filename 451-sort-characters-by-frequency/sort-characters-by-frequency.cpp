@@ -13,10 +13,10 @@ public:
         }
 
         sort(freq.begin(), freq.end());
-        for (int i = freq.size() - 1; i >= 0; --i) {
-            for (int j = 0; j < freq[i].first; ++j) {
-                res += freq[i].second;
-            }
+        reverse(freq.begin(), freq.end());
+        
+        for (auto pair : freq) {
+            res += string(pair.first, pair.second);
         }
 
         return res;       
