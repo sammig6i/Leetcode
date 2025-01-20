@@ -1,21 +1,20 @@
 class Solution {
 public:
     string destCity(vector<vector<string>>& paths) {
-        unordered_set<string> destinations;
-
-        for (auto& route : paths) {
+        unordered_map<string, string> mp;
+        for (const auto& route : paths) {
+            string start = route[0];
             string dest = route[1];
-            destinations.insert(dest);
+
+            mp[start] = dest;
         }
 
-        for (auto& route : paths) {
-            string begin = route[0];
-            destinations.erase(begin);
+        string start = paths[0][0];
+        while (mp.find(start) != mp.end()) {
+            start = mp[start];
         }
 
-        auto res = destinations.begin();
-        
-        return *res;
+        return start;
 
     }
 };
