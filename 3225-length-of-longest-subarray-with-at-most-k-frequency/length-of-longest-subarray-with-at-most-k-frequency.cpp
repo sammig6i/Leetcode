@@ -13,9 +13,7 @@ public:
                 L++;
             }
 
-            if (res < (R - L + 1)) {
-                res = R - L + 1;
-            }
+            res = max(res, R - L + 1);
             R++;
         }
 
