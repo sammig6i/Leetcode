@@ -13,7 +13,7 @@ public:
             destinations.erase(begin);
         }
 
-        unordered_set<string>::iterator res = destinations.begin();
+        const auto& res = destinations.begin();
         
         return *res;
 
