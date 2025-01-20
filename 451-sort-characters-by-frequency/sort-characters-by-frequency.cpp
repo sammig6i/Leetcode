@@ -7,17 +7,19 @@ public:
             mp[c]++;
         }
 
-        vector<pair<char, int>> freq(mp.begin(), mp.end());
+        vector<pair<int, char>> freq;
+        for (auto& [k, v] : mp) {
+            freq.push_back({v, k});
+        }
 
-        sort(freq.begin(), freq.end(), [](const pair<char, int>& a, const pair<char, int>& b) {
-            return a.second > b.second;  // Sort by value descending
-        });
+        sort(freq.begin(), freq.end());
 
-        for (const auto& p : freq) {
-            res += string(p.second, p.first);
+        for (int i = freq.size() - 1; i >= 0; --i) {
+            for (int j = 0; j < freq[i].first; ++j) {
+                res += freq[i].second;
+            }
         }
 
         return res;
-
     }
 };
