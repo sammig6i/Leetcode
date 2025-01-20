@@ -9,12 +9,12 @@ public:
         }
 
         for (const auto& [k, v] : mp) {
+            if (st.contains(v)) {
+                return false;
+            }
             st.insert(v);
         }
 
-        int res = accumulate(st.begin(), st.end(), 0);
-        return (res == n);
-
-
+        return true;
     }
 };
