@@ -5,15 +5,15 @@ public:
         unordered_set<int> st;
         for (int R = 0; R < nums.size(); ++R) {
             while (st.contains(nums[R])) {
-                res = max(res, accumulate(st.begin(), st.end(), 0));
                 st.erase(nums[L]);
                 L++;
             }
 
             st.insert(nums[R]);
+            res = max(res, accumulate(st.begin(), st.end(), 0));
         }
 
-        res = max(res, accumulate(st.begin(), st.end(), 0));
+        // res = max(res, accumulate(st.begin(), st.end(), 0));
 
         return res;
     }
