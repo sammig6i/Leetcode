@@ -2,23 +2,19 @@ class Solution {
 public:
     string frequencySort(string s) {
         unordered_map<char, int> mp;
-        string res = "";
+        multimap<int, char> r;
         for (char c : s) {
             mp[c]++;
         }
 
-        vector<pair<int, char>> freq;
-        for (auto& [k, v] : mp) {
-            freq.push_back({v, k});
+        for (const auto& [k, v] : mp) {
+            r.insert({v, k});
         }
 
-        sort(freq.begin(), freq.end());
-        reverse(freq.begin(), freq.end());
-
-        for (auto pair : freq) {
-            res += string(pair.first, pair.second);
+        string res = "";
+        for (auto it = r.rbegin(); it != r.rend(); ++it) {
+            res += string(it->first, it->second);
         }
-        
         return res;
     }
 };
