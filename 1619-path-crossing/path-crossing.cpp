@@ -1,29 +1,23 @@
 class Solution {
 public:
     bool isPathCrossing(string path) {
-        set<pair<int, int>> coords;
+        unordered_map<char, pair<int, int>> direc = {
+            {'N', {0, 1}},
+            {'S', {0, -1}},
+            {'E', {1, 0}},
+            {'W', {-1, 0}}
+        };
         int x = 0, y = 0;
-        coords.insert({x, y});
+        set<pair<int, int>> visited;
+        for (char c : path) {
+            visited.insert({x, y});
+            pair<int, int> dir = direc[c];
+            x += dir.first;
+            y += dir.second;
 
-        for (char d : path) {
-            switch(d) {
-                case 'N':
-                    y++;
-                    break;
-                case 'S':
-                    y--;
-                    break;
-                case 'E':
-                    x++;
-                    break;
-                case 'W':
-                    x--;
-                    break;
-            }
-            if (coords.contains({x, y})) {
+            if (visited.contains({x, y})) {
                 return true;
             }
-            coords.insert({x, y});
         }
 
         return false;
