@@ -7,10 +7,9 @@ public:
             mp[n]++;
         }
 
-        for (auto [n, count] : mp) {
-            res += (count * (count - 1)) / 2;
+        for (auto [n, freq] : mp) {
+            res += (freq * (freq-1)) / 2;
         }
-
         return res;
     }
 };
