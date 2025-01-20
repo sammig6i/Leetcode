@@ -13,7 +13,7 @@ public:
             destinations.erase(begin);
         }
 
-        const auto& res = destinations.begin();
+        auto res = destinations.begin();
         
         return *res;
 
