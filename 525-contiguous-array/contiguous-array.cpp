@@ -1,18 +1,17 @@
 class Solution {
 public:
     int findMaxLength(vector<int>& nums) {
-        int n = nums.size(), count = 0, res = 0;
-        vector<int> arr(2 * n + 1, INT_MIN);
-        arr[n] = -1;
+        int n = nums.size(), res = 0, count = 0;
+        vector<int> diff(2 * n + 1, INT_MIN);
+        diff[n] = -1;
 
-        for (int i = 0; i < nums.size(); ++i) {
+        for (int i = 0; i < n; ++i) {
             count += nums[i] == 1 ? 1 : -1;
-            if (arr[count + n] >= -1) {
-                res = max(res, i - arr[count + n]);
+            if (diff[count + n] >= -1) {
+                res = max(res, i - diff[count + n]);
             } else {
-                arr[count + n] = i;
+                diff[count + n] = i;
             }
-            
         }
 
         return res;
