@@ -19,7 +19,7 @@ public:
         while (curr && curr->next) {
             if (curr->val == curr->next->val) {
                 ListNode* next_node = curr->next->next;
-                delete (curr->next);
+                delete curr->next;
                 curr->next = next_node;
             } else {
                 curr = curr->next;
