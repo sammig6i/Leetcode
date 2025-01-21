@@ -5,30 +5,46 @@ public:
             return false;
         }
 
-        unordered_map<char, int> s1_cnt;
-        for (char c : s1) {
-            s1_cnt[c]++;
+        vector<int> s1_cnt(26, 0);
+        vector<int> s2_cnt(26, 0);
+        int matches = 0;
+
+        for (int i = 0; i < s1.size(); ++i) {
+            s1_cnt[s1[i] - 'a']++;
+            s2_cnt[s2[i] - 'a']++;
         }
-        unordered_map<char, int> s2_cnt;
+
+        for (int i = 0; i < 26; ++i) {
+            matches += s1_cnt[i] == s2_cnt[i] ? 1 : 0;
+        }
 
         int L = 0;
-        for (int R = 0; R < s2.size(); ++R) {
-            char c = s2[R];
-            s2_cnt[c]++;
-            while ((R - L + 1) > s1.size()) {
-                s2_cnt[s2[L]]--;
-                if (!s2_cnt[s2[L]]) {
-                    s2_cnt.erase(s2[L]);
-                }
-                L++;
-            }
-
-            if (s2_cnt == s1_cnt) {
+        for (int R = s1.size(); R < s2.size(); ++R) {
+            if (matches == 26) {
                 return true;
             }
+            char c = s2[R];
+            int idx = c - 'a';
+            s2_cnt[idx]++;
+            if (s1_cnt[idx] == s2_cnt[idx]) {
+                matches++;
+            } else if (s1_cnt[idx] + 1 == s2_cnt[idx]) {
+                matches--;
+            }
+
+            c = s2[L];
+            idx = c - 'a';
+            s2_cnt[idx]--;
+            if (s1_cnt[idx] == s2_cnt[idx]) {
+                matches++;
+            } else if (s1_cnt[idx] - 1 == s2_cnt[idx]) {
+                matches--;
+            }
+
+            L++;
         }
 
-        return false;
+        return matches == 26 ? true : false;
 
     }
 };
