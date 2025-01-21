@@ -7,8 +7,8 @@ public:
         for (int i = 0; i < s.size(); ++i) {
             if (s_mp.find(s[i]) != s_mp.end() && s_mp[s[i]] != t[i] or
                 t_mp.find(t[i]) != t_mp.end() && t_mp[t[i]] != s[i]) {
-                return false;
-            }
+                    return false;
+                }
             s_mp[s[i]] = t[i];
             t_mp[t[i]] = s[i];
         }
