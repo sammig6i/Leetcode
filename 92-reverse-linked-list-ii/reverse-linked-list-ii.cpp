@@ -11,23 +11,38 @@
 class Solution {
 public:
     ListNode* reverseBetween(ListNode* head, int left, int right) {
-        if (left == 1) {
-            return reverseList(head, right).first;
+        ListNode* dummy = new ListNode(0);
+        dummy->next = head;
+        ListNode* prev = dummy;
+        for (int i = 0; i < left - 1; ++i) {
+            prev = prev->next;
         }
 
-        head->next = reverseBetween(head->next, left - 1, right - 1);
-        return head;
+        ListNode* sublist_head = prev->next;
+        ListNode* sublist_tail = sublist_head;
+        for (int i = 0; i < right - left; ++i) {
+            sublist_tail = sublist_tail->next;
+        }
+        ListNode* next = sublist_tail->next;
+        sublist_tail->next = nullptr;
+        prev->next = reverseList(sublist_head);
+        sublist_head->next = next;
+        return dummy->next;
+
     }
-
 private:
-    pair<ListNode*, ListNode*> reverseList(ListNode* node, int n) {
-        if (n == 1) {
-            return {node, node->next};
-        }
+    ListNode* reverseList(ListNode* head) {
+        if (!head || !head->next) return head;
 
-        auto res = reverseList(node->next, n - 1);
-        node->next->next = node;
-        node->next = res.second;
-        return {res.first, node->next};
+        ListNode* curr = head;
+        ListNode* prev = nullptr;
+
+        while (curr) {
+            ListNode* next_node = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = next_node;
+        }
+        return prev;
     }
 };
