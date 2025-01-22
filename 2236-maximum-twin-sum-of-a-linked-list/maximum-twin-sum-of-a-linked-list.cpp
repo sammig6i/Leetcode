@@ -13,9 +13,9 @@ public:
     int pairSum(ListNode* head) {
         ListNode* slow = head;
         ListNode* fast = head;
+        
         ListNode* dummy = new ListNode(0);
         dummy->next = head;
-
         ListNode* last_node = dummy;
         while (fast && fast->next) {
             slow = slow->next;
@@ -25,10 +25,10 @@ public:
 
         ListNode* prev = nullptr;
         while (slow) {
-            ListNode* next_node = slow->next;
+            ListNode* next = slow->next;
             slow->next = prev;
             prev = slow;
-            slow = next_node;
+            slow = next;
         }
 
         last_node->next = prev;
@@ -44,4 +44,3 @@ public:
         return res;
     }
 };
-
