@@ -26,7 +26,7 @@ private:
         auto res = reverseList(node->next, n - 1);
         node->next->next = node;
         node->next = res.second;
-        return {res.first, res.second};
+        return {res.first, node->next};
     }
 
 };
