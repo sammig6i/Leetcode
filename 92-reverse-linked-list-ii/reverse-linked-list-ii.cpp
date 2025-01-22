@@ -14,22 +14,20 @@ public:
         if (left == 1) {
             return reverseList(head, right).first;
         }
+
         head->next = reverseBetween(head->next, left - 1, right - 1);
         return head;
     }
-    
+
 private:
     pair<ListNode*, ListNode*> reverseList(ListNode* node, int n) {
         if (n == 1) {
             return {node, node->next};
         }
+
         auto res = reverseList(node->next, n - 1);
         node->next->next = node;
         node->next = res.second;
         return {res.first, node->next};
     }
-
 };
-
-
-
