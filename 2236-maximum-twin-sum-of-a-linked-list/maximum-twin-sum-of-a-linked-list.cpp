@@ -32,24 +32,13 @@ public:
         }
 
         last_node->next = prev;
-
-        int res = 0, k = 0;
-        ListNode* curr = head;
-        while (curr) {
-            k++;
-            curr = curr->next;
-        }
-
-        fast = head;
-        for (int i = 0; i < k / 2; ++i) {
-            fast = fast->next;
-        }
-
-        slow = head;
-        while (fast) {
-            res = max(res, slow->val + fast->val);
+        slow = last_node->next;
+        ListNode* slower = head;
+        int res = 0;
+        while (slow) {
+            res = max(res, slow->val + slower->val);
             slow = slow->next;
-            fast = fast->next;
+            slower = slower->next;
         }
 
         return res;
