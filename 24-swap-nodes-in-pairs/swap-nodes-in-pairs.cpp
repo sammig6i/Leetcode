@@ -15,22 +15,22 @@ public:
             return head;
         }
 
-        ListNode* dummy = head->next;
-        ListNode* prev = nullptr;
+        ListNode* dummy = new ListNode(0);
+        dummy->next = head;
+        ListNode* prev = dummy;
 
         while (head && head->next) {
-            if (prev) {
-                prev->next = head->next;
-            }
-            prev = head;
+            ListNode* first = head;
+            ListNode* second = head->next;
 
-            ListNode* next_node = head->next->next;
-            head->next->next = head;
-            head->next = next_node;
+            prev->next = second;
+            first->next = second->next;
+            second->next = first;
 
-            head = next_node;
+            prev = first;
+            head = first->next;
         }
 
-        return dummy;
+        return dummy->next;
     }
 };
