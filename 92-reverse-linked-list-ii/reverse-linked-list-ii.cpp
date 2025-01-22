@@ -35,14 +35,16 @@ public:
 
 private:
     ListNode* reverseList(ListNode* head) {
-        if (!head || !head->next) {
-            return head;
-        }
+        ListNode* prev = nullptr;
+        ListNode* curr = head;
 
-        ListNode* new_head = reverseList(head->next);
-        head->next->next = head;
-        head->next = nullptr;
-        return new_head;
+        while (curr) {
+            ListNode* next_node = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = next_node;
+        }
+        return prev;
     }
 
 };
