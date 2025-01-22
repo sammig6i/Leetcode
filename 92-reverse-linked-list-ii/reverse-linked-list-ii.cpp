@@ -29,8 +29,8 @@ public:
         sublist_tail->next = nullptr;
         prev->next = reverseList(sublist_head);
         sublist_head->next = next_node;
-
         return dummy->next;
+
     }
 
 private:
@@ -42,7 +42,7 @@ private:
         ListNode* new_head = reverseList(head->next);
         head->next->next = head;
         head->next = nullptr;
-
         return new_head;
     }
+
 };
