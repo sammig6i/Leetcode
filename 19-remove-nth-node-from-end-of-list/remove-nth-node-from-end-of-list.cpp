@@ -25,7 +25,7 @@ public:
             prev = prev->next;
             curr = curr->next;
         }
-// dummy 2 1
+
         prev->next = curr->next;
         dummy->next = reverseList(dummy->next);
         return dummy->next;
@@ -37,8 +37,10 @@ private:
         }
 
         ListNode* new_head = reverseList(head->next);
-        head->next->next = head;
-        head->next = nullptr;
+        if (head->next) {
+            head->next->next = head;
+            head->next = nullptr;
+        }
         return new_head;
     }
 };
