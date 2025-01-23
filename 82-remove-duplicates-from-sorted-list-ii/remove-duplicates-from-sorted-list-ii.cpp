@@ -15,18 +15,19 @@ public:
         dummy->next = head;
         ListNode* slow = dummy;
         ListNode* fast = head;
+
         while (fast && fast->next) {
             if (fast->next->val == fast->val) {
                 while (fast->next && fast->next->val == fast->val) {
                     fast = fast->next;
                 }
+
                 slow->next = fast->next;
-                fast = slow->next;
+                fast = fast->next;
             } else {
                 fast = fast->next;
                 slow = slow->next;
             }
-
         }
 
         return dummy->next;
