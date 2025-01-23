@@ -11,36 +11,27 @@
 class Solution {
 public:
     ListNode* removeNthFromEnd(ListNode* head, int n) {
-        if (!head || !head->next) {
-            return nullptr;
-        }
-
-        ListNode* dummy = new ListNode(0);
-        ListNode* new_head = reverseList(head);
-
-        dummy->next = new_head;
-        ListNode* curr = new_head;
-        ListNode* prev = dummy;
-        for (int i = 1; i < n; ++i) {
-            prev = prev->next;
+        int N = 0;
+        ListNode* curr = head;
+        while (curr) {
+            N++;
             curr = curr->next;
         }
 
-        prev->next = curr->next;
-        dummy->next = reverseList(dummy->next);
-        return dummy->next;
-    }
-private:
-    ListNode* reverseList(ListNode* head) {
-        if (!head | !head->next) {
-            return head;
+        int idx = N - n;
+        if (idx == 0) {
+            return head->next;
         }
 
-        ListNode* new_head = reverseList(head->next);
-        if (head->next) {
-            head->next->next = head;
-            head->next = nullptr;
+        curr = head;
+        for (int i = 0; i < N; ++i) {
+            if (i + 1 == idx) {
+                curr->next = curr->next->next;
+                break;
+            }
+            curr = curr->next;
         }
-        return new_head;
+
+        return head;
     }
 };
