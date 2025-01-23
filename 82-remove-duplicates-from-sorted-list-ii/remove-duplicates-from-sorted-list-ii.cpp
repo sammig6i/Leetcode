@@ -23,7 +23,7 @@ public:
                 }
 
                 slow->next = fast->next;
-                fast = fast->next;
+                fast = slow->next;
             } else {
                 fast = fast->next;
                 slow = slow->next;
