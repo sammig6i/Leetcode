@@ -12,25 +12,24 @@ class Solution {
 public:
     int pairSum(ListNode* head) {
         ListNode* slow = head, *fast = head;
+        stack<int> st;
+
         while (fast && fast->next) {
             slow = slow->next;
             fast = fast->next->next;
         }
 
-        ListNode* prev = nullptr, *next = nullptr;
         while (slow) {
-            next = slow->next;
-            slow->next = prev;
-            prev = slow;
-            slow = next;
+            st.push(slow->val);
+            slow = slow->next;
         }
 
         slow = head;
         int res = 0;
-        while (slow && prev) {
-            res = max(res, prev->val + slow->val);
+        while (!st.empty()) {
+            res = max(res, st.top() + slow->val);
             slow = slow->next;
-            prev = prev->next;
+            st.pop();
         }
 
         return res;
