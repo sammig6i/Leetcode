@@ -10,7 +10,6 @@
  */
 class Solution {
     ListNode* cur;
-
     bool rec(ListNode* node) {
         if (node != nullptr) {
             if (!rec(node->next)) {
@@ -26,7 +25,7 @@ class Solution {
 
 public:
     bool isPalindrome(ListNode* head) {
-       cur = head;
-       return rec(head);
+        cur = head;
+        return rec(head);
     }
 };
