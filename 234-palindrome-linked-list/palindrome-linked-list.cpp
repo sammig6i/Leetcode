@@ -11,24 +11,36 @@
 class Solution {
 public:
     bool isPalindrome(ListNode* head) {
-        std::stack<int> stack;
+        ListNode* dummy = new ListNode(0);
+        dummy->next = head;
+
+        ListNode* prev = dummy;
+        ListNode* slow = head;
+        ListNode* fast = head;
+        while (fast && fast->next) {
+            prev = prev->next;
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+
+        prev->next = nullptr;
+        prev = nullptr;
+        while (slow) {
+            ListNode* next = slow->next;
+            slow->next = prev;
+            prev = slow;
+            slow = next;
+        }
+
         ListNode* cur = head;
-
-        // Traverse the list and push each node's value onto the stack
-        while (cur) {
-            stack.push(cur->val);
+        while(prev && cur) {
+            if (prev->val != cur->val) {
+                return false;
+            }
+            prev = prev->next;
             cur = cur->next;
         }
 
-        // Traverse the list again and compare each node's value with the stack's top
-        cur = head;
-        while (cur && cur->val == stack.top()) {
-            stack.pop();
-            cur = cur->next;
-        }
-
-        // If the list is a palindrome, cur should be null after the comparison
-        return !cur;
-        
+        return true;
     }
 };
