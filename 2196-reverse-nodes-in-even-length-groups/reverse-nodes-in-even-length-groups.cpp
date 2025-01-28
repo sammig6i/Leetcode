@@ -11,39 +11,56 @@
 class Solution {
 public:
     ListNode* reverseEvenLengthGroups(ListNode* head) {
-        int d = 2;
-        ListNode* prev_group = head;
-        ListNode* cur = head->next;
-        while (cur) {
-            int sz = 0;
-            ListNode* first = cur;
-            ListNode* last = nullptr;
-            while (cur && sz < d) {
-                last = cur;
-                cur = cur->next;
-                ++sz;
-            }
-
-            if (sz % 2 == 0) {
-                last->next = nullptr;
-                prev_group->next = reverseList(first);
-                first->next = cur;
-                last = first;
-            }
-            ++d;
-            prev_group = last;
-        }
-        return head;
-    }
-private:
-    ListNode* reverseList(ListNode* head) {
         if (!head || !head->next) {
             return head;
         }
 
-        ListNode* new_head = reverseList(head->next);
-        head->next->next = head;
-        head->next = nullptr;
-        return new_head;
+        int d = 2;
+        ListNode* tail = head;
+        ListNode* begin = head->next, *end = begin, *tmp = end;
+
+        for (int k = 2; ; ++k) {
+            int cnt = 0;
+            for (int i = 0; i < k; ++i) {
+                if (!end) {
+                    break;
+                }
+
+                tmp = end;
+                end = end->next;
+                ++cnt;
+            }
+
+            if (cnt % 2 == 0) {
+                tail->next = reverseList(begin, end);
+                tail = begin;
+            } else {
+                tail->next = begin;
+                tail = tmp;
+            }
+
+            begin = end;
+
+            if (!begin) {
+                tail->next = nullptr;
+                break;
+            }
+        }
+
+        return head;
+    }
+
+private:
+    ListNode* reverseList(ListNode* begin, ListNode* end) {
+
+        ListNode* prev = begin, *cur = prev->next, *next = nullptr;
+        while (cur != end) {
+            next = cur->next;
+            cur->next = prev;
+            prev = cur;
+            cur = next;
+        }
+
+        return prev;
     }
 };
