@@ -11,36 +11,29 @@
 class Solution {
 public:
     int pairSum(ListNode* head) {
-        ListNode* slow = head;
-        ListNode* fast = head;
-        
-        ListNode* dummy = new ListNode(0);
-        dummy->next = head;
-        ListNode* last_node = dummy;
+        ListNode* slow = head, *fast = head;
         while (fast && fast->next) {
             slow = slow->next;
-            last_node = last_node->next;
             fast = fast->next->next;
         }
 
-        ListNode* prev = nullptr;
+        ListNode* prev = nullptr, *next = nullptr;
         while (slow) {
-            ListNode* next = slow->next;
+            next = slow->next;
             slow->next = prev;
             prev = slow;
             slow = next;
         }
 
-        last_node->next = prev;
-        slow = last_node->next;
-        ListNode* slower = head;
+        slow = head;
         int res = 0;
-        while (slow) {
-            res = max(res, slow->val + slower->val);
+        while (slow && prev) {
+            res = max(res, prev->val + slow->val);
             slow = slow->next;
-            slower = slower->next;
+            prev = prev->next;
         }
 
         return res;
+
     }
 };
