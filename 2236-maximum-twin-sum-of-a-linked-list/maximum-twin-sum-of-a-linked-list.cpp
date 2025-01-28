@@ -13,7 +13,6 @@ public:
     int pairSum(ListNode* head) {
         ListNode* slow = head, *fast = head;
         stack<int> st;
-
         while (fast && fast->next) {
             slow = slow->next;
             fast = fast->next->next;
@@ -24,8 +23,8 @@ public:
             slow = slow->next;
         }
 
-        slow = head;
         int res = 0;
+        slow = head;
         while (!st.empty()) {
             res = max(res, st.top() + slow->val);
             slow = slow->next;
@@ -33,6 +32,5 @@ public:
         }
 
         return res;
-
     }
 };
