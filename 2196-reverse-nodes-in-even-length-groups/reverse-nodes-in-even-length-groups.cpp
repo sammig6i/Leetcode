@@ -9,14 +9,27 @@
  * };
  */
 class Solution {
+private:
+    ListNode* reverseList(ListNode* begin, ListNode* end) {
+        ListNode* prev = begin, *cur = begin->next, *next=nullptr;
+        while (cur != end) {
+            next = cur->next;
+            cur->next = prev;
+            prev = cur;
+            cur = next;
+        }
+
+        return prev;
+    }
+
 public:
     ListNode* reverseEvenLengthGroups(ListNode* head) {
         if (!head || !head->next) {
             return head;
         }
 
-        ListNode* tail=head, *begin = head->next, *end=begin, *tmp = nullptr;
-        for (int k = 2; ; ++k)  {
+        ListNode* begin = head->next, *tail = head, *end = begin, *tmp = nullptr;
+        for (int k = 2; ; ++k) {
             int cnt = 0;
             for (int i = 0; i < k; ++i) {
                 if (!end) {
@@ -26,7 +39,7 @@ public:
                 tmp = end;
                 end = end->next;
                 ++cnt;
-            }  
+            }
 
             if (cnt % 2 == 0) {
                 tail->next = reverseList(begin, end);
@@ -41,22 +54,8 @@ public:
                 tail->next = nullptr;
                 break;
             }
-
         }
 
         return head;
-    }
-
-private:
-    ListNode* reverseList(ListNode* begin, ListNode* end) {
-        ListNode* prev = begin, *cur = prev->next, *next = nullptr;
-        while (cur != end) {
-            next = cur->next;
-            cur->next = prev;
-            prev = cur;
-            cur = next;
-        }
-
-        return prev;
     }
 };
