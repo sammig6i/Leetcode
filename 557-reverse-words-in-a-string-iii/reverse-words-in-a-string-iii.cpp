@@ -4,19 +4,20 @@ public:
         int lastSpaceIdx = -1;
         string res = "";
         int n = s.size();
-        for (int i = 0; i < n; ++i) {
-            if (i == n - 1 || s[i] == ' ') {
-                int reverseIdx = (i == n - 1) ? i : i - 1;
-                for (; reverseIdx > lastSpaceIdx; --reverseIdx) {
-                    res += s[reverseIdx];
+        for (int i = 0; i <= n; ++i) {
+            if (i == n || s[i] == ' ') {
+                int L = lastSpaceIdx + 1;
+                int R = i - 1;
+                while (L < R) {
+                    char tmp = s[L];
+                    s[L] = s[R];
+                    s[R] = tmp;
+                    ++L;
+                    --R;
                 }
                 lastSpaceIdx = i;
-
-                if (i != n - 1) {
-                    res += ' ';
-                }
             }
         }
-        return res;
+        return s;
     }
 };
