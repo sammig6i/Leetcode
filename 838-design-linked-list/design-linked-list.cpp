@@ -11,12 +11,15 @@ private:
 
     ListNode* head;
     ListNode* tail;
+    int size;
+
 public:
     MyLinkedList() {
         head = new ListNode(-1);
         tail = new ListNode(-1);
         head->next = tail;
         tail->prev = head;
+        size = 0;
     }
     
     int get(int index) {
@@ -38,33 +41,45 @@ public:
         new_node->prev = head;
         head->next = new_node;
         next_node->prev = new_node;
+        ++size;
     }
     
     void addAtTail(int val) {
         ListNode* new_node = new ListNode(val), *prev_node = tail->prev;
-        prev_node->next = new_node;
-        new_node->prev = prev_node;
         new_node->next = tail;
+        new_node->prev = prev_node;
+        prev_node->next = new_node;
         tail->prev = new_node;
+        ++size;
     }
     
     void addAtIndex(int index, int val) {
         ListNode* new_node = new ListNode(val);
         ListNode* prev_node = head, *cur = head->next;
         int i = 0;
+        if (index == 0) {
+            addAtHead(val);
+            return;
+        }
+
+        if (index == size) {
+            addAtTail(val);
+            return;
+        }
+
         while (cur) {
-            if (i == index && cur != tail || i == index && cur == tail) {
+            if (i == index) {
                 new_node->next = cur;
                 new_node->prev = prev_node;
                 prev_node->next = new_node;
                 cur->prev = new_node;
+                ++size;
                 return;
             }
             prev_node = cur;
             cur = cur->next;
             ++i;
         }
-
         return;
     }
     
@@ -76,6 +91,7 @@ public:
                 ListNode* next_node = cur->next;
                 prev_node->next = next_node;
                 next_node->prev = prev_node;
+                --size;
                 return;
             }
             prev_node = cur;
