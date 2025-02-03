@@ -3,25 +3,18 @@ public:
     int data;
     Node *next;
 
-    Node () {
-
-    }
-
-    Node(int val) {
-        data=val;
-        next=NULL;
-    }
-
+    Node () {}
+    Node(int val) : data(val), next(nullptr) {}
 };
+
 
 class MyLinkedList {
 public:
-
-    Node *head = new Node();
-    int len=0;
+    Node* head = new Node();
+    int len = 0;
 
     MyLinkedList() {
-        
+
     }
     
     int get(int index) {
