@@ -8,6 +8,7 @@ public:
             if (path[i] == '/') {
                 continue;
             }
+
             string tmp;
             while (i < path.size() && path[i] != '/') {
                 tmp += path[i];
@@ -25,13 +26,13 @@ public:
             }
         }
 
+        if (st.empty()) {
+            return "/";
+        }
+
         while (!st.empty()) {
             res = '/' + st.top() + res;
             st.pop();
-        }
-
-        if (!res.size()) {
-            return "/";
         }
 
         return res;
