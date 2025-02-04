@@ -16,8 +16,6 @@ public:
         transform(nums1.begin(), nums1.end(), res.begin(), [&](int val) {
             return mp[val];
         });
-
         return res;
-        
     }
 };
