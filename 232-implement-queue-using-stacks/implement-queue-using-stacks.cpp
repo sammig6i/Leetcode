@@ -26,6 +26,8 @@ public:
                 out.push(in.top());
                 in.pop();
             }
+        } else {
+            return;
         }
     }
     
