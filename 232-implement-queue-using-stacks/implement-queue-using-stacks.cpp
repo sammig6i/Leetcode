@@ -16,13 +16,17 @@ public:
     }
     
     int peek() {
+        resize();
+        return out.top();
+    }
+
+    void resize() {
         if (out.empty()) {
             while (!in.empty()) {
                 out.push(in.top());
                 in.pop();
             }
         }
-        return out.top();
     }
     
     bool empty(void) {
