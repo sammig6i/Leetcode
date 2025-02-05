@@ -1,41 +1,39 @@
-class Node{
+class Node {
 public:
     int val;
-    Node *next;
+    Node* next;
 
-    Node () {}
+    Node() {}
     Node(int val) : val(val), next(nullptr) {}
 };
 
 class MyLinkedList {
 public:
-    Node *head = new Node();
+    Node* head  = new Node();
     int len = 0;
 
-    MyLinkedList() {
-        
-    }
-    
+    MyLinkedList() {}
+
     int get(int index) {
         if (len == 0) {
             return -1;
         }
 
-        Node *cur = head;
+        Node* cur = head;
         while (cur && index > 0) {
             cur = cur->next;
             --index;
         }
 
-        if (cur == nullptr) {
+        if (!cur) {
             return -1;
         }
 
         return cur->val;
     }
-    
+
     void addAtHead(int val) {
-        Node *node = new Node(val);
+        Node* node = new Node(val);
         if (len == 0) {
             head = node;
         } else {
@@ -44,58 +42,56 @@ public:
         }
         ++len;
     }
-    
-    void addAtTail(int val) {
-        Node *node = new Node(val);
 
+    void addAtTail(int val) {
+        Node* node = new Node(val);
         if (len == 0) {
             head = node;
         } else {
-            Node *cur = head;
+            Node* cur = head;
             while (cur->next) {
                 cur = cur->next;
             }
-
             cur->next = node;
         }
         ++len;
     }
-    
-    void addAtIndex(int index, int val) {
-        Node *node = new Node(val);
 
+    void addAtIndex(int index, int val) {
         if (index == 0) {
             addAtHead(val);
         } else if (index == len) {
             addAtTail(val);
         } else if (index < len) {
-            Node *cur = head;
-            while (cur->next && index > 1) {
+            Node* node = new Node(val);
+            
+            Node* cur = head;
+            while (cur && index > 1) {
                 cur = cur->next;
                 --index;
             }
+
             node->next = cur->next;
             cur->next = node;
             ++len;
         }
     }
-    
+
     void deleteAtIndex(int index) {
         if (index < len) {
-            Node *cur = head;
-
             if (index == 0) {
                 head = head->next;
             } else {
+                Node* cur = head;
                 while (cur->next && index > 1) {
                     cur = cur->next;
                     --index;
                 }
-
                 cur->next = cur->next->next;
-                --len;
             }
+            --len;
         }
+       
         
     }
 };
