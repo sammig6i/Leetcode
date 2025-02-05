@@ -2,8 +2,6 @@ class Solution {
 public:
     string simplifyPath(string path) {
         stack<string> st;
-        string res;
-
         for (int i = 0; i < path.size(); ++i) {
             if (path[i] == '/') {
                 continue;
@@ -15,12 +13,12 @@ public:
                 ++i;
             }
 
-            if (tmp == ".") {
-                continue;
-            } else if (tmp == "..") {
+            if (tmp == "..") {
                 if (!st.empty()) {
                     st.pop();
                 }
+            } else if (tmp == ".") {
+                continue;
             } else {
                 st.push(tmp);
             }
@@ -30,6 +28,7 @@ public:
             return "/";
         }
 
+        string res;
         while (!st.empty()) {
             res = '/' + st.top() + res;
             st.pop();
